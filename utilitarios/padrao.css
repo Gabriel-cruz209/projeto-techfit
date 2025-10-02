@@ -1,0 +1,38 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Elbasan&family=Oswald:wght@200..700&family=Press+Start+2P&display=swap');
+
+* {
+    font-family: "Oswald";
+}
+body{
+    margin: 0px;
+}
+header {
+    display: flex;
+    color:#ffffff;
+    background-color: #000000;
+    justify-content: space-between;
+    box-shadow: 3px 2px 10px #ce002d;
+}
+footer {
+    color:#ffffff;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+}
+.linha>div {
+    display:flex;
+    flex-direction: row;
+}
+.sublinha {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.linha-espaco {
+    background-color: #000000;
+    padding: 30px;
+}
