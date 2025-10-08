@@ -1,13 +1,26 @@
-header>button {
+
+#tabela-web {
+    display: flex;
+    flex-direction: column;
+}
+#tabela-web-header {
+    display: flex;
+}
+.coluna-informacao>button {
     margin-right: 20px;
     height: 50px;
     align-self: center;
     border-radius: 15px;
     border: 0px
 }
-header>button:hover {
+.coluna-informacao>button:hover {
     background-color: #ce002d;
     color: #ffffff;
+}
+
+.linha {
+    display: flex;
+    flex-direction: column;
 }
 .coluna-cartao {
     display: flex;
@@ -18,7 +31,7 @@ header>button:hover {
     border-radius: 30px;
     padding: 10px;
     gap: 10px;
-    width: 300px;
+    flex: 1 1 content;
     height: auto;
 }
 .coluna-cartao>h2,.coluna-cartao>p {
@@ -45,7 +58,7 @@ header>button:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 300px;
+    width: 100%;
     background-color: #d1d655;
     border-radius: 20px;
 }
@@ -58,4 +71,24 @@ header>button:hover {
     margin-left: 10px;
     margin-right: 10px;
     max-width: 50px;
+}
+.coluna-informacao {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+
+.coluna-informacao>img {
+    max-width: 100px;
+}
+.logo {
+    font-size: 1.6em;
+    margin: 0px;
+}
+
+@media screen and (max-width: 600px) { 
+    .linha {
+        flex-direction: row;
+    }
 }
