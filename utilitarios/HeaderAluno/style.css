@@ -144,11 +144,3 @@ header h1{
 .info-usuario strong{
     color: #111;
 }
-
-/* Parte Principal */
-
-main h1{
-    padding-top: 150px;
-    text-align: center;
-    font-size: 3rem;
-}
