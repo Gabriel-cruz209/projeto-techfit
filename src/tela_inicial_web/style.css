@@ -22,55 +22,64 @@
     display: flex;
     flex-direction: column;
 }
-.coluna-cartao {
-    display: flex;
-    flex-direction: column;
-    background-color: #e1e1e1;
-    border: solid 2px #000000;
-    margin-bottom: 30px;
-    border-radius: 30px;
-    padding: 10px;
-    gap: 10px;
-    flex: 1 1 content;
-    height: auto;
-}
-.coluna-cartao>h2,.coluna-cartao>p {
-    text-align: center;
-    font-size: 30px;
-}
-.coluna-cartao>p {
-    font-size: 20px;
-}
-.coluna-cartao>button {
-    width: 100px;
-    align-self: center;
-    border-radius: 20px;
-    padding: 10px;
-    border: 0px;
-    color: #ffffff;
-    background-color: #ff0000;
-}
-.coluna-cartao>button:hover {
-    background-color: #ce002d;
-    box-shadow: 3px 3px 3px #ce002d;
-}
-.linha-informacao {
+.linha-imagem {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    background-color: #d1d655;
-    border-radius: 20px;
+    align-items: center;
+    gap: 100px;
+    height: 500px;
+    background: #000000 url("../../Arquivos/imagem-treino.png") no-repeat fixed;
 }
-.linha-informacao>p {
-    text-align: justify;
-    max-width: 250px;
+.subcoluna:first-child {
+    margin-left: 15%;
+    margin-right: 25%;
+    font-size: 3em;
+    max-width: 40ch;
 }
-.linha-informacao>i {
-    align-self: center;
-    margin-left: 10px;
-    margin-right: 10px;
-    max-width: 50px;
+.subcoluna>.logo {
+    font-size: 4em;
+    text-shadow: 10px 10px 0px #ce002d;
+}
+.subcoluna {
+    flex: 1 1 50%;
+    text-align: center;
+    color: #ffffff;
+}
+.coluna-informacao>p:hover {
+    border-bottom: 1px solid #ffffff;
+    transition-duration: 1s;
+    transform: translateY(-5px);
+}
+
+
+.coluna-cartao {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    border: 5px outset #ce002d;
+    color: #ffffff;
+    padding: 20px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista-cartao {
+    list-style: circle;
+}
+
+li.possui::marker {
+    content: "\f2d3";
+    font-family: "Font Awesome 6 Free";
+    font-size: 50px;
+    color: #ff0000;
+}
+li.Npossui::marker {
+    content: "\f14a";
+    font-family: "Font Awesome 6 Free";
+    font-size: 50px;
+    color: #00ff00;
 }
 .coluna-informacao {
     display: flex;
@@ -85,8 +94,17 @@
 .logo {
     font-size: 1.6em;
     margin: 0px;
+    text-shadow: 2px 2px 1px #ce002d;
 }
-
+.coluna-informacao:first-child {
+    margin-left: 30px;
+}
+.coluna-informacao:last-child {
+    margin-right: 30px;
+}
+#tabela-web-footer {
+    margin-top: 30px;
+}
 @media screen and (max-width: 600px) { 
     .linha {
         flex-direction: row;
