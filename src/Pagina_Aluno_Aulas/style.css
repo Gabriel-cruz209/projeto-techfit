@@ -24,7 +24,6 @@ header h1{
     padding-top: 5px;
     text-shadow: 2px 2px 1px #CE002D;
 }
-
 .logo-academia img{
     width: 80px;
     height: 65px;
@@ -147,8 +146,51 @@ header h1{
 
 /* Parte Principal */
 
-main h1{
-    padding-top: 150px;
+.secao{
+    padding-left: 0;
+    margin-left: 0;
+    width: 250px;
+    border-right: 2px solid #5b5b5b;
+    height: 86vh;
+    background-color: #fffcfc;
+    padding-top: 90px;
+    border-bottom: 3px solid #5b5b5b;
+}
+
+.secao h2{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.secao button{
+    width: 250px;
+    height: 50px;
+    border-color: #ce002d00;
+    font-size: 1.2rem;
+    background-color: #ce002d00;
+    cursor: pointer;
+}
+
+/* .secao buttom:hover{
+
+} */
+
+.secaoUnidade hr{
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 8px 0;
+}
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+.selecioneA h1{
     text-align: center;
     font-size: 3rem;
+    transform: translate(20%, 300%);
+    color: #ffffff;
+    background-color: #666;
+    padding: 20px 20px 20px 20px;
 }
+
