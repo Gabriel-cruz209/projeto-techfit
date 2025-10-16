@@ -94,7 +94,7 @@ header h1 {
 .secoes-perfil {
     display: none;
     position: absolute;
-    top: 75px; /* Ajuste para não colar no ícone */
+    top: 75px; 
     right: 0;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -155,10 +155,29 @@ header h1 {
     color: #111;
 }
 
-/* Parte Principal */
+/* --- RODAPÉ (FOOTER) --- */
+#tabela-web-footer {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around; /* Distribui melhor os itens */
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 20px;
+}
 
-main h1{
-    padding-top: 150px;
-    text-align: center;
-    font-size: 3rem;
+.coluna-informacao {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+.coluna-informacao>img {
+    max-width: 80px;
+}
+
+.logo {
+    font-size: 1.6em;
+    text-shadow: 2px 2px 1px #ce002d;
 }

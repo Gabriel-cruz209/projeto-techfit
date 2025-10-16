@@ -13,9 +13,9 @@
     <header>
         <div class="logo-academia">
             <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
-            
+            <h1>TECHFIT</h1>
         </div>
-        <h1>TECHFIT</h1>
+        
         <div class="secoes">
             <button onclick="inicio()">Inicio</button>
             <button onclick="aula()">Aulas</button>
@@ -36,7 +36,7 @@
                     <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
                     <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
                     <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li><a href="/src/tela_inicial_web/index.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -47,21 +47,180 @@
         <h2>Unidades</h2>
         <div class="secaoUnidades">
             <hr>
-            <button onclick="UnidadeLimeira()">
+            <button onclick="Unidade('limeira')">
                 Limeira
             </button>
             <hr>
-            <button onclick="UnidadeCampinas()">
+            <button onclick="Unidade('campinas')">
                 Campinas
             </button>
             <hr>
+            <button onclick="Unidade('americana')">
+                Americana
+            </button>
+            <hr>
         </div>
-       </div>
-       <div class="selecioneA" id="selecioneA">
-        <h1>Selecione a Unidade deseja para Proseguir</h1>
-       </div>
+
+
+        
+
+       </div><!-- Unidades Limeira -->
+       <div class="local">
+         <div id="limeira" class="hidden">
+            <div class="Flex-Unidade">
+            <div class="unidade">
+                <h3>Limeira</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Limeira</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Limeira</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Limeira</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Limeira</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Limeira</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div></div>
+            </div>
+
+            <div id="campinas" class="hidden">
+            <div class="Flex-Unidade">
+            <div class="unidade">
+                <h3>Campinas</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Campinas</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Campinas</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Campinas</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Campinas</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Campinas</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div></div>
+        </div>
+
+        <div id="americana" class="hidden">
+            <div class="Flex-Unidade">
+            <div class="unidade">
+                <h3>Americana</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Americana</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Americana</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Americana</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Americana</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div>
+
+            <div class="unidade">
+                <h3>Americana</h3>
+                <img src="/Arquivos/imagem-treino3.png" alt="Unidade-Limeira"><br>
+                <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus rerum nihil optio nemo eos.</p>
+            </div></div>
+
+
+         </div>
+
+        </div>
+       
     </main>
-    <footer></footer>
+    <footer id="tabela-web-footer">
+        <div class="coluna-informacao">
+            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
+            <h4 class="logo">TECHFIT</h4>
+        </div>
+        <div class="coluna-informacao">
+            <h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4>
+        </div>
+        <div class="coluna-informacao">
+            <h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4>
+        </div>
+        <div class="coluna-informacao">
+            <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
