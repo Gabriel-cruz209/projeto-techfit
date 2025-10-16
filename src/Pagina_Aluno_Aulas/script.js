@@ -26,3 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+function Unidade(secao) {
+    document.getElementById('limeira').classList.add('hidden');
+    document.getElementById('americana').classList.add('hidden');
+    document.getElementById('campinas').classList.add('hidden');
+
+
+    document.getElementById(secao).classList.remove('hidden');
+}
+
+function aula(){
+    window.location.href="/src/Pagina_Aluno_Aulas/index.html"
+}
+
+function inicio(){
+    window.location.href="/src/Pagina_Inicial_Aluno/index.html"
+}
+
+function comunicados(){
+    window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
+}

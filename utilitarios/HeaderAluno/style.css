@@ -1,146 +1,80 @@
+/* --- GERAL / RESET --- */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap');
 
-*{
+* {
     margin: 0;
-    top: 0;
     padding: 0;
-    font-family: "Oswald";
+    box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
 }
 
-header{
-    background-color: black;
-    box-shadow: 3px 2px 10px #CE002D;
-    position: fixed;
-    width: 100%;
-    color:white;
+html {
+    font-size: 16px; /* Base para unidades rem */
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+    background-color: #f0f0f0; /* Um fundo sutil para o corpo */
+}
+
+main {
+    flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
     display: flex;
     flex-direction: row;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
-header h1{
-    font-size: 3rem;
-    padding-top: 5px;
+/* Classe utilitária para esconder elementos */
+.hidden {
+    display: none ; /* !important para garantir a sobreposição */
+}
+
+/* --- HEADER --- */
+header {
+    background-color: black;
+    box-shadow: 0 4px 10px -2px #CE002D; /* Sombra mais suave */
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens do cabeçalho */
+    justify-content: space-between; /* Distribui o espaço automaticamente */
+    padding: 10px 40px; /* Espaçamento interno mais consistente */
+}
+
+.logo-academia {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre logo e texto */
+}
+
+.logo-academia img {
+    width: 70px;
+    height: auto; /* Mantém a proporção */
+}
+
+header h1 {
+    font-size: 2.5rem;
     text-shadow: 2px 2px 1px #CE002D;
 }
 
-.logo-academia img{
-    width: 80px;
-    height: 65px;
-    padding-top: 10px;
-    padding-left: 60px;
-}
-.logo-academia h1{
-    padding-top: 15px;
-    padding-right: 100px;
-}
-
-.secoes>button:hover{
-    transition-duration: 0.5s;
-    transform: translateY(-5px);
-    border-bottom: 1px solid #ffffff;
-}
-
-.secoes{
+.secoes {
     display: flex;
-    flex-direction: row;
-    gap: 200px;   
-    padding-left: 250px;
-    padding-right: 200px;
-    height: 50px;
+    gap: 60px; /* Espaçamento mais controlado */
 }
 
 .secoes>button {
-    font-size: 1.3em;
+    font-size: 1.3rem;
     color: white;
-    background-color: #ce002d00;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent; /* Base para o efeito hover */
     cursor: pointer;
-    border: #ce002d00;
-    padding-top: 20px;
+    padding: 10px 5px;
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
 }
 
-
-/* Botao Perfil */
-
-
-.func-perfil{
-    position: relative;
-    display: inline-block;
-    
-}
-
-.perfil img { 
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.perfil{
-    padding-top: 10px;
-}
-.secoes-perfil{
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 220px;
-    z-index: 1000;
-}
-
-.secoes-perfil.show {
-    display: block;
-}
-
-
-.secoes-perfil ul{
-    list-style: none;
-    padding: 8px 0;
-    margin: 0;
-}
-
-.secoes-perfil li a{
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-}
-
-.secoes-perfil li a:hover{
-    background-color: #f5f5f5;
-}
-
-.secoes-perfil li a i{
-    margin-right: 12px;
-    width: 16px;
-    text-align: center;
-    color: #666;
-}
-
-.secoes-perfil hr{
-    border: 0;
-    border-top: 1px solid #e0e0e0;
-    margin: 8px 0;
-}
-
-.info-usuario{
-    padding: 10px 15px;
-    font-size: 14px;
-}
-
-.info-usuario span{
-    display: block;
-    font-size: 12px;
-    color: #666;
-}
-
-.info-usuario strong{
-    color: #111;
+.secoes>button:hover {
+    transform: translateY(-3px);
+    border-color: #ffffff; /* Evita o uso de border-bottom direto */
 }

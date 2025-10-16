@@ -1,196 +1,283 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap');
 
-*{
+* {
     margin: 0;
-    top: 0;
     padding: 0;
-    font-family: "Oswald";
+    box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
 }
 
-header{
-    background-color: black;
-    box-shadow: 3px 2px 10px #CE002D;
-    position: fixed;
-    width: 100%;
-    color:white;
+html {
+    font-size: 16px; /* Base para unidades rem */
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+    background-color: #e0e0e0; /* Um fundo sutil para o corpo */
+}
+
+main {
+    flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
     display: flex;
     flex-direction: row;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
-header h1{
-    font-size: 3rem;
-    padding-top: 5px;
+/* Classe utilitária para esconder elementos */
+.hidden {
+    display: none ; /* !important para garantir a sobreposição */
+}
+
+/* --- HEADER --- */
+header {
+    background-color: black;
+    box-shadow: 0 4px 10px -2px #CE002D; /* Sombra mais suave */
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens do cabeçalho */
+    justify-content: space-between; /* Distribui o espaço automaticamente */
+    padding: 10px 40px; /* Espaçamento interno mais consistente */
+}
+
+.logo-academia {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre logo e texto */
+}
+
+.logo-academia img {
+    width: 70px;
+    height: auto; /* Mantém a proporção */
+}
+
+header h1 {
+    font-size: 2.5rem;
     text-shadow: 2px 2px 1px #CE002D;
 }
-.logo-academia img{
-    width: 80px;
-    height: 65px;
-    padding-top: 10px;
-    padding-left: 60px;
-}
-.logo-academia h1{
-    padding-top: 15px;
-    padding-right: 100px;
-}
 
-.secoes>button:hover{
-    transition-duration: 0.5s;
-    transform: translateY(-5px);
-    border-bottom: 1px solid #ffffff;
-}
-
-.secoes{
+.secoes {
     display: flex;
-    flex-direction: row;
-    gap: 200px;   
-    padding-left: 250px;
-    padding-right: 200px;
-    height: 50px;
+    gap: 60px; /* Espaçamento mais controlado */
 }
 
 .secoes>button {
-    font-size: 1.3em;
+    font-size: 1.3rem;
     color: white;
-    background-color: #ce002d00;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent; /* Base para o efeito hover */
     cursor: pointer;
-    border: #ce002d00;
-    padding-top: 20px;
+    padding: 10px 5px;
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
 }
 
+.secoes>button:hover {
+    transform: translateY(-3px);
+    border-color: #ffffff; /* Evita o uso de border-bottom direto */
+}
 
-/* Botao Perfil */
-
-
-.func-perfil{
+/* --- MENU PERFIL --- */
+.func-perfil {
     position: relative;
-    display: inline-block;
-    
 }
 
-.perfil img { 
+.perfil img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     cursor: pointer;
+    border: 2px solid #CE002D;
 }
 
-.perfil{
-    padding-top: 10px;
-}
-.secoes-perfil{
+.secoes-perfil {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 75px; 
     right: 0;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     width: 220px;
     z-index: 1000;
+    overflow: hidden; /* Garante que os filhos respeitem o border-radius */
 }
 
 .secoes-perfil.show {
     display: block;
 }
 
-
-.secoes-perfil ul{
+.secoes-perfil ul {
     list-style: none;
-    padding: 8px 0;
-    margin: 0;
 }
 
-.secoes-perfil li a{
+.secoes-perfil li a {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 12px 15px;
     text-decoration: none;
     color: #333;
-    font-size: 14px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
 }
 
-.secoes-perfil li a:hover{
+.secoes-perfil li a:hover {
     background-color: #f5f5f5;
 }
 
-.secoes-perfil li a i{
+.secoes-perfil li a i {
     margin-right: 12px;
-    width: 16px;
+    width: 20px;
     text-align: center;
     color: #666;
 }
 
-.secoes-perfil hr{
+.secoes-perfil hr {
     border: 0;
     border-top: 1px solid #e0e0e0;
-    margin: 8px 0;
+    margin: 5px 0;
 }
 
-.info-usuario{
-    padding: 10px 15px;
-    font-size: 14px;
+.info-usuario {
+    padding: 15px;
+    font-size: 1rem;
 }
 
-.info-usuario span{
+.info-usuario span {
     display: block;
-    font-size: 12px;
+    font-size: 0.8rem;
     color: #666;
 }
 
-.info-usuario strong{
+.info-usuario strong {
     color: #111;
 }
 
-/* Parte Principal */
-
-.secao{
-    padding-left: 0;
-    margin-left: 0;
-    width: 250px;
-    border-right: 2px solid #5b5b5b;
-    height: 86vh;
-    background-color: #fffcfc;
-    padding-top: 90px;
-    border-bottom: 3px solid #5b5b5b;
-}
-
-.secao h2{
+/* --- CONTEÚDO PRINCIPAL --- */
+.secao {
+    width: 20%; 
+    flex-shrink: 0; 
+    border-right: 2px solid #ccc;
+    background-color: #ffffff;
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-.secao button{
-    width: 250px;
-    height: 50px;
-    border-color: #ce002d00;
-    font-size: 1.2rem;
-    background-color: #ce002d00;
-    cursor: pointer;
 }
 
-/* .secao buttom:hover{
+.secao h2 {
+    padding: 20px 0;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #e0e0e0;
+}
 
-} */
-
-.secaoUnidade hr{
+.secaoUnidades hr {
     border: 0;
     border-top: 1px solid #e0e0e0;
-    margin: 8px 0;
 }
-main{
+
+.secao button {
+    width: 100%;
+    height: 60px;
+    border: none;
+    font-size: 1.2rem;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.secao button:hover {
+    background-color: #f5f5f5;
+}
+
+/* --- EXIBIÇÃO DAS UNIDADES --- */
+div.local {
+    padding: 40px;
+    width: 100%;
+}
+
+div.Flex-Unidade {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
 }
 
-.selecioneA h1{
+div.unidade {
+    width: 200px;
+    height: 100%;
+    background-image: linear-gradient(to top right, #ff0000, black, black, #ff0000);
+    border: 2px solid #CE002D;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
     text-align: center;
-    font-size: 3rem;
-    transform: translate(20%, 300%);
-    color: #ffffff;
-    background-color: #666;
-    padding: 20px 20px 20px 20px;
 }
 
+div.unidade:hover{
+    transform: translateY(-5px)  ;
+    box-shadow: 1px 5px 15px rgb(255, 254, 254);
+}
+
+.unidade img {
+    width: 100%;
+    max-width: 250px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+div.unidade h3 {
+    font-size: 2rem;
+}
+
+div.unidade a {
+    color: #CE002D;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+div.unidade p {
+    font-family: 'Space Grotesk', sans-serif; /* Usando a segunda fonte importada */
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #e0e0e0;
+}
+
+#selecioneA h1 {
+    font-size: 3rem;
+    color: #333;
+    text-align: center;
+    margin: auto; /* Centraliza no espaço disponível */
+}
+
+/* --- RODAPÉ (FOOTER) --- */
+#tabela-web-footer {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around; /* Distribui melhor os itens */
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 20px;
+}
+
+.coluna-informacao {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+.coluna-informacao>img {
+    max-width: 80px;
+}
+
+.logo {
+    font-size: 1.6em;
+    text-shadow: 2px 2px 1px #ce002d;
+}

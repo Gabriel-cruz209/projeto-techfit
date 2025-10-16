@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-
 function aula(){
     window.location.href="/src/Pagina_Aluno_Aulas/index.html"
 }

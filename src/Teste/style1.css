@@ -1,200 +1,34 @@
-/* style.css */
-
-/* ---------------------------------- */
-/* --- Estilo geral para a página --- */
-/* ---------------------------------- */
+/* Centraliza o botão na página para facilitar a visualização */
 body {
-    /* Define a família de fontes padrão para todo o texto da página. */
-    /* Se Arial não estiver disponível, o navegador tentará a próxima fonte genérica sans-serif. */
-    font-family: Arial, sans-serif;
-
-    /* Define uma cor de fundo cinza clara para a página, um padrão comum em dashboards. */
-    background-color: #f0f2f5;
-
-    /* Ativa o modo de layout Flexbox para o body. Isso nos dá controle avançado sobre o alinhamento de seus filhos diretos. */
     display: flex;
-
-    /* Dentro do modelo Flexbox, esta propriedade alinha os itens ao final do eixo principal (horizontalmente). */
-    /* É por isso que nosso menu de perfil fica no canto direito da tela. */
-    justify-content: flex-end;
-
-    /* Adiciona um espaçamento interno de 20 pixels em todos os lados do body. */
-    /* Isso impede que o conteúdo (nosso menu) grude nas bordas da janela do navegador. */
-    padding: 20px;
-}
-
-/* ------------------------------------------------------------------ */
-/* --- O container que agrupa o ícone de perfil e o menu dropdown --- */
-/* ------------------------------------------------------------------ */
-.profile-dropdown {
-    /* Ponto CHAVE #1: Esta é a "âncora" para o menu. */
-    /* Um elemento com 'position: absolute' (o nosso menu) se posicionará em relação ao ancestral mais próximo */
-    /* que tenha 'position: relative'. Sem isso, o menu se posicionaria em relação à página inteira. */
-    position: relative;
-
-    /* Faz com que o container se comporte como um bloco (pode ter dimensões definidas) mas sem ocupar a largura total, */
-    /* permitindo que ele se ajuste ao conteúdo, como um elemento inline. */
-    display: inline-block;
-}
-
-/* --------------------------- */
-/* --- O ícone de perfil --- */
-/* --------------------------- */
-.profile-icon img {
-    /* Define a largura e altura da imagem do perfil. */
-    width: 50px;
-    height: 50px;
-
-    /* Deixa a imagem perfeitamente redonda. 50% do raio de um quadrado resulta em um círculo. */
-    border-radius: 50%;
-
-    /* Transforma o cursor do mouse em uma "mãozinha" ao passar sobre o ícone, */
-    /* indicando ao usuário que o elemento é clicável. Melhora a usabilidade. */
-    cursor: pointer;
-
-    /* Adiciona uma borda branca de 2px ao redor do ícone, ajudando a destacá-lo do fundo. */
-    border: 2px solid #fff;
-}
-
-/* ------------------------------------------------ */
-/* --- O menu dropdown (escondido por padrão) --- */
-/* ------------------------------------------------ */
-.dropdown-menu {
-    /* Ponto CHAVE #2: Esconde o menu por padrão. */
-    /* A visibilidade será controlada pelo JavaScript, adicionando uma classe que muda esta propriedade. */
-    display: none;
-
-    /* Ponto CHAVE #3: Remove o menu do fluxo normal da página. */
-    /* Isso permite que ele "flutue" sobre outros elementos, posicionado em relação à sua âncora ('position: relative'). */
-    position: absolute;
-
-    /* Posiciona o topo do menu a 60 pixels do topo do seu container-pai (.profile-dropdown). */
-    /* Isso o coloca logo abaixo do ícone de 50px de altura + um pequeno espaço. */
-    top: 60px;
-
-    /* Alinha a borda direita do menu com a borda direita do seu container-pai. */
-    right: 0;
-
-    /* Define a cor de fundo do menu. */
-    background-color: #ffffff;
-
-    /* Adiciona uma borda cinza clara de 1px. */
-    border: 1px solid #ddd;
-
-    /* Arredonda os cantos do menu. */
-    border-radius: 8px;
-
-    /* Adiciona uma sombra sutil para dar uma sensação de profundidade e fazer o menu "saltar" da página. */
-    /* Valores: (deslocamento horizontal) (deslocamento vertical) (nível de desfoque) (cor com transparência). */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-    /* Define uma largura fixa para o menu. */
-    width: 220px;
-
-    /* Garante que o menu seja renderizado em uma camada superior a outros elementos da página. */
-    /* Um valor alto como 1000 previne que outros componentes fiquem na frente do menu. */
-    z-index: 1000;
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- Classe especial que será adicionada/removida via JavaScript --- */
-/* -------------------------------------------------------------------------- */
-.dropdown-menu.show {
-    /* Esta regra só se aplica a um elemento que tenha AMBAS as classes: 'dropdown-menu' e 'show'. */
-    /* Ela sobrescreve o 'display: none' e torna o menu visível, tratando-o como um elemento de bloco. */
-    display: block;
-}
-
-/* ------------------------------------------------ */
-/* --- Estilos para a lista dentro do menu --- */
-/* ------------------------------------------------ */
-.dropdown-menu ul {
-    /* Remove os marcadores (bolinhas) padrão da lista. */
-    list-style: none;
-
-    /* Remove o espaçamento interno (padding) e externo (margin) que os navegadores aplicam por padrão às listas. */
-    /* Isso nos dá controle total sobre o espaçamento. Adicionamos um padding vertical de 8px. */
-    padding: 8px 0;
-    margin: 0;
-}
-
-.dropdown-menu li a {
-    /* Transforma o link em um container flex, o que facilita o alinhamento do ícone e do texto. */
-    display: flex;
-
-    /* Centraliza verticalmente o conteúdo do link (o ícone e o texto). */
+    justify-content: center;
     align-items: center;
-
-    /* Adiciona espaçamento interno para que o conteúdo não fique colado nas bordas e a área de clique seja maior. */
-    padding: 10px 15px;
-
-    /* Remove o sublinhado padrão dos links. */
-    text-decoration: none;
-
-    /* Define a cor do texto. */
-    color: #333;
-
-    /* Define o tamanho da fonte. */
-    font-size: 14px;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-/* Efeito de "hover": aplicado quando o mouse está sobre um item da lista */
-.dropdown-menu li a:hover {
-    /* Muda a cor de fundo do item para dar um feedback visual ao usuário, indicando qual item está selecionado. */
-    background-color: #f5f5f5;
+/* Estilização do botão */
+.botao-coracao {
+    background: none; /* Remove o fundo */
+    border: none;     /* Remove a borda */
+    cursor: pointer;  /* Mostra a mãozinha ao passar o mouse */
+    
+    /* Aparência do coração */
+    font-size: 5rem;  /* Tamanho do coração (5 vezes o tamanho padrão do texto) */
+    color: #ff9aaf;   /* Cor inicial (rosa claro) */
+
+    /* Animação suave para as mudanças */
+    transition: all 0.2s ease-in-out;
 }
 
-/* --------------------------------------------------- */
-/* --- Estilos para os ícones (<i>) dentro do menu --- */
-/* --------------------------------------------------- */
-.dropdown-menu li a i {
-    /* Adiciona um espaço à direita do ícone, separando-o do texto. */
-    margin-right: 12px;
-
-    /* Define uma largura fixa para o espaço do ícone. Isso garante que todos os textos */
-    /* fiquem perfeitamente alinhados verticalmente, mesmo que os ícones tenham larguras diferentes. */
-    width: 16px;
-
-    /* Centraliza o ícone dentro do espaço de 16px que definimos. */
-    text-align: center;
-
-    /* Define uma cor mais suave para os ícones. */
-    color: #666;
+/* Efeito ao passar o mouse (HOVER) */
+.botao-coracao:hover {
+    color: #e56b6f;         /* Muda para um vermelho mais forte */
+    transform: scale(1.2);  /* Aumenta o tamanho em 20% */
 }
 
-/* -------------------------------------------- */
-/* --- Estilo para a linha divisória <hr> --- */
-/* -------------------------------------------- */
-.dropdown-menu hr {
-    /* Remove a borda padrão do <hr>, que costuma ter um efeito 3D feio. */
-    border: 0;
-
-    /* Adiciona uma nova "borda" apenas no topo, que funciona como nossa linha customizada. */
-    border-top: 1px solid #e0e0e0;
-
-    /* Adiciona um espaçamento vertical acima e abaixo da linha. */
-    margin: 8px 0;
-}
-
-/* -------------------------------------------------------- */
-/* --- Estilo para a seção de informação do usuário --- */
-/* -------------------------------------------------------- */
-.user-info {
-    /* Adiciona um espaçamento interno para esta seção específica. */
-    padding: 10px 15px;
-    font-size: 14px;
-}
-
-.user-info span {
-    /* Faz o texto "Logado como" ocupar sua própria linha. */
-    display: block;
-    /* Define uma cor mais clara para o texto secundário. */
-    color: #666;
-    /* Deixa a fonte um pouco menor. */
-    font-size: 12px;
-}
-
-.user-info strong {
-    /* Define a cor do nome de usuário para um tom mais escuro, dando destaque. */
-    color: #111;
+/* Efeito ao clicar (OPCIONAL, mas recomendado) */
+.botao-coracao:active {
+    transform: scale(0.9); /* Diminui um pouco ao clicar para dar feedback */
 }
