@@ -1,11 +1,11 @@
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 4fr 1fr;
     grid-template-areas: 
-    "header header header"
-    ". main ."
-    "foot foot foot";
+    "header"
+    "main"
+    "foot";
     height: 100vh;
 }
 header {
