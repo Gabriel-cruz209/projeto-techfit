@@ -184,18 +184,16 @@ header h1 {
     text-shadow: 2px 2px 1px #ce002d;
 }
 
-/* Estilização do botão */
 .botao-curtir {
     background: none; 
-    border: none;    
+    border: none;     
     cursor: pointer;  
-    font-size: 5rem;  
-    color: #ff9aaf;   
+    font-size: 1.5rem; /* Tamanho mais apropriado */ 
+    color: #CE002D; /* Cor principal */
     transition: all 0.2s ease-in-out;
 }
 
-.botao-curtir:hover {
-    color: #e56b6f;        
+.botao-curtir:hover { 
     transform: scale(1.2); 
 }
 
@@ -203,31 +201,101 @@ header h1 {
     transform: scale(0.9); 
 }
 
+/* Classe 'curtido' que será ativada pelo JS */
+.botao-curtir.curtido {
+    color: #CE002D; /* Cor quando curtido */
+}
+/* O ícone dentro do botão curtido muda */
+.botao-curtir.curtido .fa-heart {
+    font-weight: 900; /* Transforma o ícone de 'far' (regular) para 'fas' (solid) */
+}
+
+
 /* Comunidados */
 main{
     display: flex;
     flex-direction: column;
-    padding: 10px 10px 10px 10px;
-}
-h2{
-    text-align: center;
+    padding: 30px 30px 30px 30px;
 }
 
-.forma_comu{
-    background-color: #f5f5f5;
-    border-radius: 15px;
-    width: 80%;
-    height: 400px;
+main h2{
+    text-align: center;
+    font-size: 3rem;
+    border-bottom: 5px solid #CE002D;
+    margin-bottom: 30px;
 }
+/* FORMA UNIDADE */
 
 .forma_unidade{
+    /* Define o tamanho do card e impede que ele encolha */
     background-color: #e0e0e0;
     border: 2px solid #000000;
     border-radius: 15px;
-    align-items: center;
+    box-shadow: 0 10px 15px rgb(54, 54, 54);
+    padding: 15px;
+    height: 350px; /* Altura fixa para alinhar */
+    width: 300px;
+}
+
+.forma_unidade:hover{
+   transform: translate3d(0, -5px, 0);
+    
+    /* Opcional: Aumenta a sombra para dar mais profundidade */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .forma_unidade > img{
-    width: 80%;
+    width: 100%;
+    height: 120px;
     border-radius: 15px;
+    margin-bottom: 10px;
+    object-fit: cover; /* Garante que a imagem cubra a área */
+
+}
+
+.forma_unidade>h4{
+    text-align: center;
+    color: #CE002D;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.forma_unidade>p{
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.4;
+    flex-grow: 1; /* Faz o parágrafo ocupar o espaço restante */
+    margin-bottom: 20px;
+}
+
+.forma_comu>h3{
+    font-size: 2rem;
+    border-bottom: 2px solid #000000;
+    width: 100%;
+}
+
+.forma_local{
+    background-color: #e7e7e7;
+    margin: 10px 10px 10px 10px;
+    padding: 20px;
+    border-radius: 15px;
+    gap: 30px;
+    height: 400px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border: 2px solid #000000;
+}
+
+.sub-info{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-top: 20px;
+
+}
+
+.sub-info>hr{
+    border: 0;
+    border-top: 1px solid #000000;
+    margin-top: 20px ;
 }

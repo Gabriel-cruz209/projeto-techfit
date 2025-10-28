@@ -2,15 +2,168 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste Botão Coração</title>
-    
     <link rel="stylesheet" href="style1.css">
-
+    <link rel="shortcut icon" href="/Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFit - Comunicados</title>
 </head>
 <body>
+    <header>
+        <div class="logo-academia">
+            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
+            <h1>TECHFIT</h1>
+        </div>
+        
+        <div class="secoes">
+            <button onclick="inicio()">Inicio</button>
+            <button onclick="aula()">Aulas</button>
+            <button onclick="comunicados()">Comunicados</button>
+        </div>
 
-    <button class="botao-coracao">&hearts;</button>
+        <div class="func-perfil" id="func-perfil">
+            <div class="perfil">
+                <img class="botaoPerfil" id="botaoPerfil" src="/Arquivos/perfil-removebg-preview.png" alt="Foto_Perfil">
+            </div>
+            <div class="secoes-perfil" id="menuPerfil">
+                <ul>
+                    <li class="info-usuario">
+                        <span>Usuário</span>
+                        <strong>Gabriel Soares</strong>
+                    </li>
+                    <hr>
+                    <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
+                    <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
+                    <li><a href="/src/tela_inicial_web/index.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
+    <main class="container-comunicados">
+        <h2>Comunicados</h2>
+
+        <section class="categoria-comunicados">
+            <h3>Importantes</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <div class="card-comunicado">
+                        <h4>Manutenção Piscina</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>A piscina estará fechada para manutenção no dia 25/10. Agradecemos a compreensão.</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                    <div class="card-comunicado">
+                        <h4>Novo Horário</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>Confira os novos horários de funcionamento a partir de Novembro. Fique atento!</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                    <div class="card-comunicado">
+                        <h4>Protocolo COVID</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>O uso de máscara volta a ser recomendado nas áreas comuns. Cuide-se!</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="categoria-comunicados">
+            <h3>Últimos Recados</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <div class="card-comunicado">
+                        <h4>Achados e Perdidos</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>Garrafa de água rosa encontrada no vestiário feminino. Retirar na recepção.</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                    <div class="card-comunicado">
+                        <h4>Aula de Zumba</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>A aula de Zumba de hoje será com a professora substituta Ana.</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="categoria-comunicados">
+            <h3>Parcerias</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <div class="card-comunicado">
+                        <h4>NutriStore</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>Alunos TechFit têm 15% de desconto em suplementos na NutriStore. Use o cupom TECHFIT15.</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="categoria-comunicados">
+            <h3>Eventos</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <div class="card-comunicado">
+                        <h4>Aulão de Spinning</h4>
+                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
+                        <p>Neste sábado, 30/10, teremos um aulão especial de Spinning às 10h. Inscreva-se!</p>
+                        <div class="card-footer">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="tabela-web-footer">
+        <div class="coluna-informacao">
+            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
+            <h4 class="logo">TECHFIT</h4>
+        </div>
+        <div class="coluna-informacao">
+            <h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4>
+        </div>
+        <div class="coluna-informacao">
+            <h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4>
+        </div>
+        <div class="coluna-informacao">
+            <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
+        </div>
+    </footer>
+    <script src="script1.js"></script>
 </body>
 </html>
