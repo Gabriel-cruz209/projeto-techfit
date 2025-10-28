@@ -53,3 +53,34 @@ function curtir(){
         document.getElementById("contadorCurtidas").innerHTML= `Error`
     }
 }
+
+function curtir(buttonElement) {
+    // Encontra o span do contador dentro do mesmo 'card-footer'
+    const cardFooter = buttonElement.parentElement;
+    const contagemEl = cardFooter.querySelector('.contador-curtidas');
+    
+    // Pega a contagem atual do atributo 'data-count'
+    let contagem = parseInt(contagemEl.dataset.count || '0');
+    
+    // Alterna a classe 'curtido' no botão
+    const foiCurtido = buttonElement.classList.toggle('curtido');
+    
+    // Encontra o ícone do coração
+    const icone = buttonElement.querySelector('i');
+
+    if (foiCurtido) {
+        // Se foi curtido
+        contagem++;
+        icone.classList.remove('far'); // Remove o ícone de contorno
+        icone.classList.add('fas');    // Adiciona o ícone sólido
+    } else {
+        // Se foi descurtido
+        contagem--;
+        icone.classList.remove('fas');    // Remove o ícone sólido
+        icone.classList.add('far');     // Adiciona o ícone de contorno
+    }
+
+    // Atualiza o texto e o atributo data-count
+    contagemEl.textContent = `Curtidas: ${contagem}`;
+    contagemEl.dataset.count = contagem;
+}

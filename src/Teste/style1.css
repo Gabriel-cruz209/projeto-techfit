@@ -1,34 +1,338 @@
-/* Centraliza o botão na página para facilitar a visualização */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+* {
     margin: 0;
-    background-color: #f0f0f0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Estilização do botão */
-.botao-coracao {
-    background: none; /* Remove o fundo */
-    border: none;     /* Remove a borda */
-    cursor: pointer;  /* Mostra a mãozinha ao passar o mouse */
-    
-    /* Aparência do coração */
-    font-size: 5rem;  /* Tamanho do coração (5 vezes o tamanho padrão do texto) */
-    color: #ff9aaf;   /* Cor inicial (rosa claro) */
+html {
+    font-size: 16px; 
+}
 
-    /* Animação suave para as mudanças */
+body {
+    font-family: "Oswald", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Mudei o fundo para um cinza mais claro */
+}
+
+/* --- HEADER (Seu código original, mantido) --- */
+header {
+    background-color: black;
+    box-shadow: 0 4px 10px -2px #CE002D;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.logo-academia {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-academia img {
+    width: 70px;
+    height: auto;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 1px #CE002D;
+}
+
+.secoes {
+    display: flex;
+    gap: 60px;
+}
+
+.secoes>button {
+    font-size: 1.3rem;
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    padding: 10px 5px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.secoes>button:hover {
+    transform: translateY(-3px);
+    border-color: #ffffff;
+}
+
+/* --- MENU PERFIL (Seu código original, mantido) --- */
+.func-perfil {
+    position: relative;
+}
+
+.perfil img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #CE002D;
+}
+
+.secoes-perfil {
+    display: none;
+    position: absolute;
+    top: 75px; 
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 220px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.secoes-perfil.show {
+    display: block;
+}
+
+.secoes-perfil ul {
+    list-style: none;
+}
+
+.secoes-perfil li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.secoes-perfil li a:hover {
+    background-color: #f5f5f5;
+}
+
+.secoes-perfil li a i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.secoes-perfil hr {
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 5px 0;
+}
+
+.info-usuario {
+    padding: 15px;
+    font-size: 1rem;
+}
+
+.info-usuario span {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.info-usuario strong {
+    color: #111;
+}
+
+/* --- MAIN: ÁREA DE COMUNICADOS (Novo/Melhorado) --- */
+main.container-comunicados {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima para legibilidade */
+    margin: 0 auto; /* Centraliza o conteúdo principal */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Espaço entre as categorias */
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    border-bottom: 2px solid #CE002D;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.categoria-comunicados {
+    width: 100%;
+}
+
+.categoria-comunicados h3 {
+    font-size: 1.8rem;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.carousel-wrapper {
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: hidden; /* Escondemos o scrollbar, o JS vai controlar */
+    scroll-behavior: smooth; /* Rolagem suave! */
+    gap: 20px;
+    padding: 10px 5px; /* Pequeno padding para sombra */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.card-comunicado {
+    /* Define o tamanho do card e impede que ele encolha */
+    flex: 0 0 280px; 
+    
+    background-color: #e0e0e0;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    height: 350px; /* Altura fixa para alinhar */
+    justify-content: space-between;
+}
+
+.card-comunicado h4 {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #CE002D;
+    margin-bottom: 10px;
+}
+
+.card-comunicado img {
+    width: 100%;
+    height: 120px; /* Altura fixa para imagem */
+    object-fit: cover; /* Garante que a imagem cubra a área */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card-comunicado p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.4;
+    flex-grow: 1; /* Faz o parágrafo ocupar o espaço restante */
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.contador-curtidas {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Botões do Carrossel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-btn:disabled {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: not-allowed;
+    display: none; /* Esconde o botão quando desabilitado */
+}
+
+.carousel-btn.prev {
+    left: -20px;
+}
+
+.carousel-btn.next {
+    right: -20px;
+}
+
+/* Botão Curtir (Melhorado) */
+.botao-curtir {
+    background: none; 
+    border: none;     
+    cursor: pointer;  
+    font-size: 1.5rem; /* Tamanho mais apropriado */ 
+    color: #CE002D; /* Cor principal */
     transition: all 0.2s ease-in-out;
 }
 
-/* Efeito ao passar o mouse (HOVER) */
-.botao-coracao:hover {
-    color: #e56b6f;         /* Muda para um vermelho mais forte */
-    transform: scale(1.2);  /* Aumenta o tamanho em 20% */
+.botao-curtir:hover { 
+    transform: scale(1.2); 
 }
 
-/* Efeito ao clicar (OPCIONAL, mas recomendado) */
-.botao-coracao:active {
-    transform: scale(0.9); /* Diminui um pouco ao clicar para dar feedback */
+.botao-curtir:active {
+    transform: scale(0.9); 
+}
+
+/* Classe 'curtido' que será ativada pelo JS */
+.botao-curtir.curtido {
+    color: #CE002D; /* Cor quando curtido */
+}
+/* O ícone dentro do botão curtido muda */
+.botao-curtir.curtido .fa-heart {
+    font-weight: 900; /* Transforma o ícone de 'far' (regular) para 'fas' (solid) */
+}
+
+
+/* --- RODAPÉ (Seu código original, mantido) --- */
+#tabela-web-footer {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Removido padding-bottom e margin-bottom zero, desnecessários */
+}
+
+.coluna-informacao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coluna-informacao>img {
+    max-width: 80px;
+}
+
+.logo {
+    font-size: 1.6em;
+    text-shadow: 2px 2px 1px #ce002d;
 }
