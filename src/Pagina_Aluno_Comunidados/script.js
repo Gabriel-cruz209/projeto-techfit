@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-
 function aula(){
     window.location.href="/src/Pagina_Aluno_Aulas/index.html"
 }
@@ -38,4 +37,19 @@ function inicio(){
 
 function comunicados(){
     window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
+}
+
+function curtir(){
+    const contagem = document.getElementById('funcCurti').value;
+    if(contagem == 0){
+        document.getElementById("contadorCurtidas").innerHTML = `Curtidas: ${contagem + 1}`
+        return;
+    }
+    else if (contagem == 1){
+        document.getElementById("contadorCurtidas").innerHTML = `Curtidas: ${contagem - 1}`
+        return;
+    }
+    else{
+        document.getElementById("contadorCurtidas").innerHTML= `Error`
+    }
 }

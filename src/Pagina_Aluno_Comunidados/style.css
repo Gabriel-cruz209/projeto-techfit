@@ -94,7 +94,7 @@ header h1 {
 .secoes-perfil {
     display: none;
     position: absolute;
-    top: 75px; /* Ajuste para não colar no ícone */
+    top: 75px; 
     right: 0;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -155,10 +155,79 @@ header h1 {
     color: #111;
 }
 
-/* Parte Principal */
+/* --- RODAPÉ (FOOTER) --- */
+#tabela-web-footer {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around; /* Distribui melhor os itens */
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 
-main h1{
-    padding-top: 150px;
+.coluna-informacao {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+.coluna-informacao>img {
+    max-width: 80px;
+}
+
+.logo {
+    font-size: 1.6em;
+    text-shadow: 2px 2px 1px #ce002d;
+}
+
+/* Estilização do botão */
+.botao-curtir {
+    background: none; 
+    border: none;    
+    cursor: pointer;  
+    font-size: 5rem;  
+    color: #ff9aaf;   
+    transition: all 0.2s ease-in-out;
+}
+
+.botao-curtir:hover {
+    color: #e56b6f;        
+    transform: scale(1.2); 
+}
+
+.botao-curtir:active {
+    transform: scale(0.9); 
+}
+
+/* Comunidados */
+main{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+}
+h2{
     text-align: center;
-    font-size: 3rem;
+}
+
+.forma_comu{
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    width: 80%;
+    height: 400px;
+}
+
+.forma_unidade{
+    background-color: #e0e0e0;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.forma_unidade > img{
+    width: 80%;
+    border-radius: 15px;
 }
