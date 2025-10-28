@@ -193,19 +193,21 @@ header h1 {
 div.local {
     padding: 40px;
     width: 100%;
+    height: 100%;
 }
 
 div.Flex-Unidade {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 80px;
     justify-content: center;
 }
 
 div.unidade {
-    width: 200px;
+    width: 300px;
     height: 100%;
-    background-image: linear-gradient(to top right, #ff0000, black, black, #ff0000);
+    background-color: #000000;
+    /* background-image: linear-gradient(to top right, #ff0000, black, black, #ff0000); */
     border: 2px solid #CE002D;
     color: white;
     border-radius: 15px;
@@ -255,6 +257,39 @@ div.unidade p {
     margin: auto; /* Centraliza no espaço disponível */
 }
 
+div.local2{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+/* Pesquisa Unidade e Regiao */
+div.pesquisa{
+    background-image: url(/Arquivos/imagem-treino4.png);
+    background-size: cover;
+    height: 10%;
+    
+}
+
+div.area_pesquisa{
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    padding-left: 10%;
+}
+
+div.barra_pesquisa{
+    background-color: white;
+    gap: 2px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 15px;
+}
+
+div.barra_pesquisa>input{
+    border: 2px solid #dddddd00;
+    background-color: white;
+    outline: none;
+}
 /* --- RODAPÉ (FOOTER) --- */
 #tabela-web-footer {
     background-color: #000000;

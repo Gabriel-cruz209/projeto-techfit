@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function Unidade(secao) {
-    document.getElementById('limeira').classList.add('hidden');
-    document.getElementById('americana').classList.add('hidden');
-    document.getElementById('campinas').classList.add('hidden');
+    document.getElementById('boxe').classList.add('hidden');
+    document.getElementById('zumba').classList.add('hidden');
+    document.getElementById('muaythay').classList.add('hidden');
 
 
     document.getElementById(secao).classList.remove('hidden');
@@ -45,5 +45,5 @@ function inicio(){
 }
 
 function comunicados(){
-    window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
+    window.location.href="/src/Pagina_Aluno_Comunicados/"
 }
