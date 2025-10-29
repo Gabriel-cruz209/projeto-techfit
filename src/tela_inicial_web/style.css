@@ -1,3 +1,15 @@
+:root {
+    --corPrincipal: #000000;
+    --corSecundaria: #CE002D;
+    --corFonte: #fff;
+}
+body,html {
+    margin: 0;
+    padding: 0;
+}
+* {
+    color: var(--corFonte);
+}
 body {
     display: grid;
     grid-template-columns: 1fr;
@@ -10,9 +22,109 @@ body {
 }
 header {
     grid-area: header;
+    background-color: var(--corPrincipal);
+    height: 100%;
+    z-index: 99;
+    animation: shadow_animate 1s infinite alternate;
+}
+@keyframes shadow_animate {
+    0% {
+        box-shadow: 0 0px 5px var(--corSecundaria);
+    }
+    100% {
+        box-shadow: 0 5px 10px var(--corSecundaria);
+    }
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "logo conteudo";
+}
+.logo {
+    grid-area: logo;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+}
+.logo > p {
+    font-size: 4em;
+    margin: 0;
+}
+.logo > img {
+    max-width: 150px;
+}
+.conteudo {
+    grid-area: conteudo;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.conteudo button {
+    padding: 10px;
+    background-color: #fff;
+    color: #000000;
+    border: none;
+    font-size: 1.5em;
+    border-radius: 10px;
+}
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-between;
+}
+.menu a {
+    font-size: 1.5em;
+}
+.menu a:hover {
+    color: #CE002D;
 }
 main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 0.25fr 2fr 0.25fr 2fr;
+    grid-template-areas: 
+    "imagem"
+    "vazio1"
+    "bio"
+    "vazio2"
+    "plano";
     grid-area: main;
+    height: 100%;
+}
+.imagem {
+  display: flex;
+  grid-area: imagem;
+  background-image: url("../../Arquivos/imagem-treino.png");
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center;   
+}
+
+.imagem p {
+    align-self: center;
+    max-width: 125px;
+    margin-left: 10%;
+    text-align: justify;
+    font-size: 2.5em;
+}
+.vazio1 {
+    grid-area: vazio1;
+    background-color: var(--corSecundaria);
+}
+.vazio2 {
+    grid-area: vazio2;
+    background-color: var(--corSecundaria);
+}
+.apresentacao {
+    grid-area: bio;
+}
+.planos {
+    grid-area: plano;
 }
 footer {
     grid-area: foot;
