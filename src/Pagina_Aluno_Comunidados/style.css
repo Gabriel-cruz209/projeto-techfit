@@ -231,17 +231,16 @@ main h2{
     background-color: #e0e0e0;
     border: 2px solid #000000;
     border-radius: 15px;
-    box-shadow: 0 10px 15px rgb(54, 54, 54);
     padding: 15px;
-    height: 350px; /* Altura fixa para alinhar */
+    height: 370px; 
     width: 300px;
 }
 
 .forma_unidade:hover{
-   transform: translate3d(0, -5px, 0);
+   transform: translate3d(0, 2px, 0);
     
     /* Opcional: Aumenta a sombra para dar mais profundidade */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 15px rgb(116, 116, 116);
 }
 
 .forma_unidade > img{
@@ -269,9 +268,13 @@ main h2{
 }
 
 .forma_comu>h3{
-    font-size: 2rem;
+    font-size: 2.3rem;
     border-bottom: 2px solid #000000;
     width: 100%;
+}
+
+.forma_comu{
+    margin-top: 10px;
 }
 
 .forma_local{
@@ -284,6 +287,8 @@ main h2{
     padding-left: 40px;
     padding-right: 40px;
     border: 2px solid #000000;
+    display: flex;
+    flex-direction: row;
 }
 
 .sub-info{
@@ -291,7 +296,6 @@ main h2{
     flex-direction: row;
     gap: 10px;
     padding-top: 20px;
-
 }
 
 .sub-info>hr{

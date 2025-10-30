@@ -45,5 +45,5 @@ function inicio(){
 }
 
 function comunicados(){
-    window.location.href="/src/Pagina_Aluno_Comunicados/"
+    window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
 }
