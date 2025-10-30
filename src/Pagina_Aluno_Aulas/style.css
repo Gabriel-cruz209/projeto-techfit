@@ -204,12 +204,12 @@ div.Flex-Unidade {
 }
 
 div.unidade {
-    width: 300px;
+    width: 200px;
     height: 100%;
-    background-color: #000000;
+    background-color: #ffffff;
     /* background-image: linear-gradient(to top right, #ff0000, black, black, #ff0000); */
     border: 2px solid #CE002D;
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
     padding: 20px;
@@ -227,7 +227,7 @@ div.unidade:hover{
 
 .unidade img {
     width: 100%;
-    max-width: 250px;
+    max-width: 150px;
     height: 150px;
     border-radius: 10px;
 }
@@ -244,10 +244,9 @@ div.unidade a {
 }
 
 div.unidade p {
-    font-family: 'Space Grotesk', sans-serif; /* Usando a segunda fonte importada */
-    font-size: 1rem;
+    font-size: 0.5rem;
     line-height: 1.5;
-    color: #e0e0e0;
+    color: #000000;
 }
 
 #selecioneA h1 {
