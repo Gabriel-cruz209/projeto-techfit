@@ -21,15 +21,15 @@ body {
 main {
     flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Mantido, embora o .container ocupe tudo */
 }
 
-/* Classe utilitária para esconder elementos */
+/* Classe utilitária para esconder elementos (CORRIGIDA) */
 .hidden {
-    display: none ; /* !important para garantir a sobreposição */
+    display: none !important; /* !important para garantir a sobreposição */
 }
 
-/* --- HEADER --- */
+/* --- HEADER (NOVO) --- */
 header {
     background-color: black;
     box-shadow: 0 4px 10px -2px #CE002D; /* Sombra mais suave */
@@ -78,7 +78,7 @@ header h1 {
     border-color: #ffffff; /* Evita o uso de border-bottom direto */
 }
 
-/* --- MENU PERFIL --- */
+/* --- MENU PERFIL (NOVO) --- */
 .func-perfil {
     position: relative;
 }
@@ -155,141 +155,151 @@ header h1 {
     color: #111;
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
-.secao {
-    width: 20%; 
-    flex-shrink: 0; 
-    border-right: 2px solid #ccc;
-    background-color: #ffffff;
-    text-align: center;
-}
 
-.secao h2 {
-    padding: 20px 0;
-    font-size: 1.8rem;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.secaoUnidades hr {
-    border: 0;
-    border-top: 1px solid #e0e0e0;
-}
-
-.secao button {
+/* --- MAIN CONTENT (Container) (Mantido) --- */
+div.container {
     width: 100%;
-    height: 60px;
-    border: none;
-    font-size: 1.2rem;
-    background-color: transparent;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    padding: 20px 5%; /* Padding responsivo */
+    background-color: #f9f9f9;
 }
 
-.secao button:hover {
-    background-color: #f5f5f5;
-}
-
-/* --- EXIBIÇÃO DAS UNIDADES --- */
-div.local {
-    padding: 40px;
-    width: 100%;
-    height: 100%;
-}
-
-div.Flex-Unidade {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 80px;
-    justify-content: center;
-}
-
-div.unidade {
-    width: 200px;
-    height: 100%;
-    background-color: #ffffff;
-    /* background-image: linear-gradient(to top right, #ff0000, black, black, #ff0000); */
-    border: 2px solid #CE002D;
-    color: rgb(0, 0, 0);
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+/* --- Área de Pesquisa (Mantido) --- */
+div.area_pesquisa {
     padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px; 
-    text-align: center;
-}
-
-div.unidade:hover{
-    transform: translateY(-5px)  ;
-    box-shadow: 1px 5px 15px rgb(255, 254, 254);
-}
-
-.unidade img {
-    width: 100%;
-    max-width: 150px;
-    height: 150px;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    gap: 20px;
+    justify-content: center; /* Centraliza as barras em telas menores */
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
 }
 
-div.unidade h3 {
-    font-size: 2rem;
+div.barra_pesquisa {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    flex-grow: 1; 
+    min-width: 200px;
 }
 
-div.unidade a {
+div.barra_pesquisa > i {
+    color: #555;
+}
+
+div.barra_pesquisa > input,
+div.barra_pesquisa > select {
+    border: none;
+    background-color: transparent;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    outline: none; 
+}
+
+
+div.barra_pesquisa > select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+
+/* --- Seções de Aula (Boxe, Zumba...) (Mantido) --- */
+div.tipo-aula {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+div.tipo-aula > h2 {
+    font-size: 1.8rem;
     color: #CE002D;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1.1rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-div.unidade p {
-    font-size: 0.5rem;
-    line-height: 1.5;
-    color: #000000;
+/* --- Unidades Individuais (Mantido) --- */
+div.unidade {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
 }
 
-#selecioneA h1 {
-    font-size: 3rem;
-    color: #333;
-    text-align: center;
-    margin: auto; /* Centraliza no espaço disponível */
+div.unidade:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-div.local2{
+div.unidade > img {
+    height: 100px;
+    width: 100px;
+    border-radius: 8px;
+    object-fit: cover; 
+}
+
+div.local > button{
+    height: 100%;
+    width: 15%;    
+    background-color: #CE002D;
+    border: none;
+    box-shadow: 0 4px 12px white;
+    color: #ffffff;
+    border-radius: 7px;
+    padding: 4px;
+    transition: box-shadow 0.5s ease ,transform 0.3s ease;
+}
+
+div.local > button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+div.local, div.local2 {
     display: flex;
     flex-direction: column;
+    gap: 8px;
     width: 100%;
 }
-/* Pesquisa Unidade e Regiao */
-div.pesquisa{
-    background-image: url(/Arquivos/imagem-treino4.png);
-    background-size: cover;
-    height: 10%;
-    
+
+div.local > h3, div.local2 > h3 {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 600;
 }
 
-div.area_pesquisa{
-    padding: 20px 20px 20px 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 10%;
-    padding-left: 10%;
+div.local > a, 
+div.local2 > a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-div.barra_pesquisa{
-    background-color: white;
-    gap: 2px;
-    padding: 5px 5px 5px 5px;
-    border-radius: 15px;
+div.local > a:hover, 
+div.local2 > a:hover {
+    text-decoration: underline;
 }
 
-div.barra_pesquisa>input{
-    border: 2px solid #dddddd00;
-    background-color: white;
-    outline: none;
+div.local > p, 
+div.local2 > p {
+    font-family: "Space Grotesk", sans-serif;
+    color: #666;
+    line-height: 1.5;
 }
-/* --- RODAPÉ (FOOTER) --- */
+
+
+/* --- RODAPÉ (FOOTER) (NOVO) --- */
 #tabela-web-footer {
     background-color: #000000;
     color: white;
@@ -299,12 +309,24 @@ div.barra_pesquisa>input{
     padding: 20px 0;
     flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
     gap: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .coluna-informacao {
     display: flex;
     align-items: center;
     gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+div.coluna-informacao>a{
+   text-decoration: none; 
+   color:white;
+   transition: color 0.3s ease;
+}
+
+div.coluna-informacao>a:hover{
+    color: #ce002d;
 }
 
 .coluna-informacao>img {

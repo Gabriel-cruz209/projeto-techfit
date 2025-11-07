@@ -1,11 +1,13 @@
+// script.js
+
 // Espera o HTML ser carregado completamente
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- LÓGICA DO MENU PERFIL (Seu código original) ---
+    // --- 1. CÓDIGO DO MENU DE PERFIL ---
     const botaoPerfil = document.getElementById('botaoPerfil');
     const menuPerfil = document.getElementById('menuPerfil');
 
-    if (botaoPerfil && menuPerfil) { // Boa prática: verificar se os elementos existem
+    if (botaoPerfil && menuPerfil) {
         botaoPerfil.addEventListener('click', function() {
             menuPerfil.classList.toggle('show');
         });
@@ -19,64 +21,89 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- NOVA LÓGICA DO CARROSSEL ---
-    // Seleciona TODOS os carrosséis da página
-    const carousels = document.querySelectorAll('.carousel-wrapper');
+    // --- 2. NOVO SISTEMA DE FILTRO UNIFICADO ---
+    
+    // Pega todos os elementos de controle do filtro
+    const filtroTipo = document.getElementById('menu-tipo');
+    const filtroRegiao = document.getElementById('pes_estado');
+    const filtroCidade = document.getElementById('pes_cidade');
 
-    carousels.forEach(wrapper => {
-        const track = wrapper.querySelector('.carousel-track');
-        const prevBtn = wrapper.querySelector('.carousel-btn.prev');
-        const nextBtn = wrapper.querySelector('.carousel-btn.next');
-        const cards = track.querySelectorAll('.card-comunicado');
+    // Pega os contêineres principais das aulas
+    const containerBoxe = document.getElementById('boxe');
+    const containerZumba = document.getElementById('zumba');
+    const containerMuaythai = document.getElementById('muaythay');
+    
+    // Coloca todos os containers em um array para facilitar
+    const todosContainers = [containerBoxe, containerZumba, containerMuaythai].filter(Boolean); // .filter(Boolean) remove qualquer um que for nulo
 
-        if (!track || !prevBtn || !nextBtn || cards.length === 0) {
-            // Se algum elemento essencial faltar, pula este carrossel
-            return;
-        }
+    // Função única que roda todos os filtros
+    function aplicarFiltros() {
+        
+        // Pega os valores atuais dos filtros (em minúsculas e sem espaços)
+        const tipoSelecionado = filtroTipo.value; // ex: "boxe"
+        const termoRegiao = filtroRegiao.value.toLowerCase().trim();
+        const termoCidade = filtroCidade.value.toLowerCase().trim();
 
-        // Função para atualizar o estado (habilitado/desabilitado) dos botões
-        function updateButtonState() {
-            const scrollLeft = track.scrollLeft;
-            const scrollWidth = track.scrollWidth;
-            const clientWidth = track.clientWidth;
+        let containerAtivo = null;
 
-            // Desabilita o botão 'prev' se estiver no início
-            prevBtn.disabled = scrollLeft <= 0;
+        // 1. Filtro de TIPO DE AULA (Mostra o container principal)
+        todosContainers.forEach(container => {
+            if (container.id === tipoSelecionado) {
+                container.classList.remove('hidden');
+                containerAtivo = container; // Armazena qual container está visível
+            } else {
+                container.classList.add('hidden');
+            }
+        });
 
-            // Desabilita o botão 'next' se estiver no fim (com uma pequena margem de erro)
-            nextBtn.disabled = scrollLeft >= (scrollWidth - clientWidth - 5);
-        }
-
-        // Evento de clique para o botão 'próximo'
-        nextBtn.addEventListener('click', () => {
-            // Calcula o quanto rolar (largura do card + gap)
-            const cardWidth = cards[0].offsetWidth;
-            const gap = parseInt(window.getComputedStyle(track).gap) || 20;
-            const scrollAmount = cardWidth + gap;
+        // 2. Filtro de REGIAO e CIDADE (Filtra as unidades DENTRO do container ativo)
+        if (containerAtivo) {
             
-            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
+            // Pega todas as unidades APENAS do container que está visível
+            const unidadesParaFiltrar = containerAtivo.querySelectorAll('.unidade');
+            
+            unidadesParaFiltrar.forEach(unidade => {
+                
+                // Pega os dados da unidade direto do HTML (usando getAttribute)
+                // O '|| '' ' garante que não dê erro se o atributo não existir
+                const itemRegiao = (unidade.getAttribute('estado') || '').toLowerCase();
+                const itemCidade = (unidade.getAttribute('cidade') || '').toLowerCase();
 
-        // Evento de clique para o botão 'anterior'
-        prevBtn.addEventListener('click', () => {
-            const cardWidth = cards[0].offsetWidth;
-            const gap = parseInt(window.getComputedStyle(track).gap) || 20;
-            const scrollAmount = cardWidth + gap;
+                // Verifica se os termos de busca estão incluídos nos dados da unidade
+                const matchRegiao = itemRegiao.includes(termoRegiao);
+                const matchCidade = itemCidade.includes(termoCidade);
 
-            track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
+                // Mostra ou esconde a unidade individual
+                if (matchRegiao && matchCidade) {
+                    unidade.classList.remove('hidden');
+                } else {
+                    unidade.classList.add('hidden');
+                }
+            });
+        }
+    }
 
-        // Atualiza os botões sempre que o usuário rolar (inclusive após o clique)
-        track.addEventListener('scroll', updateButtonState);
+    // 3. Adiciona os "ouvintes" de evento
+    // Qualquer mudança em qualquer um dos 3 filtros chama a mesma função
+    if (filtroTipo) {
+        filtroTipo.addEventListener('change', aplicarFiltros);
+    }
+    if (filtroRegiao) {
+        filtroRegiao.addEventListener('input', aplicarFiltros);
+    }
+    if (filtroCidade) {
+        filtroCidade.addEventListener('input', aplicarFiltros);
+    }
 
-        // Atualiza os botões no carregamento da página
-        updateButtonState();
-    });
+    // 4. Roda o filtro UMA VEZ quando a página carrega
+    // Isso garante que apenas as aulas de "Boxe" (o padrão) apareçam
+    aplicarFiltros();
 
-}); // Fim do 'DOMContentLoaded'
+});
 
 
-// --- FUNÇÕES DE NAVEGAÇÃO (Seu código original) ---
+// --- 3. FUNÇÕES DE NAVEGAÇÃO (Mantidas) ---
+
 function aula(){
     window.location.href="/src/Pagina_Aluno_Aulas/index.html"
 }
@@ -87,38 +114,4 @@ function inicio(){
 
 function comunicados(){
     window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
-}
-
-
-// --- NOVA FUNÇÃO CURTIR (Melhorada) ---
-// Esta função é chamada pelo 'onclick="curtir(this)"' no HTML
-function curtir(buttonElement) {
-    // Encontra o span do contador dentro do mesmo 'card-footer'
-    const cardFooter = buttonElement.parentElement;
-    const contagemEl = cardFooter.querySelector('.contador-curtidas');
-    
-    // Pega a contagem atual do atributo 'data-count'
-    let contagem = parseInt(contagemEl.dataset.count || '0');
-    
-    // Alterna a classe 'curtido' no botão
-    const foiCurtido = buttonElement.classList.toggle('curtido');
-    
-    // Encontra o ícone do coração
-    const icone = buttonElement.querySelector('i');
-
-    if (foiCurtido) {
-        // Se foi curtido
-        contagem++;
-        icone.classList.remove('far'); // Remove o ícone de contorno
-        icone.classList.add('fas');    // Adiciona o ícone sólido
-    } else {
-        // Se foi descurtido
-        contagem--;
-        icone.classList.remove('fas');    // Remove o ícone sólido
-        icone.classList.add('far');     // Adiciona o ícone de contorno
-    }
-
-    // Atualiza o texto e o atributo data-count
-    contagemEl.textContent = `Curtidas: ${contagem}`;
-    contagemEl.dataset.count = contagem;
 }

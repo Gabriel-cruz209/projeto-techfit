@@ -15,7 +15,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
-    background-color: #e0e0e0; /* Um fundo sutil para o corpo */
+    background-color: #ffffff; /* Um fundo sutil para o corpo */
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 main {
@@ -32,7 +36,7 @@ main {
 /* --- HEADER --- */
 header {
     background-color: black;
-    box-shadow: 0 4px 10px -2px #CE002D; /* Sombra mais suave */
+    /* box-shadow: 0 4px 10px -2px #CE002D; Sombra mais suave */
     width: 100%;
     color: white;
     display: flex;
@@ -67,7 +71,7 @@ header h1 {
     color: white;
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid transparent; /* Base para o efeito hover */
+    border-bottom: 2px solid transparent;
     cursor: pointer;
     padding: 10px 5px;
     transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
@@ -75,7 +79,7 @@ header h1 {
 
 .secoes>button:hover {
     transform: translateY(-3px);
-    border-color: #ffffff; /* Evita o uso de border-bottom direto */
+    border-color: #ffffff; 
 }
 
 /* --- MENU PERFIL --- */
@@ -161,4 +165,45 @@ main h1{
     padding-top: 150px;
     text-align: center;
     font-size: 3rem;
+}
+
+#tabela-web-footer {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around; /* Distribui melhor os itens */
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.coluna-informacao {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+div.coluna-informacao>a{
+   text-decoration: none; 
+   color:white;
+   border: none;
+   border-bottom: 2px solid transparent;
+   transition: color 0.3s ease,border-color 0.3s ease; 
+}
+
+div.coluna-informacao>a:hover{
+    color: #cdcdcd;
+    border-color: #ce002d;
+}
+
+.coluna-informacao>img {
+    max-width: 80px;
+}
+
+.logo {
+    font-size: 1.6em;
+    text-shadow: 2px 2px 1px #ce002d;
 }
