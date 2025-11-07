@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
-    background-color: #e0e0e0; /* Um fundo sutil para o corpo */
+    background-color: #f9f9f9; /* Um fundo sutil para o corpo */
 }
 
 main {
@@ -32,7 +32,7 @@ main {
 /* --- HEADER --- */
 header {
     background-color: black;
-    box-shadow: 0 4px 10px -2px #CE002D; /* Sombra mais suave */
+    /* box-shadow: 0 4px 10px -2px #CE002D;  */
     width: 100%;
     color: white;
     display: flex;
@@ -40,6 +40,7 @@ header {
     justify-content: space-between; /* Distribui o espaço automaticamente */
     padding: 10px 40px; /* Espaçamento interno mais consistente */
 }
+
 
 .logo-academia {
     display: flex;
@@ -175,6 +176,16 @@ header h1 {
     gap: 10px; /* Espaçamento entre ícone e texto */
 }
 
+div.coluna-informacao>a{
+   text-decoration: none; 
+   color:white;
+   transition: color 0.3s ease;
+}
+
+div.coluna-informacao>a:hover{
+    color: #ce002d;
+}
+
 .coluna-informacao>img {
     max-width: 80px;
 }
@@ -221,26 +232,25 @@ main{
 main h2{
     text-align: center;
     font-size: 3rem;
+    color: black;
     border-bottom: 5px solid #CE002D;
     margin-bottom: 30px;
 }
 /* FORMA UNIDADE */
 
 .forma_unidade{
-    /* Define o tamanho do card e impede que ele encolha */
     background-color: #e0e0e0;
     border: 2px solid #000000;
     border-radius: 15px;
     padding: 15px;
     height: 370px; 
     width: 300px;
+    transition: transform 0.2s, box-shadow 0.3s;
 }
 
 .forma_unidade:hover{
-   transform: translate3d(0, 2px, 0);
-    
-    /* Opcional: Aumenta a sombra para dar mais profundidade */
-    box-shadow: 0 10px 15px rgb(116, 116, 116);
+   transform: translate3d(0, -1px, 0);
+    box-shadow: 0 5px 15px rgb(116, 116, 116);
 }
 
 .forma_unidade > img{
@@ -269,8 +279,10 @@ main h2{
 
 .forma_comu>h3{
     font-size: 2.3rem;
-    border-bottom: 2px solid #000000;
+    color: #CE002D;
+    border-bottom: 3px solid #000000;
     width: 100%;
+    -webkit-text-stroke: 1px black;
 }
 
 .forma_comu{
@@ -289,6 +301,7 @@ main h2{
     border: 2px solid #000000;
     display: flex;
     flex-direction: row;
+    
 }
 
 .sub-info{

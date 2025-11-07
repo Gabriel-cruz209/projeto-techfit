@@ -2,11 +2,12 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
     <link rel="shortcut icon" href="/Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechFit - Comunicados</title>
+    <title>TechFit</title>
 </head>
 <body>
     <header>
@@ -25,145 +26,116 @@
             <div class="perfil">
                 <img class="botaoPerfil" id="botaoPerfil" src="/Arquivos/perfil-removebg-preview.png" alt="Foto_Perfil">
             </div>
-            <div class="secoes-perfil" id="menuPerfil">
-                <ul>
-                    <li class="info-usuario">
-                        <span>Usuário</span>
-                        <strong>Gabriel Soares</strong>
-                    </li>
-                    <hr>
-                    <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-                </ul>
+            <div class="menu-perfil" id="menuPerfil">
+                <a href="/src/Pagina_Perfil/index.html">Ver Perfil</a>
+                <a href="/index.html">Sair</a>
             </div>
         </div>
+
     </header>
 
-    <main class="container-comunicados">
-        <h2>Comunicados</h2>
+    <main>
+        
+        <div class="container">
+            <div class="area_pesquisa">
+                <div class="barra_pesquisa">
+                    <label for="menu-tipo"><i class="fa-solid fa-dumbbell"></i></label>
+                    <select id="menu-tipo" name="menu-tipo">
+                        <option value="boxe">Boxe</option>
+                        <option value="zumba">Zumba</option>
+                        <option value="muaythay">Muay Thay</option>
+                    </select>
+                </div>
+                <div class="barra_pesquisa">
+                    <label for="pes_estado"><i class="fa-solid fa-location-dot"></i></label>
+                    <input type="text" id="pes_estado" name="pes_estado" placeholder="Região (Estado)">
+                </div>
+                <div class="barra_pesquisa">
+                    <label for="pes_cidade"><i class="fa-solid fa-city"></i></label>
+                    <input type="text" id="pes_cidade" name="pes_cidade" placeholder="Unidade (Cidade)">
+                </div>
+            </div>
 
-        <section class="categoria-comunicados">
-            <h3>Importantes</h3>
-            <div class="carousel-wrapper">
-                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-track">
-                    <div class="card-comunicado">
-                        <h4>Manutenção Piscina</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>A piscina estará fechada para manutenção no dia 25/10. Agradecemos a compreensão.</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
-                    </div>
-                    <div class="card-comunicado">
-                        <h4>Novo Horário</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>Confira os novos horários de funcionamento a partir de Novembro. Fique atento!</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
-                    </div>
-                    <div class="card-comunicado">
-                        <h4>Protocolo COVID</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>O uso de máscara volta a ser recomendado nas áreas comuns. Cuide-se!</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
+            <div id="boxe" class="tipo-aula">
+                <h2>BOXE</h2>
+                <div class="unidade" estado="SP" cidade="Limeira">
+                    <img src="/Arquivos/Panobianco-Logo.jpg" alt="Logo-Panobianco">
+                    <div class="local">
+                        <h3>ACADEMIA PANOBIANCO</h3>
+                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
                     </div>
                 </div>
-                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
-
-        <section class="categoria-comunicados">
-            <h3>Últimos Recados</h3>
-            <div class="carousel-wrapper">
-                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-track">
-                    <div class="card-comunicado">
-                        <h4>Achados e Perdidos</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>Garrafa de água rosa encontrada no vestiário feminino. Retirar na recepção.</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
-                    </div>
-                    <div class="card-comunicado">
-                        <h4>Aula de Zumba</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>A aula de Zumba de hoje será com a professora substituta Ana.</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
+                <div class="unidade" estado="SP" cidade="Piracicaba">
+                    <img src="/Arquivos/Panobianco-Logo.jpg" alt="Logo-Panobianco">
+                    <div class="local">
+                        <h3>ACADEMIA PANOBIANCO</h3>
+                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
                     </div>
                 </div>
-                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
-
-        <section class="categoria-comunicados">
-            <h3>Parcerias</h3>
-            <div class="carousel-wrapper">
-                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-track">
-                    <div class="card-comunicado">
-                        <h4>NutriStore</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>Alunos TechFit têm 15% de desconto em suplementos na NutriStore. Use o cupom TECHFIT15.</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
+                <div class="unidade" estado="RJ" cidade="Rio de Janeiro">
+                    <img src="/Arquivos/Panobianco-Logo.jpg" alt="Logo-Panobianco">
+                    <div class="local2">
+                        <h3>ACADEMIA PANOBIANCO</h3>
+                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
                     </div>
                 </div>
-                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
             </div>
-        </section>
 
-        <section class="categoria-comunicados">
-            <h3>Eventos</h3>
-            <div class="carousel-wrapper">
-                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-track">
-                    <div class="card-comunicado">
-                        <h4>Aulão de Spinning</h4>
-                        <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                        <p>Neste sábado, 30/10, teremos um aulão especial de Spinning às 10h. Inscreva-se!</p>
-                        <div class="card-footer">
-                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                        </div>
+            <div id="zumba" class="tipo-aula">
+                <h2>ZUMBA</h2>
+                <div class="unidade" estado="SP" cidade="Limeira">
+                    <img src="/Arquivos/Panobianco-Logo.jpg" alt="Logo-Panobianco">
+                    <div class="local">
+                        <h3>ACADEMIA PANOBIANCO</h3>
+                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
                     </div>
                 </div>
-                <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+                <div class="unidade" estado="MG" cidade="Belo Horizonte">
+                    <img src="/Arquivos/Panobianco-Logo.jpg" alt="Logo-Panobianco">
+                    <div class="local">
+                        <h3>ACADEMIA PANOBIANCO</h3>
+                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
+                    </div>
+                </div>
             </div>
-        </section>
 
+            <div id="muaythay" class="tipo-aula">
+                <h2>MUAY THAY</h2>
+                <div class="unidade" estado="SP" cidade="Campinas">
+                    <img src="/Arquivos/Panobianco-Logo.jpg" alt="Logo-Panobianco">
+                    <div class="local">
+                        <h3>ACADEMIA PANOBIANCO</h3>
+                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <footer id="tabela-web-footer">
-        <div class="coluna-informacao">
-            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
-            <h4 class="logo">TECHFIT</h4>
+    <footer>
+        <div class="logo-academia">
+            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
+            <h1>TECHFIT</h1>
         </div>
-        <div class="coluna-informacao">
-            <h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4>
+        <div class="footer-links">
+            <a href="#">Sobre Nós</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Termos de Uso</a>
         </div>
-        <div class="coluna-informacao">
-            <h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4>
-        </div>
-        <div class="coluna-informacao">
-            <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
+        <div class="social-media">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </footer>
-    <script src="script1.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>

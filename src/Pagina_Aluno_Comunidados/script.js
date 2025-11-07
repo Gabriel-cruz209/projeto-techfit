@@ -34,9 +34,8 @@ function aula(){
 function inicio(){
     window.location.href="/src/Pagina_Inicial_Aluno/index.html"
 }
-
 function comunicados(){
-    window.location.href="/src/Pagina_Aluno"
+    window.location.href="/src/Pagina_Aluno_Comunidados/index.html"
 }
 
 function curtir(){

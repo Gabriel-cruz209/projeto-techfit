@@ -37,5 +37,5 @@ function inicio(){
 }
 
 function comunicados(){
-    window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
+    window.location.href="/src/Pagina_Aluno_Comunidados/index.html"
 }
