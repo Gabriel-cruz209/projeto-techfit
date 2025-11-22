@@ -54,7 +54,7 @@ header .container {
     margin: 0;
 }
 .logo > img {
-    max-width: 150px;
+    max-width: 100px;
 }
 .conteudo {
     grid-area: conteudo;
@@ -180,8 +180,123 @@ main {
     justify-self: center;
 }
 .planos {
+    background-color: var(--corPrincipal);
     grid-area: plano;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
+
+.planos h2 {
+    font-size: 36px;
+}
+
+.planos .cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.planos .card {
+    width: 350px;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.planos .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     
+    text-align: center;      
+    gap: 1.5em;
+    background-color: var(--corSecundaria);
+    padding: 1em;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 5px;
+}
+
+.planos .card-content .title {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    background-color: var(--corPrincipal);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.planos .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+.beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    justify-content: center;
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+.beneficios .item {
+    max-width: 200px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    background-color: var(--corSecundaria);
+    font-size: 16px;
+}
+.planos .content .price-details .price {
+    font-size: 28px;
+}
+.planos .content .price-details button {
+    width: 100px;
+    border: none;
+    background-color: var(--corFonte);
+    color: var(--corPrincipal);
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.planos .content .price-details button:hover {
+    background-color: var(--corPrincipal);
+    color: var(--corFonte);
+}
+
 footer {
     grid-area: foot;
+    background-color: var(--corSecundaria);
+}
+footer .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.info-contato {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.redes-sociais {
+    flex: 0 1 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+footer .container .logo p {
+    font-size: 40px;
+}
+
+.redes-sociais a:hover {
+    color: var(--corPrincipal);
 }
