@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TechFit - Relatórios</title>
+</head>
+<body>
+    <header>
+        <div class="logo-academia">
+            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
+            <h1>TECHFIT</h1>
+        </div>
+        <div class="secoes">
+            <button onclick="inicio()">Inicio</button>
+            <button onclick="cadastro()">Cadastros</button>
+            <button class="active">Relatórios</button>
+            <button onclick="personais()">Personais</button>
+        </div>
+    </header>
+    <main>
+        <div class="container-relatorios">
+            <h2>Relatórios</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Inscrições (Hoje)</h3>
+                    <p class="big">24</p>
+                </div>
+                <div class="card">
+                    <h3>Aulas Lotadas</h3>
+                    <p class="big">3</p>
+                </div>
+                <div class="card">
+                    <h3>Novos Alunos (Semana)</h3>
+                    <p class="big">56</p>
+                </div>
+            </div>
+
+            <section class="tabela-rel">
+                <h3>Últimas inscrições</h3>
+                <table>
+                    <thead>
+                        <tr><th>Nome</th><th>Aula</th><th>Data</th><th>Unidade</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Maria Silva</td><td>Yoga</td><td>22/11/2025</td><td>Limeira</td></tr>
+                        <tr><td>João Souza</td><td>Spinning</td><td>21/11/2025</td><td>Piracicaba</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="script.js"></script>
+</body>
+</html>
