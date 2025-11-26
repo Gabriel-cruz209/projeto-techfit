@@ -1,10 +1,49 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADM - Início</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo TechFit">
+                <p>TECHFIT</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="dashboard">
+            <div class="container">
+                <h1>Painel Administrativo</h1>
+                <div class="cards">
+                    <div class="card">Usuários: 120</div>
+                    <div class="card">Aulas Hoje: 8</div>
+                    <div class="card">Funcionários: 15</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>TechFit - Relatórios</title>
+    <title>TechFit - Administrativo</title>
 </head>
 <body>
     <header>
@@ -40,35 +79,27 @@
         </div>
     </header>
     <main>
-        <div class="container-relatorios">
-            <h2>Relatórios</h2>
+        <div class="adm-dashboard">
             <div class="cards">
                 <div class="card">
-                    <h3>Inscrições (Hoje)</h3>
-                    <p class="big">24</p>
+                    <h3>Usuários</h3>
+                    <p class="big">1.234</p>
                 </div>
                 <div class="card">
-                    <h3>Aulas Lotadas</h3>
-                    <p class="big">3</p>
+                    <h3>Aulas</h3>
+                    <p class="big">26</p>
                 </div>
                 <div class="card">
-                    <h3>Novos Alunos (Semana)</h3>
-                    <p class="big">56</p>
+                    <h3>Relatórios</h3>
+                    <p class="big">Ver</p>
+                    <a class="link-card" href="/src/Pagina_ADM_Relatorios/index.php">Abrir</a>
+                </div>
+                <div class="card">
+                    <h3>Personais</h3>
+                    <p class="big">8</p>
+                    <a class="link-card" href="/src/Pagina_ADM_Personais/index.php">Abrir</a>
                 </div>
             </div>
-
-            <section class="tabela-rel">
-                <h3>Últimas inscrições</h3>
-                <table>
-                    <thead>
-                        <tr><th>Nome</th><th>Aula</th><th>Data</th><th>Unidade</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Maria Silva</td><td>Yoga</td><td>22/11/2025</td><td>Limeira</td></tr>
-                        <tr><td>João Souza</td><td>Spinning</td><td>21/11/2025</td><td>Piracicaba</td></tr>
-                    </tbody>
-                </table>
-            </section>
         </div>
     </main>
     <footer id="tabela-web-footer">
@@ -86,6 +117,7 @@
             <a href="" target="_blank"><h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4></a>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

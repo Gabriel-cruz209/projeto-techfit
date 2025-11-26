@@ -1,3 +1,32 @@
+document.addEventListener('DOMContentLoaded', ()=>{
+  // formulário de editar perfil
+  const formEditar = document.getElementById('form-editar');
+  if(formEditar){
+    formEditar.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Alterações salvas (mock). Integre com backend para persistir.');
+      window.location.href = 'index.php';
+    });
+  }
+
+  const formAvaliacao = document.getElementById('form-avaliacao');
+  if(formAvaliacao){
+    formAvaliacao.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Avaliação agendada (mock).');
+    });
+  }
+
+  const formAg = document.getElementById('form-agendamento');
+  if(formAg){
+    formAg.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Agendamento realizado (mock).');
+    });
+  }
+});
+
+
 // script.js
 
 // Espera o HTML ser carregado completamente
@@ -27,15 +56,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-
-function aula(){
-    window.location.href="/src/Pagina_Aluno_Aulas/index.php"
+function Perfil(){
+    window.location.href="/src/Pagina_Perfil_Usuario/index.php"
 }
 
-function inicio(){
-    window.location.href="/src/Pagina_Inicial_Aluno/index.php"
+function Agendamento(){
+    window.location.href="/src/Pagina_Perfil_Usuario/agendamento.php"
 }
 
-function comunicados(){
-    window.location.href="/src/Pagina_Aluno_Comunidados/index.php"
+function Avaliacao(){
+    window.location.href="/src/Pagina_Perfil_Usuario/avaliacao.php"
+}
+
+function Editar(){
+    window.location.href="/src/Pagina_Perfil_Usuario/editar.php"
 }

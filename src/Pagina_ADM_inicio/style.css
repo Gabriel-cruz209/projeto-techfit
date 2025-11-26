@@ -1,205 +1,233 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
 }
 
 html {
-    font-size: 16px; /* Base para unidades rem */
+  font-size: 16px; /* Base para unidades rem */
 }
 
 body {
-    font-family: "Oswald", sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
-    background-color: #f9f9f9; /* Um fundo sutil para o corpo */
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+  background-color: #f9f9f9; /* Um fundo sutil para o corpo */
 }
 
 main {
-    flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
-    display: flex;
-    flex-direction: row;
+  flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
+  display: flex;
+  flex-direction: row;
 }
 
 /* Classe utilitária para esconder elementos */
 .hidden {
-    display: none ; /* !important para garantir a sobreposição */
+  display: none; /* !important para garantir a sobreposição */
 }
 
 /* --- HEADER --- */
 header {
-    background-color: black;
-    /* box-shadow: 0 4px 10px -2px #CE002D;  */
-    width: 100%;
-    color: white;
-    display: flex;
-    align-items: center; /* Alinha verticalmente os itens do cabeçalho */
-    justify-content: space-between; /* Distribui o espaço automaticamente */
-    padding: 10px 40px; /* Espaçamento interno mais consistente */
+  background-color: black;
+  /* box-shadow: 0 4px 10px -2px #CE002D;  */
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens do cabeçalho */
+  justify-content: space-between; /* Distribui o espaço automaticamente */
+  padding: 10px 40px; /* Espaçamento interno mais consistente */
 }
 
-
 .logo-academia {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Espaçamento entre logo e texto */
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaçamento entre logo e texto */
 }
 
 .logo-academia img {
-    width: 70px;
-    height: auto; /* Mantém a proporção */
+  width: 70px;
+  height: auto; /* Mantém a proporção */
 }
 
 header h1 {
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 1px #CE002D;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 1px #ce002d;
 }
 
 .secoes {
-    display: flex;
-    gap: 60px; /* Espaçamento mais controlado */
+  display: flex;
+  gap: 60px; /* Espaçamento mais controlado */
 }
 
-.secoes>button {
-    font-size: 1.3rem;
-    color: white;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid transparent; /* Base para o efeito hover */
-    cursor: pointer;
-    padding: 10px 5px;
-    transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
+.secoes > button {
+  font-size: 1.3rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent; /* Base para o efeito hover */
+  cursor: pointer;
+  padding: 10px 5px;
+  transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
 }
 
-.secoes>button:hover {
-    transform: translateY(-3px);
-    border-color: #ffffff; /* Evita o uso de border-bottom direto */
+.secoes > button:hover {
+  transform: translateY(-3px);
+  border-color: #ffffff; /* Evita o uso de border-bottom direto */
 }
 
 /* --- MENU PERFIL --- */
 .func-perfil {
-    position: relative;
+  position: relative;
 }
 
 .perfil img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #CE002D;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ce002d;
 }
 
 .secoes-perfil {
-    display: none;
-    position: absolute;
-    top: 75px; 
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    width: 220px;
-    z-index: 1000;
-    overflow: hidden; /* Garante que os filhos respeitem o border-radius */
+  display: none;
+  position: absolute;
+  top: 75px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  z-index: 1000;
+  overflow: hidden; /* Garante que os filhos respeitem o border-radius */
 }
 
 .secoes-perfil.show {
-    display: block;
+  display: block;
 }
 
 .secoes-perfil ul {
-    list-style: none;
+  list-style: none;
 }
 
 .secoes-perfil li a {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 1rem;
-    transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
 }
 
 .secoes-perfil li a:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .secoes-perfil li a i {
-    margin-right: 12px;
-    width: 20px;
-    text-align: center;
-    color: #666;
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  color: #666;
 }
 
 .secoes-perfil hr {
-    border: 0;
-    border-top: 1px solid #e0e0e0;
-    margin: 5px 0;
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 5px 0;
 }
 
 .info-usuario {
-    padding: 15px;
-    font-size: 1rem;
+  padding: 15px;
+  font-size: 1rem;
 }
 
 .info-usuario span {
-    display: block;
-    font-size: 0.8rem;
-    color: #666;
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
 }
 
 .info-usuario strong {
-    color: #111;
+  color: #111;
 }
 
 /* --- RODAPÉ (FOOTER) --- */
 #tabela-web-footer {
-    background-color: #000000;
-    color: white;
-    display: flex;
-    justify-content: space-around; /* Distribui melhor os itens */
-    align-items: center;
-    padding: 20px 0;
-    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
-    gap: 20px;
-    padding-bottom: 0;
-    margin-bottom: 0;
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: space-around; /* Distribui melhor os itens */
+  align-items: center;
+  padding: 20px 0;
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+  gap: 20px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .coluna-informacao {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre ícone e texto */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaçamento entre ícone e texto */
 }
 
-div.coluna-informacao>a{
-   text-decoration: none; 
-   color:white;
-   transition: color 0.3s ease;
+div.coluna-informacao > a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
 }
 
-div.coluna-informacao>a:hover{
-    color: #ce002d;
+div.coluna-informacao > a:hover {
+  color: #ce002d;
 }
 
-.coluna-informacao>img {
-    max-width: 80px;
+.coluna-informacao > img {
+  max-width: 80px;
 }
 
 .logo {
-    font-size: 1.6em;
-    text-shadow: 2px 2px 1px #ce002d;
+  font-size: 1.6em;
+  text-shadow: 2px 2px 1px #ce002d;
 }
 
 /* Dashboard ADM */
-.adm-dashboard{ padding:120px 20px }
-.adm-dashboard .cards{ display:flex; gap:16px; max-width:1100px; margin:0 auto }
-.adm-dashboard .card{ background:#fff; padding:18px; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.06); flex:1; text-align:center }
-.adm-dashboard .card .big{ font-size:1.8rem; font-weight:700 }
-.adm-dashboard .link-card{ display:inline-block; margin-top:8px; background:#CE002D; color:#fff; padding:8px 12px; border-radius:6px; text-decoration:none }
+.adm-dashboard {
+  padding: 120px 20px;
+}
+.adm-dashboard .cards {
+  display: flex;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.adm-dashboard .card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  flex: 1;
+  text-align: center;
+}
+.adm-dashboard .card .big {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.adm-dashboard .link-card {
+  display: inline-block;
+  margin-top: 8px;
+  background: #ce002d;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+}
 
-@media(max-width:900px){ .adm-dashboard .cards{ flex-direction:column } }
+@media (max-width: 900px) {
+  .adm-dashboard .cards {
+    flex-direction: column;
+  }
+}

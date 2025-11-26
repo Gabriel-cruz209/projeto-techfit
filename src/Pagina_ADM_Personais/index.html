@@ -12,11 +12,31 @@
             <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
             <h1>TECHFIT</h1>
         </div>
+        
         <div class="secoes">
             <button onclick="inicio()">Inicio</button>
             <button onclick="cadastro()">Cadastros</button>
-            <button onclick="relatorios()">Relatórios</button>
-            <button class="active">Personais</button>
+            <button onclick="relatorios()">relatorios</button>
+            <button onclick="personais()">personal</button>
+        </div>
+
+        <div class="func-perfil" id="func-perfil">
+            <div class="perfil">
+                <img class="botaoPerfil" id="botaoPerfil" src="/Arquivos/perfil-removebg-preview.png" alt="Foto_Perfil">
+            </div>
+            <div class="secoes-perfil" id="menuPerfil">
+                <ul>
+                    <li class="info-usuario">
+                        <span>Usuário</span>
+                        <strong>Gabriel Soares</strong>
+                    </li>
+                    <hr>
+                    <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
+                    <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
+                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <main>
@@ -38,7 +58,21 @@
             </div>
         </div>
     </main>
-    <footer></footer>
+    <footer id="tabela-web-footer">
+        <div class="coluna-informacao">
+            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
+            <h4 class="logo">TECHFIT</h4>
+        </div>
+        <div class="coluna-informacao">
+            <a href=""><h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4></a>
+        </div>
+        <div class="coluna-informacao">
+            <a href=""><h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4></a>
+        </div>
+        <div class="coluna-informacao">
+            <a href="" target="_blank"><h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4></a>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

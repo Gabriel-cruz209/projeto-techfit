@@ -1,3 +1,30 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas - Aluno</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <main>
+        <section class="aulas">
+            <h1>Aulas disponíveis</h1>
+            <div class="lista-aulas">
+                <div class="aula">Zumba - 10:00</div>
+                <div class="aula">Musculação - 12:00</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

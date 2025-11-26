@@ -25,17 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function aula(){
-    window.location.href="/src/Pagina_Aluno_Aulas/index.html"
+    window.location.href="/src/Pagina_Aluno_Aulas/index.php"
 }
 
 function cadastro(){
-    window.location.href="/src/Pagina_Cadastro/index.html"
+    window.location.href="/src/Pagina_ADM_Cadastros/index.php"
 }
 
 function relatorios(){
-    window.location.href="/src/Pagina_ADM_Relatorios/index.html"
+    window.location.href="/src/Pagina_ADM_Relatorios/index.php"
 }
 
 function personais(){
-    window.location.href="/src/Pagina_ADM_Personais/index.html"
+    window.location.href="/src/Pagina_ADM_Personais/index.php"
+}
+
+function inicio(){
+    window.location.href="/src/Pagina_ADM_inicio/index.php"
 }

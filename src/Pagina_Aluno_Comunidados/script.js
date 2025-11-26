@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function aula(){
-    window.location.href="/src/Pagina_Aluno_Aulas/index.html"
+    window.location.href="/src/Pagina_Aluno_Aulas/index.php"
 }
 
 function inicio(){
-    window.location.href="/src/Pagina_Inicial_Aluno/index.html"
+    window.location.href="/src/Pagina_Inicial_Aluno/index.php"
 }
 function comunicados(){
-    window.location.href="/src/Pagina_Aluno_Comunidados/index.html"
+    window.location.href="/src/Pagina_Aluno_Comunidados/index.php"
 }
 
 function curtir(){

@@ -1,3 +1,124 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADM - Cadastros</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo">
+                <p>TECHFIT</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="cadastros">
+            <div class="form-container">
+                <div class="menu-cadastros">
+                    <button onclick="sec('Unidade')">Unidades</button>
+                    <button onclick="sec('Funcionario')">Funcionários</button>
+                    <button onclick="sec('Aluno')">Alunos</button>
+                    <button onclick="sec('Comunicado')">Comunicados</button>
+                    <button onclick="sec('Aulas')">Aulas</button>
+                    <button onclick="sec('AvFisica')">Avaliação Física</button>
+                </div>
+                <div id="Unidade" class="cadastro-form">
+                    <h2>Cadastro de Unidades</h2>
+                    <form id="form-unidades">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required>
+                        <label>Endereco:</label>
+                        <input type="text" name="endereco">
+                        <label>Cidade:</label>
+                        <input type="text" name="cidade">
+                        <label>Estado:</label>
+                        <input type="text" name="estado">
+                        <label>Telefone:</label>
+                        <input type="text" name="telefone">
+                        <button type="submit">Salvar Unidade</button>
+                    </form>
+                </div>
+                <div id="Funcionario" class="cadastro-form" style="display:none;">
+                    <h2>Cadastro de Funcionários</h2>
+                    <form id="form-funcionarios">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required>
+                        <label>CPF:</label>
+                        <input type="text" name="cpf">
+                        <label>Telefone:</label>
+                        <input type="text" name="telefone">
+                        <label>Cargo:</label>
+                        <input type="text" name="cargo">
+                        <button type="submit">Salvar Funcionário</button>
+                    </form>
+                </div>
+                <div id="Aluno" class="cadastro-form" style="display:none;">
+                    <h2>Cadastro de Alunos</h2>
+                    <form id="form-alunos">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required>
+                        <label>CPF:</label>
+                        <input type="text" name="cpf">
+                        <label>Telefone:</label>
+                        <input type="text" name="telefone">
+                        <label>Data de Nascimento:</label>
+                        <input type="date" name="data_nasc">
+                        <button type="submit">Salvar Aluno</button>
+                    </form>
+                </div>
+                <div id="Comunicado" class="cadastro-form" style="display:none;">
+                    <h2>Cadastro de Comunicados</h2>
+                    <form id="form-comunicados">
+                        <label>Título:</label>
+                        <input type="text" name="titulo" required>
+                        <label>Descrição:</label>
+                        <textarea name="descricao"></textarea>
+                        <button type="submit">Publicar Comunicado</button>
+                    </form>
+                </div>
+                <div id="Aulas" class="cadastro-form" style="display:none;">
+                    <h2>Cadastro de Aulas</h2>
+                    <form id="form-aulas">
+                        <label>Título:</label>
+                        <input type="text" name="titulo" required>
+                        <label>Descrição:</label>
+                        <textarea name="descricao"></textarea>
+                        <label>Data/Hora:</label>
+                        <input type="datetime-local" name="data_hora">
+                        <button type="submit">Salvar Aula</button>
+                    </form>
+                </div>
+                <div id="AvFisica" class="cadastro-form" style="display:none;">
+                    <h2>Cadastro de Avaliação Física</h2>
+                    <form id="form-avaliacoes">
+                        <label>Aluno ID:</label>
+                        <input type="number" name="aluno_id" required>
+                        <label>Altura:</label>
+                        <input type="text" name="altura">
+                        <label>Peso:</label>
+                        <input type="text" name="peso">
+                        <label>IMC:</label>
+                        <input type="text" name="imc">
+                        <button type="submit">Salvar Avaliação</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

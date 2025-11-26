@@ -1,15 +1,18 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="/Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechFit</title>
 </head>
 <body>
-    <!-- HEADER -->
     <header>
         <div class="logo-academia">
             <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
@@ -36,18 +39,16 @@
                     <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
                     <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
                     <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </div>
         </div>
 
     </header>
-
-    <!-- MAIN -->
     <main>
-        <h2>Comunicados</h2>
+        <h1>Bem Vindo a TechFit</h1>
+        
 
-        <!-- COMUNICADOS IMPORTANTES -->
         <div class="forma_comu">
             <h3>Importantes</h3>
             <div class="forma_local">
@@ -83,84 +84,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- PARCERIAS -->
-        <div class="forma_comu">
-            <h3>Parcerias</h3>
-            <div class="forma_local">
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- COMUNICADOS RECENTES -->
-         <div class="forma_comu">
-            <h3>Recentes</h3>
-            <div class="forma_local">
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
     </main>
-
-    <!-- FOOTER -->
     <footer id="tabela-web-footer">
         <div class="coluna-informacao">
             <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
@@ -176,8 +101,6 @@
             <a href="" target="_blank"><h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4></a>
         </div>
     </footer>
-
     <script src="script.js"></script>
-
 </body>
 </html>

@@ -1,10 +1,38 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADM - Personais</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <main>
+        <section class="personais">
+            <h1>Lista de Personal Trainers</h1>
+            <div class="lista-personais">
+                <div class="personal">Nome: João Silva<br>Especialidade: Musculação</div>
+                <div class="personal">Nome: Maria Souza<br>Especialidade: Pilates</div>
+            </div>
+        </section>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>TechFit - Relatórios</title>
+    <title>TechFit - Personais</title>
 </head>
 <body>
     <header>
@@ -40,35 +68,22 @@
         </div>
     </header>
     <main>
-        <div class="container-relatorios">
-            <h2>Relatórios</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>Inscrições (Hoje)</h3>
-                    <p class="big">24</p>
-                </div>
-                <div class="card">
-                    <h3>Aulas Lotadas</h3>
-                    <p class="big">3</p>
-                </div>
-                <div class="card">
-                    <h3>Novos Alunos (Semana)</h3>
-                    <p class="big">56</p>
-                </div>
+        <div class="container-personais">
+            <h2>Instrutores / Personal Trainers</h2>
+            <div class="lista-personais">
+                <article class="personal">
+                    <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
+                    <h3>Lucas Pereira</h3>
+                    <p>Especialidade: Musculação / Treino funcional</p>
+                    <button>Ver agenda</button>
+                </article>
+                <article class="personal">
+                    <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
+                    <h3>Ana Costa</h3>
+                    <p>Especialidade: Pilates / Reabilitação</p>
+                    <button>Ver agenda</button>
+                </article>
             </div>
-
-            <section class="tabela-rel">
-                <h3>Últimas inscrições</h3>
-                <table>
-                    <thead>
-                        <tr><th>Nome</th><th>Aula</th><th>Data</th><th>Unidade</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Maria Silva</td><td>Yoga</td><td>22/11/2025</td><td>Limeira</td></tr>
-                        <tr><td>João Souza</td><td>Spinning</td><td>21/11/2025</td><td>Piracicaba</td></tr>
-                    </tbody>
-                </table>
-            </section>
         </div>
     </main>
     <footer id="tabela-web-footer">
