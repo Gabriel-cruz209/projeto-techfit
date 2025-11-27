@@ -101,6 +101,6 @@
             <a href="" target="_blank"><h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4></a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="/src/js/app.js"></script>
 </body>
 </html>

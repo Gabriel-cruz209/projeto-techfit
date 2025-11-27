@@ -35,7 +35,7 @@
             </div>
         </section>
     </main>
-    <script src="./script.js"></script>
+    <script src="/src/js/app.js"></script>
 </body>
 </html>
 <?php
@@ -110,6 +110,6 @@
     <small>© TECHFIT</small>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="/src/js/app.js"></script>
 </body>
 </html>

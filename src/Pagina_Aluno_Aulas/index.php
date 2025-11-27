@@ -180,5 +180,5 @@
             <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
         </div>
     </footer>
-    <script src="script.js"></script> </body>
+    <script src="/src/js/app.js"></script> </body>
 </html>

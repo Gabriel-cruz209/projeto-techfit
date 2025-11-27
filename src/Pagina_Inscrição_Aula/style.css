@@ -51,12 +51,11 @@ header > img{
     height: 80px;
 }
 
-/* Form styles */
 .container{
-  width: 100%;
+  width: 700px;
   display: flex;
   justify-content: center;
-  padding: 140px 20px 40px; /* espaço para header fixo */
+  padding: 140px 20px 40px; 
 }
 
 .form-inscricao{
@@ -104,4 +103,5 @@ header > img{
   header > img{ left: 12px; width: 80px; height: 64px }
   header > button{ right: 12px }
   .form-inscricao{ padding: 16px; }
+  container{width: 100%;}
 }

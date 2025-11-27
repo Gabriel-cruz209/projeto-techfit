@@ -37,6 +37,7 @@
         </form>
     </div>
     <script src="./script.js"></script>
+    <script src="/src/js/app.js"></script>
 </body>
 </html>
 <?php

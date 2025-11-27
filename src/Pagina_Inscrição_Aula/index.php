@@ -94,5 +94,6 @@
         });
     </script>
     <footer></footer>
-</body>
+        <script src="/src/js/app.js"></script>
+    </body>
 </html>
