@@ -23,13 +23,15 @@ class Connection {
                 );
 
                 self::$instancia->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                
 
             }
             catch(PDOException $e) {
                 die("ERROR: ". $e->getMessage());
             }
-            return self::$instancia;
+            
         }
+        return self::$instancia;
     }
 }
 

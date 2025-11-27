@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechFit</title>
-    <link rel="shortcut icon" href="../../Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+    <link rel="shortcut icon" href="./Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/utilitarios/padrao.css">
 </head>
 <body>
     <header>
@@ -22,7 +22,7 @@
                 <nav class="menu">
                     <a href="#contatos">Contatos</a>
                 </nav>
-                <button>Inscrever-se</button>
+                <button onclick="cadastro()">Inscrever-se</button>
             </div>
         </div>
     </header>
@@ -162,5 +162,6 @@
             </div>
         </div>
     </footer>
+    <script src="/src/js/app.js"></script>
 </body>
 </html>
