@@ -52,13 +52,13 @@
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
                     <h3>Lucas Pereira</h3>
                     <p>Especialidade: Musculação / Treino funcional</p>
-                    <button>Ver agenda</button>
+                    <button onclick="agendaPr()">Ver agenda</button>
                 </article>
                 <article class="personal">
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
                     <h3>Ana Costa</h3>
                     <p>Especialidade: Pilates / Reabilitação</p>
-                    <button>Ver agenda</button>
+                    <button onclick="agendaPr()">Ver agenda</button>
                 </article>
             </div>
         </div>

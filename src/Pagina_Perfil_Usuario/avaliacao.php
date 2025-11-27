@@ -49,10 +49,28 @@
   <main class="pf-main">
     <section class="avaliacoes-list">
       <h2>Minhas Avaliações</h2>
-      <ul id="lista-avaliacoes">
-        <li>24/10/2025 - Inicial - <em>Peso: 78kg - Altura: 1.80m</em></li>
-        <li>15/08/2025 - Desenvolvimento - <em>Progresso: +3kg força</em></li>
-      </ul>
+
+      <table id="tabela-avaliacoes" class="tabela-avaliacoes">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>24/10/2025</td>
+            <td>Inicial</td>
+            <td>Peso: 78kg - Altura: 1.80m</td>
+          </tr>
+          <tr>
+            <td>15/08/2025</td>
+            <td>Desenvolvimento</td>
+            <td>Progresso: +3kg força</td>
+          </tr>
+        </tbody>
+      </table>
 
       <h3>Agendar nova avaliação</h3>
       <form id="form-avaliacao">
