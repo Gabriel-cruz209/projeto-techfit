@@ -1,34 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliações</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <main>
-        <section class="avaliacoes">
-            <h1>Avaliações Físicas</h1>
-            <div id="lista-avaliacoes">
-                <div class="avaliacao">Avaliação 01 - 01/01/2024</div>
-            </div>
-            <form id="form-avaliacao">
-                <label>Altura:</label>
-                <input type="text" name="altura">
-                <label>Peso:</label>
-                <input type="text" name="peso">
-                <button type="submit">Salvar Avaliação</button>
-            </form>
-        </section>
-    </main>
-    <script src="./script.js"></script>
-</body>
-</html>
 <?php
 
 ?>

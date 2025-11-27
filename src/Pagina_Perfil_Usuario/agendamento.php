@@ -1,34 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <main>
-        <section class="agendamento">
-            <h1>Agendar Aula</h1>
-            <form id="form-agendamento">
-                <label>Aula:</label>
-                <select name="aula">
-                    <option>Musculação</option>
-                    <option>Zumba</option>
-                </select>
-                <label>Data/Hora:</label>
-                <input type="datetime-local" name="data_hora">
-                <button type="submit">Agendar</button>
-            </form>
-        </section>
-    </main>
-    <script src="./script.js"></script>
-</body>
-</html>
 <?php
 
 ?>

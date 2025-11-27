@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
-    background-color: #f9f9f9; /* Um fundo sutil para o corpo */
+    background-color: #e0e0e0; /* Um fundo sutil para o corpo */
 }
 
 main {
@@ -290,7 +290,7 @@ main h2{
 }
 
 .forma_local{
-    background-color: #e7e7e7;
+    background-color: #e7e7e700;
     margin: 10px 10px 10px 10px;
     padding: 20px;
     border-radius: 15px;
@@ -298,11 +298,10 @@ main h2{
     height: 400px;
     padding-left: 40px;
     padding-right: 40px;
-    border: 2px solid #000000;
+    border: 2px solid #57000000;
     display: flex;
     flex-direction: row;
-    
-}
+} 
 
 .sub-info{
     display: flex;

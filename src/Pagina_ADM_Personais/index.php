@@ -1,28 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADM - Personais</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <main>
-        <section class="personais">
-            <h1>Lista de Personal Trainers</h1>
-            <div class="lista-personais">
-                <div class="personal">Nome: João Silva<br>Especialidade: Musculação</div>
-                <div class="personal">Nome: Maria Souza<br>Especialidade: Pilates</div>
-            </div>
-        </section>
-    </main>
-    <script src="./script.js"></script>
-</body>
-</html>
 <?php
 
 ?>

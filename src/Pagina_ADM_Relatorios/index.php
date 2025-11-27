@@ -1,25 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatórios - ADM</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <main>
-        <section class="relatorios">
-            <h1>Relatórios</h1>
-            <div class="relatorio">Relatório de matrículas</div>
-            <div class="relatorio">Relatório financeiro</div>
-        </section>
-    </main>
-</body>
-</html>
 <?php
 
 ?>

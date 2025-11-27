@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Seleção cadastros
+ function sec(secao){
+  document.getElementById('Unidade').classList.add('hidden');
+  document.getElementById('Aluno').classList.add('hidden');
+  document.getElementById('Comunicado').classList.add('hidden');
+  document.getElementById('Aulas').classList.add('hidden');
+  document.getElementById('Funcionario').classList.add('hidden');
+  document.getElementById('AvFisica').classList.add('hidden');
+
+  document.getElementById(secao).classList.remove('hidden');
+ }
+
+
 /* Navegação comum (ajuste para apontar para as páginas em .php) */
 function aula(){ window.location.href = '/src/Pagina_Aluno_Aulas/index.php' }
 function inicio(){ window.location.href = '/src/Pagina_Inicial_Aluno/index.php' }

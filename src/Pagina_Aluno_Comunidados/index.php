@@ -1,27 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comunidade - Aluno</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <main>
-        <section class="comunidade">
-            <h1>Comunidade</h1>
-            <div class="posts">
-                <div class="post">Post 1</div>
-                <div class="post">Post 2</div>
-            </div>
-        </section>
-    </main>
-</body>
-</html>
 <?php
 
 ?>

@@ -1,43 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Usuário</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo TechFit">
-                <p>TECHFIT</p>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section class="perfil-card">
-            <img src="../../Arquivos/avatar.png" alt="Avatar" class="avatar">
-            <h2 id="usuario-nome">Nome do Usuário</h2>
-            <p id="usuario-email">email@example.com</p>
-            <div class="info-card">
-                <p><strong>CPF:</strong> <span id="usuario-cpf">000.000.000-00</span></p>
-                <p><strong>Telefone:</strong> <span id="usuario-telefone">(19) 99999-9999</span></p>
-            </div>
-            <div class="acoes">
-                <a href="./editar.php">Editar Perfil</a>
-                <a href="./avaliacao.php">Avaliações</a>
-                <a href="./agendamento.php">Agendar Aula</a>
-            </div>
-        </section>
-    </main>
-    <script src="/src/js/app.js"></script>
-</body>
-</html>
 <?php
 
 ?>
