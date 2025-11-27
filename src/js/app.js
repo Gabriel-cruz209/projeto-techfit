@@ -42,6 +42,9 @@ function Agendamento(){ window.location.href = '/src/Pagina_Perfil_Usuario/agend
 function Avaliacao(){ window.location.href = '/src/Pagina_Perfil_Usuario/avaliacao.php' }
 function Editar(){ window.location.href = '/src/Pagina_Perfil_Usuario/editar.php' }
 function login(){ window.location.href = '/src/tela_inicial_web/index.php' }
+function inicioAdm(){ window.location.href = '/src/Pagina_ADM_inicio/index.php' }
+function cadastroAdm(){ window.location.href = '/src/Pagina_ADM_Cadastros/index.php' }
+function inscrever() { window.location.href = '/src/Pagina_Inscrição_Aula'}
 function voltar(){ window.history.back() }
 
 /* Funções de autenticação / cadastro simples (mock) */
