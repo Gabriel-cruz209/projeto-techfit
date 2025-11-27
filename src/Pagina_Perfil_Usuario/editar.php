@@ -1,35 +1,4 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../utilitarios/padrao.css">
-</head>
-<body>
-    <main>
-        <section class="editar-perfil">
-            <h1>Editar Perfil</h1>
-            <form id="form-editar">
-                <label>Nome:</label>
-                <input type="text" name="nome" id="nome" required>
-                <label>Email:</label>
-                <input type="email" name="email" id="email" required>
-                <label>Telefone:</label>
-                <input type="tel" name="telefone" id="telefone">
-                <label>CPF:</label>
-                <input type="text" name="cpf" id="cpf">
-                <button type="submit">Salvar Alterações</button>
-            </form>
-        </section>
-    </main>
-    <script src="./script.js"></script>
-</body>
-</html>
 <?php
 
 ?>
