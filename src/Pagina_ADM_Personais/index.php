@@ -18,8 +18,8 @@
         </div>
         
         <div class="secoes">
-            <button onclick="inicio()">Inicio</button>
-            <button onclick="cadastro()">Cadastros</button>
+            <button onclick="inicioAdm()">Inicio</button>
+            <button onclick="cadastroAdm()">Cadastros</button>
             <button onclick="relatorios()">relatorios</button>
             <button onclick="personais()">personal</button>
         </div>
@@ -35,9 +35,10 @@
                         <strong>Gabriel Soares</strong>
                     </li>
                     <hr>
-                    <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
+                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
+                    <li><a href="/src/Pagina_ADM_inicio/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
+                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
+                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
                     <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </div>
@@ -51,13 +52,13 @@
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
                     <h3>Lucas Pereira</h3>
                     <p>Especialidade: Musculação / Treino funcional</p>
-                    <button>Ver agenda</button>
+                    <button onclick="agendaPr()">Ver agenda</button>
                 </article>
                 <article class="personal">
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
                     <h3>Ana Costa</h3>
                     <p>Especialidade: Pilates / Reabilitação</p>
-                    <button>Ver agenda</button>
+                    <button onclick="agendaPr()">Ver agenda</button>
                 </article>
             </div>
         </div>

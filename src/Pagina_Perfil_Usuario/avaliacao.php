@@ -35,10 +35,11 @@
                         <strong>Gabriel Soares</strong>
                     </li>
                     <hr>
-                    <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
+                    <li><a href="/src/Pagina_Inicial_Aluno/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
+                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
+                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
+                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -48,10 +49,28 @@
   <main class="pf-main">
     <section class="avaliacoes-list">
       <h2>Minhas Avaliações</h2>
-      <ul id="lista-avaliacoes">
-        <li>24/10/2025 - Inicial - <em>Peso: 78kg - Altura: 1.80m</em></li>
-        <li>15/08/2025 - Desenvolvimento - <em>Progresso: +3kg força</em></li>
-      </ul>
+
+      <table id="tabela-avaliacoes" class="tabela-avaliacoes">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>24/10/2025</td>
+            <td>Inicial</td>
+            <td>Peso: 78kg - Altura: 1.80m</td>
+          </tr>
+          <tr>
+            <td>15/08/2025</td>
+            <td>Desenvolvimento</td>
+            <td>Progresso: +3kg força</td>
+          </tr>
+        </tbody>
+      </table>
 
       <h3>Agendar nova avaliação</h3>
       <form id="form-avaliacao">
