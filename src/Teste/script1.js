@@ -105,13 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // --- 3. FUNÇÕES DE NAVEGAÇÃO (Mantidas) ---
 
 function aula(){
-    window.location.href="/src/Pagina_Aluno_Aulas/index.html"
+    window.location.href="/src/Pagina_Aluno_Aulas/index.php"
 }
 
 function inicio(){
-    window.location.href="/src/Pagina_Inicial_Aluno/index.html"
+    window.location.href="/src/Pagina_Inicial_Aluno/index.php"
 }
 
 function comunicados(){
-    window.location.href="/src/Pagina_Aluno_Comunicados/index.html"
+    window.location.href="/src/Pagina_Aluno_Comunicados/index.php"
 }

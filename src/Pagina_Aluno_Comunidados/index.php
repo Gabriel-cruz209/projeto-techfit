@@ -1,3 +1,30 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade - Aluno</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <main>
+        <section class="comunidade">
+            <h1>Comunidade</h1>
+            <div class="posts">
+                <div class="post">Post 1</div>
+                <div class="post">Post 2</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -36,7 +63,7 @@
                     <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
                     <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
                     <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -177,7 +204,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="/src/js/app.js"></script>
 
 </body>
 </html>

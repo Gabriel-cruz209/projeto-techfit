@@ -1,3 +1,30 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas - Aluno</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <main>
+        <section class="aulas">
+            <h1>Aulas disponíveis</h1>
+            <div class="lista-aulas">
+                <div class="aula">Zumba - 10:00</div>
+                <div class="aula">Musculação - 12:00</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -34,7 +61,7 @@
                     <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
                     <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
                     <li><a href="#"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -153,5 +180,5 @@
             <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
         </div>
     </footer>
-    <script src="script.js"></script> </body>
+    <script src="/src/js/app.js"></script> </body>
 </html>

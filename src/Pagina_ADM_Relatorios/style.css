@@ -1,13 +1,240 @@
-/* Relatórios - estilos básicos */
-body{ font-family: Arial, Helvetica, sans-serif; background:#f5f6f8; margin:0 }
-header{ background:#000; color:#fff; padding:12px 20px; display:flex; align-items:center; gap:20px }
-header img{ width:70px }
-.container-relatorios{ padding:100px 24px 40px; max-width:1100px; margin:0 auto }
-.cards{ display:flex; gap:16px; margin-bottom:20px }
-.card{ background:#fff; padding:16px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06); flex:1 }
-.card .big{ font-size:2rem; font-weight:700; margin-top:8px }
-.tabela-rel table{ width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden }
-.tabela-rel th, .tabela-rel td{ padding:10px 12px; border-bottom:1px solid #eee; text-align:left }
-.tabela-rel thead{ background:#fafafa }
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap");
 
-@media(max-width:700px){ .cards{ flex-direction:column } }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
+}
+
+html {
+  font-size: 16px; /* Base para unidades rem */
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+  background-color: #f9f9f9; /* Um fundo sutil para o corpo */
+}
+
+main {
+  flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
+  display: flex;
+  flex-direction: row;
+}
+
+/* Classe utilitária para esconder elementos */
+.hidden {
+  display: none; /* !important para garantir a sobreposição */
+}
+
+/* --- HEADER --- */
+header {
+  background-color: black;
+  /* box-shadow: 0 4px 10px -2px #CE002D;  */
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens do cabeçalho */
+  justify-content: space-between; /* Distribui o espaço automaticamente */
+  padding: 10px 40px; /* Espaçamento interno mais consistente */
+}
+
+.logo-academia {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaçamento entre logo e texto */
+}
+
+.logo-academia img {
+  width: 70px;
+  height: auto; /* Mantém a proporção */
+}
+
+header h1 {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 1px #ce002d;
+}
+
+.secoes {
+  display: flex;
+  gap: 60px; /* Espaçamento mais controlado */
+}
+
+.secoes > button {
+  font-size: 1.3rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent; /* Base para o efeito hover */
+  cursor: pointer;
+  padding: 10px 5px;
+  transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
+}
+
+.secoes > button:hover {
+  transform: translateY(-3px);
+  border-color: #ffffff; /* Evita o uso de border-bottom direto */
+}
+
+/* --- MENU PERFIL --- */
+.func-perfil {
+  position: relative;
+}
+
+.perfil img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ce002d;
+}
+
+.secoes-perfil {
+  display: none;
+  position: absolute;
+  top: 75px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  z-index: 1000;
+  overflow: hidden; /* Garante que os filhos respeitem o border-radius */
+}
+
+.secoes-perfil.show {
+  display: block;
+}
+
+.secoes-perfil ul {
+  list-style: none;
+}
+
+.secoes-perfil li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.secoes-perfil li a:hover {
+  background-color: #f5f5f5;
+}
+
+.secoes-perfil li a i {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.secoes-perfil hr {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 5px 0;
+}
+
+.info-usuario {
+  padding: 15px;
+  font-size: 1rem;
+}
+
+.info-usuario span {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.info-usuario strong {
+  color: #111;
+}
+
+/* --- RODAPÉ (FOOTER) --- */
+#tabela-web-footer {
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: space-around; /* Distribui melhor os itens */
+  align-items: center;
+  padding: 20px 0;
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+  gap: 20px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.coluna-informacao {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+div.coluna-informacao > a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+div.coluna-informacao > a:hover {
+  color: #ce002d;
+}
+
+.coluna-informacao > img {
+  max-width: 80px;
+}
+
+.logo {
+  font-size: 1.6em;
+  text-shadow: 2px 2px 1px #ce002d;
+}
+
+.container-relatorios {
+  padding: 100px 24px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  flex: 1;
+}
+.card .big {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+.tabela-rel table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tabela-rel th,
+.tabela-rel td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.tabela-rel thead {
+  background: #fafafa;
+}
+
+@media (max-width: 700px) {
+  .cards {
+    flex-direction: column;
+  }
+}

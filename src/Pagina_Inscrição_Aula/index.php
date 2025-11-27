@@ -1,3 +1,34 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição em Aula</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../utilitarios/padrao.css">
+</head>
+<body>
+    <main>
+        <section class="inscricao">
+            <h1>Inscrever em Aula</h1>
+            <form id="form-inscricao">
+                <label>Aula:</label>
+                <select name="aula">
+                    <option>Zumba</option>
+                    <option>Musculação</option>
+                </select>
+                <button type="submit">Inscrever</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -63,5 +94,6 @@
         });
     </script>
     <footer></footer>
-</body>
+        <script src="/src/js/app.js"></script>
+    </body>
 </html>
