@@ -16,17 +16,25 @@ class ConnTables {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function update($whereField,$whereValue, array $tableFields){
-        $set = implode(", ", array_map(fn($dado) => "$dado = :$dado", array_keys($tableFields)));
         $tableFields['whereValue'] = $whereValue;
+        $filterDates = array_filter($tableFields,fn($dado) => $dado !== null);
+        $set = implode(", ", array_map(fn($dado) => "$dado = :$dado", array_keys($filterDates)));
         
         $stmt = $this->conn->prepare("UPDATE {$this->table} SET $set WHERE $whereField = :whereValue");
         $stmt->execute($tableFields);
     }
     public function insert(array $tableFields){
-        $fields = implode(",", array_keys($tableFields));
-        $placeholders = ":" . implode(",:", array_keys($tableFields));
-        $stmt = $this->conn->prepare("INSERT INTO {$this->table} $fields VALUES $placeholders");
-        $stmt->execute();
+        $filterDates = array_filter($tableFields,fn($dado) => $dado !== null);
+        $fields = implode(",", array_keys($filterDates));
+        $placeholders = ":" . implode(",:", array_keys($filterDates));
+        $stmt = $this->conn->prepare("INSERT INTO {$this->table} ({$fields}) VALUES ( {$placeholders }) ");
+        $stmt->execute($filterDates);
     }
-}
+    public function delete(array $tableFields, $whereField){
+        $filterDates = array_filter($tableFields, fn($dado) => $dado !== null);
+        $placeholders = ":" . implode(",:", array_keys($filterDates));
+        $stmt = $this->conn->prepare("DELETE FROM {$this->table} WHERE $whereField = {$placeholders} ");
+        $stmt->execute($filterDates);
+    }
+}    
 ?>
