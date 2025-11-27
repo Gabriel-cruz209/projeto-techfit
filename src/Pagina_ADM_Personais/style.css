@@ -199,9 +199,25 @@ div.coluna-informacao > a:hover {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+.container-personais>h2{
+  font-size: 2.5rem;
+}
 .lista-personais {
   display: flex;
   gap: 16px;
+}
+.personal>button{
+  border: 2px solid #00000000;
+  background-color: #ce002d;
+  color: white;
+  border-radius: 7px;
+  padding: 5px 5px;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+.personal>button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .personal {
   background: #fff;
