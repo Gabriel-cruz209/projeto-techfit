@@ -159,8 +159,19 @@
                         <label for="tipo_aula">Tipo de Aula</label>
                         <input type="text" id="tipo_aula" name="tipo_aula" required>
 
-                        <label for="id_aluno_aula">ID do Aluno</label>
-                        <input type="number" id="id_aluno_aula" name="id_aluno" min="1" required>
+                        <select name="id_unidade" id="id_unidade" required>
+                            <option value="">Selecione a unidade</option>
+
+                            <?php foreach ($connUnidade->select() as $unidade): ?>
+                                <option value="<?= $unidade['id_unidade'] ?>">
+                                    <?= $unidade['nome_unidade'] ?>
+                                </option>
+                            <?php endforeach; ?>
+
+                        </select>
+
+                        <label for="descricao_aula">Descricao Aula</label>
+                        <input type="text" id="tipo_aula" name="descricao_aula" required>
 
                         <button type="submit">Cadastrar Aula</button>
                     </form>

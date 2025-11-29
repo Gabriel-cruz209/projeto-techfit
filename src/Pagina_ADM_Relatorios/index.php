@@ -3,13 +3,14 @@
 namespace projetoTechfit;
 
 require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
-require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
 
+$id = $_GET['id'];
 $tableName = "Alunos";
 
 try {
     $alunoTable = new ConnTables($tableName);
-
+    $connUnidade = new ConnTables("unidades");
+    $unidades = $connUnidade->select();
     $alunos = $alunoTable->select();
 } catch (\PDOException $e) {
     die("Erro ao buscar dados dos alunos: " . $e->getMessage());
@@ -33,10 +34,9 @@ try {
         </div>
 
         <div class="secoes">
-            <button onclick="inicioAdm()">Inicio</button>
-            <button onclick="cadastroAdm()">Cadastros</button>
-            <button onclick="relatorios()">relatorios</button>
-            <button onclick="personais()">personal</button>
+            <?php
+                include_once __DIR__ . "\\..\\..\\utilitarios\\secaoAdm.php"
+            ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -89,13 +89,15 @@ try {
                             <th>Telefone</th>
                             <th>Data Nasc.</th>
                             <th>CEP</th>
-                            <th>ID Unidade</th>
+                            <th>Unidade</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         if (!empty($alunos)):
                             foreach ($alunos as $aluno):
+                                foreach($unidades as $unidade):
+                                
                         ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($aluno['id_aluno']); ?></td>
@@ -105,9 +107,10 @@ try {
                                     <td><?php echo htmlspecialchars($aluno['telefone_aluno']); ?></td>
                                     <td><?php echo htmlspecialchars($aluno['data_nascimento_aluno']); ?></td>
                                     <td><?php echo htmlspecialchars($aluno['cep_aluno']); ?></td>
-                                    <td><?php echo htmlspecialchars($aluno['id_unidade']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['id_unidade'] == $unidade['id_unidade'] ? $unidade['nome_unidade'] : ''); ?></td>
                                 </tr>
                             <?php
+                                endforeach;
                             endforeach;
                         else:
                             ?>
