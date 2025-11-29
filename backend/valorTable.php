@@ -8,7 +8,8 @@ class ValorTable {
             "id_aula"    => null,
             "data_aula"  => null,
             "tipo_aula"  => null,
-            "id_aluno"   => null,
+            "id_unidade"   => null,
+            "descricao_aula"   => null,
             "whereValue" => null
         ];
     }
@@ -66,16 +67,17 @@ class ValorTable {
     public static function getComunicados() {
         return [
             "informacao_comunicado" => null,
+            "tipo_comunicado" => null,
             "titulo_comunicado"     => null,
             "id_comunicado"         => null,
             "whereValue"            => null
         ];
     }
 
-    public static function getContem() {
+    public static function getInscrevem() {
         return [
             "id_aula"    => null,
-            "id_unidade" => null,
+            "id_aluno" => null,
             "whereValue" => null
         ];
     }

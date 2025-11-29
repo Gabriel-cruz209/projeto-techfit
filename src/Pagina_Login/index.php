@@ -3,22 +3,39 @@ namespace projetoTechfit;
 require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
 
 $connAluno = new ConnTables("alunos");
+$connFuncionario = new ConnTables("funcionarios");
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
     $dados = $connAluno->select();
-
-    foreach($dados as $dado) {
-        if($dado['email_aluno'] == $email){
-            if($dado['senha_aluno'] == $senha){
-                echo "
-                <h1>Esta indo</h1>
-                <script>
-                setTimeout(function() {
-                inicio('?id={$dado['id_aluno']}')
-                },3000)
-                </script>";
+    if(strpos($email,"@techfit.com") !== false){
+        $dadosF = $connFuncionario->select();
+        foreach($dadosF as $dadoF){
+            if($dadoF['email_funcionario']==$email){
+                if($dadoF['senha_funcioanrio']==$senha){
+                    echo "
+                    <h1>Esta indo ADM</h1>
+                    <script>
+                    setTimeout(function() {
+                    inicioAdm('?id={$dadoF['id_funcionario']}')
+                    },3000)
+                    </script>";
+                }
+            }
+        }
+    } else {
+        foreach($dados as $dado) {
+            if($dado['email_aluno'] == $email){
+                if($dado['senha_aluno'] == $senha){
+                    echo "
+                    <h1>Esta indo</h1>
+                    <script>
+                    setTimeout(function() {
+                    inicio('?id={$dado['id_aluno']}')
+                    },3000)
+                    </script>";
+                }
             }
         }
     }

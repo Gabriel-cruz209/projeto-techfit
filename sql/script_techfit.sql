@@ -247,3 +247,37 @@ SELECT * FROM comentam;
 
 ALTER TABLE FAZEM DROP CONSTRAINT fk_id_avaliacao;
 ALTER TABLE FAZEM ADD CONSTRAINT fk_id_avaliacao FOREIGN KEY (id_avaliacao) REFERENCES Avaliacao_fisicas (id_avaliacao);
+delete from contem where id_aula >= 1;
+drop Table contem;
+
+delete from criam where id_aula >=1;
+delete from aulas where id_aluno >=1;
+alter table aulas drop constraint fk_id_aluno_aulas;
+alter table aulas drop COLUMN id_aluno;
+
+alter table aulas add COLUMN id_unidade int not null;
+
+alter table aulas add constraint fk_id_unidade_aulas FOREIGN KEY (id_unidade) REFERENCES unidades (id_unidade);
+
+alter table aulas add COLUMN descricao_aula varchar(256);
+
+CREATE TABLE inscrevem(
+    id_aula int not null,
+    id_aluno int not null,
+    CONSTRAINT fk_id_aluno_inscrevem FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno),
+    CONSTRAINT fk_id_aula_inscrevem FOREIGN KEY (id_aula) REFERENCES aulas (id_aula)
+);
+
+alter table comunicados add COLUMN tipo_comunicado VARCHAR(128) not null;
+
+INSERT INTO inscrevem (id_aula, id_aluno) VALUES
+(1, 3),
+(2, 7),
+(3, 12),
+(4, 1),
+(5, 18),
+(6, 25),
+(7, 9),
+(8, 30),
+(9, 14),
+(10, 21);

@@ -18,7 +18,9 @@
             <p>TECHFIT</p>
         </div>
         <div class="secoes">
-            
+            <?php 
+                include_once __DIR__ . "\\..\\..\\utilitarios\\secao.php"
+            ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">

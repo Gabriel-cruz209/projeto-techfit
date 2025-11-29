@@ -1,6 +1,6 @@
-
 <?php
-
+    namespace projetoTechfit;
+    $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,10 +18,9 @@
         </div>
         
         <div class="secoes">
-            <button onclick="inicioAdm()">Inicio</button>
-            <button onclick="cadastroAdm()">Cadastros</button>
-            <button onclick="relatorios()">relatorios</button>
-            <button onclick="personais()">personal</button>
+            <?php
+                include_once __DIR__ . "\\..\\..\\utilitarios\\secaoAdm.php"
+            ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
