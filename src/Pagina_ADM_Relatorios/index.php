@@ -1,22 +1,37 @@
-
 <?php
 
+namespace projetoTechfit;
+
+require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
+
+$tableName = "Alunos";
+
+try {
+    $alunoTable = new ConnTables($tableName);
+
+    $alunos = $alunoTable->select();
+} catch (\PDOException $e) {
+    die("Erro ao buscar dados dos alunos: " . $e->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>TechFit - Relatórios</title>
 </head>
+
 <body>
     <header>
         <div class="logo-academia">
             <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
             <h1>TECHFIT</h1>
         </div>
-        
+
         <div class="secoes">
             <button onclick="inicioAdm()">Inicio</button>
             <button onclick="cadastroAdm()">Cadastros</button>
@@ -66,14 +81,42 @@
                 <h3>Últimas inscrições</h3>
                 <table>
                     <thead>
-                        <tr><th>Nome</th><th>Aula</th><th>Data</th><th>Unidade</th></tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Data Nasc.</th>
+                            <th>CEP</th>
+                            <th>ID Unidade</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Maria Silva</td><td>Yoga</td><td>22/11/2025</td><td>Limeira</td></tr>
-                        <tr><td>João Souza</td><td>Spinning</td><td>21/11/2025</td><td>Piracicaba</td></tr>
+                        <?php
+                        if (!empty($alunos)):
+                            foreach ($alunos as $aluno):
+                        ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($aluno['id_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['nome_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['cpf_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['email_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['telefone_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['data_nascimento_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['cep_aluno']); ?></td>
+                                    <td><?php echo htmlspecialchars($aluno['id_unidade']); ?></td>
+                                </tr>
+                            <?php
+                            endforeach;
+                        else:
+                            ?>
+                            <tr>
+                                <td colspan="8">Nenhum aluno encontrado no banco de dados.</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
-            </section>
         </div>
     </main>
     <footer id="tabela-web-footer">
@@ -82,15 +125,22 @@
             <h4 class="logo">TECHFIT</h4>
         </div>
         <div class="coluna-informacao">
-            <a href=""><h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4></a>
+            <a href="">
+                <h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4>
+            </a>
         </div>
         <div class="coluna-informacao">
-            <a href=""><h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4></a>
+            <a href="">
+                <h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4>
+            </a>
         </div>
         <div class="coluna-informacao">
-            <a href="" target="_blank"><h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4></a>
+            <a href="" target="_blank">
+                <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
+            </a>
         </div>
     </footer>
     <script src="/src/js/app.js"></script>
 </body>
+
 </html>
