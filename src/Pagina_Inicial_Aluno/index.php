@@ -25,15 +25,15 @@
 </head>
 <body>
     <header>
-        <div class="logo-academia" style="cursor: pointer" onclick="navegarPara('../../index.php')">
+        <div class="logo-academia" style="cursor: pointer" onclick="inicioWeb('')('../../index.php')">
             <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
             <p>TECHFIT</p>
         </div>
         
         <div class="secoes">
-            <button onclick="navegarPara('../../index.php?id=<?=$aluno['id_aluno']?>')">Inicio</button>
-            <button onclick="navegarPara('../Pagina_Aluno_Aulas/index.php?id=<?=$aluno['id_aluno']?>')">Aulas</button>
-            <button onclick="navegarPara('../Pagina_Aluno_Comunidados/index.php?id=<?=$aluno['id_aluno']?>')">Comunicados</button>
+            <?php 
+                include_once __DIR__ . "\\..\\..\\utilitarios\\secao.php"
+            ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -43,7 +43,7 @@
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
                     <?php 
-                    include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                        include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
                     ?>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
         
     </main>
     <footer id="tabela-web-footer">
-        <div class="coluna-informacao" style="cursor: pointer" onclick="navegarPara('../../index.php')">   
+        <div class="coluna-informacao" style="cursor: pointer" onclick="inicioWeb('')('../../index.php')">   
             <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
             <p>TECHFIT</p>
         </div>
@@ -91,6 +91,6 @@
         </div>
     </footer>
     <script src="/src/js/app.js"></script>
-    <script src="/src/js/navegar.js"></script>
+    
 </body>
 </html>

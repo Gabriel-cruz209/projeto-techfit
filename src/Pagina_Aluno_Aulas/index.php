@@ -13,15 +13,12 @@
 </head>
 <body>
     <header>
-        <div class="logo-academia" style="cursor: pointer" onclick="navegarPara('../../index.php')">
+        <div class="logo-academia" style="cursor: pointer" onclick="inicioWeb('')('../../index.php')">
             <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
             <p>TECHFIT</p>
         </div>
-        <button onclick="filtrar('minhaRola')">clique</button>
         <div class="secoes">
-            <button onclick="inicio()">Inicio</button>
-            <button onclick="aula()">Aulas</button>
-            <button onclick="comunicados()">Comunicados</button>
+            
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -152,6 +149,5 @@
         </div>
     </footer>
     <script src="/src/js/app.js"></script>
-    <script src="/src/js/navegar.js"></script>
 </body>
 </html>

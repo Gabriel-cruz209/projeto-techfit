@@ -15,8 +15,8 @@
     <strong><?= $aluno['nome_aluno'] ?></strong>
 </li>
 <hr>
-<li><a href="/src/Pagina_Perfil_Usuario/index.php?id=<?=$id?>"><i class="fas fa-user"></i> Perfil</a></li>
-<li><a href="/src/Pagina_Inicial_Aluno/index.php?id=<?=$id?>"><i class="fa-solid fa-house"></i> Home </a></li>
-<li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php?id=<?=$id?>"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-<li><a href="/src/Pagina_Perfil_Usuario/agendamento.php?id=<?=$id?>"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-<li><a href="/src/tela_inicial_web/index.php?id=<?=$id?>"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+<li><a onclick="Perfil('?id=<?=$id?>')" style="cursor: pointer;"><i class="fas fa-user"></i> Perfil</a></li>
+<li><a onclick="inicio('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-solid fa-house"></i> Home </a></li>
+<li><a onclick="Avaliacao('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
+<li><a onclick="Agendamento('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
+<li><a onclick="inicioWeb('')" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i> Sair</a></li>

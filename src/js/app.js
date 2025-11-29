@@ -31,21 +31,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* Navegação comum (ajuste para apontar para as páginas em .php) */
-function aula(){ window.location.href = '/src/Pagina_Aluno_Aulas/index.php' }
-function inicio(){ window.location.href = '/src/Pagina_Inicial_Aluno/index.php' }
-function comunicados(){ window.location.href = '/src/Pagina_Aluno_Comunidados/index.php' }
-function cadastro(){ window.location.href = '/src/Pagina_Cadastro/index.php' }
-function relatorios(){ window.location.href = '/src/Pagina_ADM_Relatorios/index.php' }
-function personais(){ window.location.href = '/src/Pagina_ADM_Personais/index.php' }
-function Perfil(){ window.location.href = '/src/Pagina_Perfil_Usuario/index.php' }
-function Agendamento(){ window.location.href = '/src/Pagina_Perfil_Usuario/agendamento.php' }
-function Avaliacao(){ window.location.href = '/src/Pagina_Perfil_Usuario/avaliacao.php' }
-function Editar(){ window.location.href = '/src/Pagina_Perfil_Usuario/editar.php' }
-function login(){ window.location.href = '/src/tela_inicial_web/index.php' }
-function inicioAdm(){ window.location.href = '/src/Pagina_ADM_inicio/index.php' }
-function cadastroAdm(){ window.location.href = '/src/Pagina_ADM_Cadastros/index.php' }
-function inscrever() { window.location.href = '/src/Pagina_Inscrição_Aula'}
-function voltar(){ window.history.back() }
+function aula(link){ window.location.href = `/src/Pagina_Aluno_Aulas/index.php${link}` }
+function inicio(link){ window.location.href = `/src/Pagina_Inicial_Aluno/index.php${link}` }
+function comunicados(link){ window.location.href = `/src/Pagina_Aluno_Comunidados/index.php${link}` }
+function cadastro(link){ window.location.href = `/src/Pagina_Cadastro/index.php${link}` }
+function relatorios(link){ window.location.href = `/src/Pagina_ADM_Relatorios/index.php${link}` }
+function personais(link){ window.location.href = `/src/Pagina_ADM_Personais/index.php${link}` }
+function Perfil(link){ window.location.href = `/src/Pagina_Perfil_Usuario/index.php${link}` }
+function Agendamento(link){ window.location.href = `/src/Pagina_Perfil_Usuario/agendamento.php${link}` }
+function Avaliacao(link){ window.location.href = `/src/Pagina_Perfil_Usuario/avaliacao.php${link}` }
+function Editar(link){ window.location.href = `/src/Pagina_Perfil_Usuario/editar.php${link}` }
+function login(link){ window.location.href = `/src/Pagina_Login/index.php${link}` }
+function inicioAdm(link){ window.location.href = `/src/Pagina_ADM_inicio/index.php${link}` }
+function cadastroAdm(link){ window.location.href = `/src/Pagina_ADM_Cadastros/index.php${link}` }
+function inscrever(link) { window.location.href = `/src/Pagina_Inscrição_Aula/index.php${link}`}
+function inicioWeb(link) { window.location.href = `../../index.php${link}`}
+function voltar(link){ window.history.back() }
 
 /* Funções de autenticação / cadastro simples (mock) */
 function acessoLogin() {

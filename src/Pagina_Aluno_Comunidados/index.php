@@ -1,6 +1,6 @@
 
 <?php
-
+    $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,9 +21,9 @@
         </div>
         
         <div class="secoes">
-            <button onclick="inicio()">Inicio</button>
-            <button onclick="aula()">Aulas</button>
-            <button onclick="comunicados()">Comunicados</button>
+            <?php 
+                include_once __DIR__ . "\\..\\..\\utilitarios\\secao.php"
+            ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -32,16 +32,9 @@
             </div>
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
-                    <li class="info-usuario">
-                        <span>Usuário</span>
-                        <strong>Gabriel Soares</strong>
-                    </li>
-                    <hr>
-                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="/src/Pagina_Inicial_Aluno/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <?php 
+                        include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                    ?>
                 </ul>
             </div>
         </div>

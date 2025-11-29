@@ -37,10 +37,10 @@
         </div>
         
         <div class="secoes">
-            <button onclick="navegarPara('#')">Perfil</button>
-            <button onclick="navegarPara('avaliacao.php')">Avaliacaos</button>
-            <button onclick="navegarPara('editar.php')">Editar</button>
-            <button onclick="navegarPara('agendamento.php')">Agendamento</button>
+            <button onclick="Avaliacao('?id=<?= $id?>')('#')">Perfil</button>
+            <button onclick="Avaliacao('?id=<?= $id?>')('avaliacao.php')">Avaliacaos</button>
+            <button onclick="Avaliacao('?id=<?= $id?>')('editar.php')">Editar</button>
+            <button onclick="Avaliacao('?id=<?= $id?>')('agendamento.php')">Agendamento</button>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -50,7 +50,7 @@
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
                    <?php 
-                    include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                      include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
                     ?>
                 </ul>
             </div>

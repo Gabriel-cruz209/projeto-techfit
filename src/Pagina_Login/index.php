@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h1>Esta indo</h1>
                 <script>
                 setTimeout(function() {
-                navegarPara('../Pagina_Inicial_Aluno/index.php?id={$dado['id_aluno']}')
+                inicio('?id={$dado['id_aluno']}')
                 },3000)
                 </script>";
             }
@@ -53,6 +53,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
     <script src="../js/app.js"></script>
-    <script src="../js/navegar.js"></script>
+    
 </body>
 </html>

@@ -104,10 +104,10 @@
 
         </form>
 
-        <p><a href="../Pagina_Login/index.php">Já Possui Cadastro</a></p>
+        <p><a onclick="login('')">Já Possui Cadastro</a></p>
         <p><a href="#">Esqueci minha senha</a></p>
     </main>
-    <script src="script.js" defer></script>
+    <script src="../js/app.js"></script>
 </body>
 
 </html>
