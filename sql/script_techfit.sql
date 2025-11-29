@@ -281,3 +281,7 @@ INSERT INTO inscrevem (id_aula, id_aluno) VALUES
 (8, 30),
 (9, 14),
 (10, 21);
+
+alter table fazem drop constraint fk_id_avaliacao;
+alter table fazem drop index fk_id_avaliacao;
+alter table fazem add Constraint fk_id_avaliacao FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_fisicas (id_avaliacao);

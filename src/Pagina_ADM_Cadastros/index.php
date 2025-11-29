@@ -3,11 +3,15 @@
     require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
     require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
     $id = $_GET['id'];
+    
     $connAluno = new ConnTables('alunos');
     $connUnidade = new ConnTables('unidades');
+    $connFuncionario = new ConnTables("funcionarios");
+    
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         switch ($_POST['action']){
             case 'aulas':
+                $connCriam = new ConnTables("criam");
                 $connAulas = new ConnTables("aulas");
                 $table = new ValorTable();
                 $aula = $table->getAulas();
@@ -16,17 +20,33 @@
                 $aula['id_unidade'] = $_POST['id_unidade'];
                 $aula['tipo_aula'] = $_POST['tipo_aula'];
                 $connAulas->insert($aula);
+
+
+                $aulaCadastrada = $connAulas->selectUnique("","id_aula DESC","1");
+                $cria = $table->getCriam();
+                $cria['id_aula'] = $aulaCadastrada['id_aula'];
+                $cria['id_funcionario'] = $_POST['id_funcionario'];
+                $connCriam->insert($cria);
+
                 break;
             case 'comunicados':
                 $connComunicados = new ConnTables("comunicados");
+                $connComentam = new ConnTables("comentam");
                 $table = new ValorTable();
                 $comunicado = $table->getComunicados();
-                $comunicado['informacao_comunicado'] = $_POST['titulo_comunicado'];
+                $comunicado['informacao_comunicado'] = $_POST['informacao_comunicado'];
                 $comunicado['tipo_comunicado'] = $_POST['tipo_comunicado'];
                 $comunicado['titulo_comunicado']= $_POST['titulo_comunicado'];
                 $connComunicados->insert($comunicado);
+
+                $comunicadoCadastrado = $connComunicados->selectUnique("","id_comunicado DESC","1");
+                $Comenta = $table->getComentam();
+                $Comenta['id_comunicado'] = $comunicadoCadastrado['id_comunicado'];
+                $Comenta['id_funcionario'] = $_POST['id_funcionario'];
+                $connComentam->insert($Comenta);
                 break;
             case 'avaliacao':
+                $connFazem = new ConnTables("fazem");
                 $connAvaliacao = new ConnTables("avaliacao_fisicas");
                 $table = new ValorTable();
                 $avaliacao = $table->getAvaliacao_fisicas();
@@ -34,6 +54,12 @@
                 $avaliacao['tipo_avalicao'] = $_POST['tipo_avalicao'];
                 $avaliacao['id_aluno'] = $_POST['id_aluno'];
                 $connAvaliacao->insert($avaliacao);
+
+                $avaliacaoCadastrado = $connAvaliacao->selectUnique("","id_avaliacao DESC","1");
+                $faze = $table->getFazem();
+                $faze['id_avaliacao'] = $avaliacaoCadastrado['id_avaliacao'];
+                $faze['id_funcionario'] = $_POST['id_funcionario'];
+                $connFazem->insert($faze);
                 break;
             case 'alunos':
                 if($_POST['senha_aluno'] == $_POST['Csenha_aluno']){
@@ -48,7 +74,27 @@
                     $aluno['cep_aluno'] = $_POST['cep_aluno'];
                     $connAluno->insert($aluno);
                 }
-                
+            case 'funcionarios':
+                if($_POST['senha_funcioanrio'] == $_POST['Csenha_funcioanrio']){
+                    $table = new ValorTable();
+                    $funcionario = $table->getFuncionarios();
+                    $funcionario['cep_funcionario'] = $_POST['cep_funcionario'];
+                    $funcionario['cpf_funcionario'] = $_POST['cpf_funcionario'];
+                    $funcionario['data_nascimento_funcionario'] = $_POST['data_nascimento_funcionario'];
+                    $funcionario['email_funcionario'] = $_POST['email_funcionario'];
+                    $funcionario['telefone_funcionario'] = $_POST['telefone_funcionario'];
+                    $funcionario['id_unidade'] = $_POST['id_unidade'];
+                    $funcionario['nome_funcionario'] = $_POST['nome_funcionario'];
+                    $funcionario['senha_funcioanrio'] = $_POST['senha_funcioanrio'];
+                    $funcionario['tipo_funcionario'] = $_POST['tipo_funcioanrio'];
+                    $connFuncionario->insert($funcionario);
+                }
+            case 'unidades':
+                $table = new ValorTable();
+                $unidade = $table->getUnidades();
+                $unidade['cep_unidade']= $_POST['cep_unidade'];
+                $unidade['nome_unidade']= $_POST['nome_unidade'];
+                $connUnidade->insert($unidade);
         }  
     }
 ?>
@@ -145,6 +191,9 @@
                         <label for="senha_funcioanrio">Senha</label>
                         <input type="password" id="senha_funcioanrio" name="senha_funcioanrio" required>
 
+                        <label for="Csenha_funcioanrio">Confirmar Senha</label>
+                        <input type="password" id="Csenha_funcioanrio" name="Csenha_funcioanrio" required>
+
                         <label for="cpf_funcionario">CPF</label>
                         <input type="text" id="cpf_funcionario" name="cpf_funcionario" required>
 
@@ -225,9 +274,25 @@
                             <option value="importante">Importante</option>
                             <option value="geral">Geral</option>
                         </select>
-
+                        
                         <label for="informacao_comunicado">Informação</label>
                         <textarea id="informacao_comunicado" name="informacao_comunicado" rows="3" required></textarea>
+                        
+                        <label for="id_funcionario">Personal</label>
+                        <select name="id_funcionario" id="id_funcionario" required>
+                            <option value="">Selecione o Personal Responsável</option>
+
+                            <?php foreach ($connFuncionario->select() as $funcionario): ?>
+                                <?php if($funcionario['tipo_funcionario'] == 'personal'): ?>
+                                    <option value="<?= $funcionario['id_funcionario'] ?>">
+                                        <?= $funcionario['nome_funcionario'] ?>
+                                    </option>
+                                <?php else: ?>
+                                    <p>Não há nenhum personal cadastrado</p>
+                                <?php endif ?>
+                            <?php endforeach; ?>
+
+                        </select>
 
                         <button type="submit">Cadastrar Comunicado</button>
                     </form>
@@ -267,6 +332,22 @@
 
                         <label for="descricao_aula">Descricao Aula</label>
                         <input type="text" id="tipo_aula" name="descricao_aula" required>
+                        
+                        <label for="id_funcionario">Personal</label>
+                        <select name="id_funcionario" id="id_funcionario" required>
+                            <option value="">Selecione o Personal Responsável</option>
+
+                            <?php foreach ($connFuncionario->select() as $funcionario): ?>
+                                <?php if($funcionario['tipo_funcionario'] == 'personal'): ?>
+                                    <option value="<?= $funcionario['id_funcionario'] ?>">
+                                        <?= $funcionario['nome_funcionario'] ?>
+                                    </option>
+                                <?php else: ?>
+                                    <p>Não há nenhum personal cadastrado</p>
+                                <?php endif ?>
+                            <?php endforeach; ?>
+
+                        </select>
 
                         <button type="submit">Cadastrar Aula</button>
                     </form>
@@ -293,6 +374,22 @@
                             <?php endforeach; ?>
 
                         </select>
+                        
+                        <label for="id_funcionario">Personal</label>
+                        <select name="id_funcionario" id="id_funcionario" required>
+                            <option value="">Selecione o Personal Responsável</option>
+
+                            <?php foreach ($connFuncionario->select() as $funcionario): ?>
+                                <?php if($funcionario['tipo_funcionario'] == 'personal'): ?>
+                                    <option value="<?= $funcionario['id_funcionario'] ?>">
+                                        <?= $funcionario['nome_funcionario'] ?>
+                                    </option>
+                                <?php else: ?>
+                                    <p>Não há nenhum personal cadastrado</p>
+                                <?php endif ?>
+                            <?php endforeach; ?>
+
+                        </select>
 
                         <button type="submit">Cadastrar Avaliação</button>
                     </form>
@@ -301,25 +398,9 @@
         </section>
     </main>
     <footer id="tabela-web-footer">
-        <div class="coluna-informacao">
-            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
-            <h4 class="logo">TECHFIT</h4>
-        </div>
-        <div class="coluna-informacao">
-            <a href="">
-                <h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4>
-            </a>
-        </div>
-        <div class="coluna-informacao">
-            <a href="">
-                <h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4>
-            </a>
-        </div>
-        <div class="coluna-informacao">
-            <a href="" target="_blank">
-                <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
-            </a>
-        </div>
+        <?php
+            include_once __DIR__ . "\\..\\..\\utilitarios\\footer.php"
+        ?>
     </footer>
 
     <script src="/src/js/app.js"></script>

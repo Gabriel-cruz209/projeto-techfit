@@ -36,5 +36,27 @@ class ConnTables {
         $stmt = $this->conn->prepare("DELETE FROM {$this->table} WHERE $whereField = {$placeholders} ");
         $stmt->execute($filterDates);
     }
-}    
+    public function selectUnique($where = "",$orderBy = "", $limit = "",$params = [])
+    {
+        $sql = "SELECT * FROM {$this->table}";
+
+        if ($where !== "") {
+            $sql .= " WHERE {$where}";
+        }
+
+        if ($orderBy !== "") {
+            $sql .= " ORDER BY {$orderBy}";
+        }
+
+        if ($limit !== "") {
+            $sql .= " LIMIT {$limit}";
+        }
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($params);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
+    }    
 ?>

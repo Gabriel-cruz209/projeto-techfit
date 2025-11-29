@@ -66,7 +66,11 @@
             this.reset();
         });
     </script>
-    <footer></footer>
+    <footer>
+        <?php
+            include_once __DIR__ . "\\..\\..\\utilitarios\\footer.php"
+        ?>
+    </footer>
         <script src="/src/js/app.js"></script>
     </body>
 </html>

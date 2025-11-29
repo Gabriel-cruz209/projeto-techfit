@@ -192,7 +192,8 @@ try {
                             <th>ID Aula</th>
                             <th>Tipo de Aula</th>
                             <th>Data/Hora</th>
-                            <th>ID Aluno (Matriculado)</th>
+                            <th>ID Unidade</th>
+                            <th>Descrição</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -203,7 +204,8 @@ try {
                                 <td><?php echo htmlspecialchars($aula['id_aula']); ?></td>
                                 <td><?php echo htmlspecialchars($aula['tipo_aula']); ?></td>
                                 <td><?php echo htmlspecialchars($aula['data_aula']); ?></td>
-                                <td><?php echo htmlspecialchars($aula['id_aluno']); ?></td>
+                                <td><?php echo htmlspecialchars($aula['id_unidade']); ?></td>
+                                <td><?php echo htmlspecialchars($aula['descricao_aula']); ?></td>
                             </tr>
                         <?php 
                             endforeach;
@@ -220,25 +222,9 @@ try {
         </div>
     </main>
     <footer id="tabela-web-footer">
-        <div class="coluna-informacao">
-            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
-            <h4 class="logo">TECHFIT</h4>
-        </div>
-        <div class="coluna-informacao">
-            <a href="">
-                <h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4>
-            </a>
-        </div>
-        <div class="coluna-informacao">
-            <a href="">
-                <h4><i class="fa-solid fa-phone"></i>(19)99999-9999</h4>
-            </a>
-        </div>
-        <div class="coluna-informacao">
-            <a href="" target="_blank">
-                <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
-            </a>
-        </div>
+        <?php
+            include_once __DIR__ . "\\..\\..\\utilitarios\\footer.php"
+        ?>
     </footer>
     <script src="/src/js/app.js"></script>
 </body>
