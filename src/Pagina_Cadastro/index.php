@@ -3,8 +3,8 @@
     require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
     require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
     $tables = new ValorTable();
-    $conn = new ConnTables("alunos");
-    $conn2 = new ConnTables('unidades');
+    $connAluno = new ConnTables("alunos");
+    $connUnidade = new ConnTables('unidades');
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $alunos = $tables->getAlunos();
         $alunos['nome_aluno'] = $_POST['nome_aluno'];
@@ -15,7 +15,12 @@
         $alunos['telefone_aluno'] = $_POST['telefone_aluno'];
         $alunos['senha_aluno'] = $_POST['senha_aluno'];
         $alunos['id_unidade'] = $_POST['id_unidade'];
-        $conn->insert($alunos);
+        if($_POST['senha_aluno'] == $_POST['confirmar_senha']){
+            $connAluno->insert($alunos);
+        } else {
+            echo "<p>Senha e confirmar senha tem que ser iguais</p>";
+        }
+        
     }
 ?>
 <!DOCTYPE html>
@@ -76,7 +81,7 @@
                 <select name="id_unidade" id="id_unidade" required>
                     <option value="">Selecione a unidade</option>
 
-                    <?php foreach ($conn2->select() as $unidade): ?>
+                    <?php foreach ($connUnidade->select() as $unidade): ?>
                         <option value="<?= $unidade['id_unidade'] ?>">
                             <?= $unidade['nome_unidade'] ?>
                         </option>

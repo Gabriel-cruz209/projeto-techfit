@@ -1,6 +1,25 @@
-
 <?php
+  namespace projetoTechfit;
+  require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+  $aluno;
+  $unidade;
+  $connAluno = new ConnTables("alunos");
+  $connUnidade = new ConnTables("unidades");
+  $dadosU = $connUnidade->select();
+  $dados = $connAluno->select();
+  $id = $_GET['id'];
 
+  foreach($dados as $dado) {
+    if($dado['id_aluno'] == $id){
+      $aluno = $dado;
+      foreach($dadosU as $dadoU ){
+        if($dado['id_unidade']==$dadoU['id_unidade']){
+          $unidade = $dadoU;
+        }
+      }
+    }
+    
+  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,10 +37,10 @@
         </div>
         
         <div class="secoes">
-            <button onclick="Perfil()">Perfil</button>
-            <button onclick="Avaliacao()">Avaliacaos</button>
-            <button onclick="Editar()">Editar</button>
-            <button onclick="Agendamento()">Agendamento</button>
+            <button onclick="navegarPara('#')">Perfil</button>
+            <button onclick="navegarPara('avaliacao.php')">Avaliacaos</button>
+            <button onclick="navegarPara('editar.php')">Editar</button>
+            <button onclick="navegarPara('agendamento.php')">Agendamento</button>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -30,16 +49,9 @@
             </div>
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
-                    <li class="info-usuario">
-                        <span>Usuário</span>
-                        <strong>Gabriel Soares</strong>
-                    </li>
-                    <hr>
-                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="/src/Pagina_Inicial_Aluno/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                   <?php 
+                    include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                    ?>
                 </ul>
             </div>
         </div>
@@ -49,8 +61,8 @@
   <main class="pf-main">
     <section class="perfil-card">
       <img class="avatar" src="/Arquivos/perfil-removebg-preview.png" alt="Foto do usuário">
-      <h2 id="usuario-nome">Gabriel Soares</h2>
-      <p id="usuario-email">gabriel@example.com</p>
+      <h2 id="usuario-nome"><?=$aluno['nome_aluno']?></h2>
+      <p id="usuario-email"><?=$aluno['email_aluno']?></p>
 
       <div class="acoes">
         <a class="btn" href="editar.php">Editar Perfil</a>
@@ -61,9 +73,9 @@
     <section class="info-card">
       <h3>Informações</h3>
       <ul>
-        <li><strong>CPF:</strong> <span id="usuario-cpf">000.000.000-00</span></li>
-        <li><strong>Telefone:</strong> <span id="usuario-tel">(19)99999-9999</span></li>
-        <li><strong>Unidade:</strong> <span id="usuario-unidade">TECHFIT Campinas Norte</span></li>
+        <li><strong>CPF:</strong> <span id="usuario-cpf"><?=$aluno['cpf_aluno']?></span></li>
+        <li><strong>Telefone:</strong> <span id="usuario-tel"><?=$aluno['telefone_aluno']?></span></li>
+        <li><strong>Unidade:</strong> <span id="usuario-unidade"></span><?= $unidade['nome_unidade'] ?></li>
       </ul>
     </section>
   </main>

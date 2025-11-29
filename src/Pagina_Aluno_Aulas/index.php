@@ -1,6 +1,6 @@
-
 <?php
-
+    namespace projetoTechfit;
+    $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,11 +13,11 @@
 </head>
 <body>
     <header>
-        <div class="logo-academia">
-            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
-            <h1>TECHFIT</h1>
+        <div class="logo-academia" style="cursor: pointer" onclick="navegarPara('../../index.php')">
+            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
+            <p>TECHFIT</p>
         </div>
-        
+        <button onclick="filtrar('minhaRola')">clique</button>
         <div class="secoes">
             <button onclick="inicio()">Inicio</button>
             <button onclick="aula()">Aulas</button>
@@ -30,16 +30,9 @@
             </div>
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
-                    <li class="info-usuario">
-                        <span>Usuário</span>
-                        <strong>Gabriel Soares</strong>
-                    </li>
-                    <hr>
-                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="/src/Pagina_Inicial_Aluno/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <?php 
+                    include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                    ?>
                 </ul>
             </div>
         </div>
@@ -158,5 +151,7 @@
             <h4><i class="fa-brands fa-facebook"></i>TECHFITACADEMIA</h4>
         </div>
     </footer>
-    <script src="/src/js/app.js"></script> </body>
+    <script src="/src/js/app.js"></script>
+    <script src="/src/js/navegar.js"></script>
+</body>
 </html>

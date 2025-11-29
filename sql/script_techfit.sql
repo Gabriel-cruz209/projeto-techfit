@@ -2,20 +2,11 @@
 -- Sql ANSI 2003 - brModelo.
 CREATE DATABASE TECHFIT_ACADEMY;
 USE TECHFIT_ACADEMY;
-CREATE TABLE Aulas (
-	id_aula int not null PRIMARY KEY auto_increment,
-	data_aula datetime not null,
-	tipo_aula varchar(100) not null,
-	id_aluno int not null,
-	CONSTRAINT fk_id_aluno_aulas FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
-);
 
-CREATE TABLE Avaliacao_fisicas (
-	data_avaliacao datetime not null,
-	id_avaliacao int not null PRIMARY KEY auto_increment,
-	tipo_avalicao varchar(50) not null,
-	id_aluno int not null,
-    CONSTRAINT fk_id_aluno_avaliacao FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
+CREATE TABLE Unidades (
+	cep_unidade varchar(9) not null,
+	nome_unidade varchar(100) not null,
+	id_unidade int not null PRIMARY KEY auto_increment
 );
 
 CREATE TABLE Funcionarios (
@@ -32,12 +23,6 @@ CREATE TABLE Funcionarios (
     CONSTRAINT fk_id_unidade_funcionario FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
 );
 
-CREATE TABLE Unidades (
-	cep_unidade varchar(9) not null,
-	nome_unidade varchar(100) not null,
-	id_unidade int not null PRIMARY KEY auto_increment
-);
-
 CREATE TABLE Alunos (
 	nome_aluno varchar(100) not null,
 	cep_aluno varchar(9) not null,
@@ -49,6 +34,21 @@ CREATE TABLE Alunos (
 	id_aluno int not null PRIMARY KEY auto_increment,
 	id_unidade int not null,
 	CONSTRAINT fk_id_unidade FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
+);
+CREATE TABLE Aulas (
+	id_aula int not null PRIMARY KEY auto_increment,
+	data_aula datetime not null,
+	tipo_aula varchar(100) not null,
+	id_aluno int not null,
+	CONSTRAINT fk_id_aluno_aulas FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
+);
+
+CREATE TABLE Avaliacao_fisicas (
+	data_avaliacao datetime not null,
+	id_avaliacao int not null PRIMARY KEY auto_increment,
+	tipo_avalicao varchar(50) not null,
+	id_aluno int not null,
+    CONSTRAINT fk_id_aluno_avaliacao FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
 );
 
 CREATE TABLE Comunicados (

@@ -1,5 +1,16 @@
 <?php
-
+    namespace projetoTechfit;
+    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+    $aluno;
+    $connAluno = new ConnTables("alunos");
+    $connComunicados = new ConnTables("comunicados");
+    $id = $_GET['id'];
+    $dados = $connAluno->select();
+    foreach($dados as $dado) {
+        if($dado['id_aluno']== $id){
+            $aluno = $dado;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,15 +25,15 @@
 </head>
 <body>
     <header>
-        <div class="logo-academia">
-            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
-            <h1>TECHFIT</h1>
+        <div class="logo-academia" style="cursor: pointer" onclick="navegarPara('../../index.php')">
+            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
+            <p>TECHFIT</p>
         </div>
         
         <div class="secoes">
-            <button onclick="inicio()">Inicio</button>
-            <button onclick="aula()">Aulas</button>
-            <button onclick="comunicados()">Comunicados</button>
+            <button onclick="navegarPara('../../index.php?id=<?=$aluno['id_aluno']?>')">Inicio</button>
+            <button onclick="navegarPara('../Pagina_Aluno_Aulas/index.php?id=<?=$aluno['id_aluno']?>')">Aulas</button>
+            <button onclick="navegarPara('../Pagina_Aluno_Comunidados/index.php?id=<?=$aluno['id_aluno']?>')">Comunicados</button>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -31,16 +42,9 @@
             </div>
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
-                    <li class="info-usuario">
-                        <span>Usuário</span>
-                        <strong>Gabriel Soares</strong>
-                    </li>
-                    <hr>
-                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="/src/Pagina_Inicial_Aluno/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <?php 
+                    include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                    ?>
                 </ul>
             </div>
         </div>
@@ -48,49 +52,33 @@
     </header>
     <main>
         <h1>Bem Vindo a TechFit</h1>
-        
-
         <div class="forma_comu">
+            <h2>Comunicados</h2>
             <h3>Importantes</h3>
             <div class="forma_local">
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                <?php if(!empty($connComunicados->select())): ?>
+                    <?php foreach($connComunicados->select() as $comunicado): ?>
+                    <div class="forma_unidade">
+                        <h4><?= $comunicado['titulo_comunicado']; ?></h4>
+                        <p><?= $comunicado['informacao_comunicado']; ?></p>
+                        <hr>
+                        <div class="sub-info">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
                     </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
+                    <?php endforeach ?>
+                    <?php else: ?>
+                        <p>Não há nenhum comunicado importante</p>
+                    <?php endif ?>
             </div>
         </div>
         
     </main>
     <footer id="tabela-web-footer">
-        <div class="coluna-informacao">
-            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="logo-techfit">
-            <h4 class="logo">TECHFIT</h4>
+        <div class="coluna-informacao" style="cursor: pointer" onclick="navegarPara('../../index.php')">   
+            <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
+            <p>TECHFIT</p>
         </div>
         <div class="coluna-informacao">
             <a href=""><h4><i class="fa-brands fa-instagram"></i>techfit@gmail.com</h4></a>
@@ -103,5 +91,6 @@
         </div>
     </footer>
     <script src="/src/js/app.js"></script>
+    <script src="/src/js/navegar.js"></script>
 </body>
 </html>

@@ -1,4 +1,28 @@
 <?php
+namespace projetoTechfit;
+require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+
+$connAluno = new ConnTables("alunos");
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $dados = $connAluno->select();
+
+    foreach($dados as $dado) {
+        if($dado['email_aluno'] == $email){
+            if($dado['senha_aluno'] == $senha){
+                echo "
+                <h1>Esta indo</h1>
+                <script>
+                setTimeout(function() {
+                navegarPara('../Pagina_Inicial_Aluno/index.php?id={$dado['id_aluno']}')
+                },3000)
+                </script>";
+            }
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -16,18 +40,19 @@
             <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="TechFit Logo">
             <h1>TechFit</h1>
         </div>
-        <form id="login-form">
+        <form id="login-form" method="POST">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
+                <input type="password" name="senha" required>
             </div>
             <button type="submit">Entrar</button>
         </form>
     </div>
-    <script src="./script.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/navegar.js"></script>
 </body>
 </html>
