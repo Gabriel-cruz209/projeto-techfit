@@ -17,7 +17,7 @@ CREATE TABLE Funcionarios (
 	id_funcionario int not null PRIMARY KEY auto_increment,
 	telefone_funcionario varchar(14) not null,
 	tipo_funcionario varchar(50) not null,
-	senha_funcioanrio varchar(50) not null,
+	senha_funcionario varchar(50) not null,
 	cpf_funcionario varchar(14) not null,
 	id_unidade int not null,
     CONSTRAINT fk_id_unidade_funcionario FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
