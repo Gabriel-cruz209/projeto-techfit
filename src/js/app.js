@@ -38,7 +38,7 @@ function cadastro(link){ window.location.href = `/src/Pagina_Cadastro/index.php$
 function relatorios(link){ window.location.href = `/src/Pagina_ADM_Relatorios/index.php${link}` }
 function personais(link){ window.location.href = `/src/Pagina_ADM_Personais/index.php${link}` }
 function Perfil(link){ window.location.href = `/src/Pagina_Perfil_Usuario/index.php${link}` }
-function Agendamento(link){ window.location.href = `/src/Pagina_Perfil_Usuario/agendamento.php${link}` }
+function agenda(link){ window.location.href = `/src/Pagina_Perfil_Usuario/agenda.php${link}` }
 function Avaliacao(link){ window.location.href = `/src/Pagina_Perfil_Usuario/avaliacao.php${link}` }
 function Editar(link){ window.location.href = `/src/Pagina_Perfil_Usuario/editar.php${link}` }
 function login(link){ window.location.href = `/src/Pagina_Login/index.php${link}` }
@@ -118,17 +118,3 @@ function curtir(buttonElement){
   if(contagemEl){ contagemEl.textContent = `Curtidas: ${contagem}`; contagemEl.dataset.count = contagem }
 }
 
-/* --- Perfil: formulários (Pagina_Perfil_Usuario) --- */
-document.addEventListener('DOMContentLoaded', function(){
-  const formEditar = document.getElementById('form-editar');
-  if(formEditar){ formEditar.addEventListener('submit', function(e){ e.preventDefault(); alert('Alterações salvas (mock). Integre com backend para persistir.'); window.location.href = 'index.php'; }) }
-  const formAvaliacao = document.getElementById('form-avaliacao');
-  if(formAvaliacao){ formAvaliacao.addEventListener('submit', function(e){ e.preventDefault(); alert('Avaliação agendada (mock).'); }) }
-  const formAg = document.getElementById('form-agendamento');
-  if(formAg){ formAg.addEventListener('submit', function(e){ e.preventDefault(); alert('Agendamento realizado (mock).'); }) }
-});
-
-
-
-
-/* Fim de app.js */

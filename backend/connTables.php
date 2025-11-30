@@ -15,13 +15,20 @@ class ConnTables {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function update($whereField,$whereValue, array $tableFields){
-        $tableFields['whereValue'] = $whereValue;
-        $filterDates = array_filter($tableFields,fn($dado) => $dado !== null);
-        $set = implode(", ", array_map(fn($dado) => "$dado = :$dado", array_keys($filterDates)));
-        
-        $stmt = $this->conn->prepare("UPDATE {$this->table} SET $set WHERE $whereField = :whereValue");
-        $stmt->execute($tableFields);
+    public function update($whereField, $whereValue, array $tableFields)
+    {
+        $filterDates = array_filter($tableFields, fn($dado) => $dado !== null);
+        $set = implode(", ", array_map(fn($key) => "$key = :$key", array_keys($filterDates)));
+
+        $sql = "UPDATE {$this->table} SET $set WHERE $whereField = :whereValue";
+
+        $stmt = $this->conn->prepare($sql);
+
+        // Junta os campos do SET com o valor do WHERE
+        $params = $filterDates;
+        $params['whereValue'] = $whereValue;
+
+        $stmt->execute($params);
     }
     public function insert(array $tableFields){
         $filterDates = array_filter($tableFields,fn($dado) => $dado !== null);

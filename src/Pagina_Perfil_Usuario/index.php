@@ -37,10 +37,9 @@
         </div>
         
         <div class="secoes">
-            <button onclick="Avaliacao('?id=<?= $id?>')('#')">Perfil</button>
-            <button onclick="Avaliacao('?id=<?= $id?>')('avaliacao.php')">Avaliacaos</button>
-            <button onclick="Avaliacao('?id=<?= $id?>')('editar.php')">Editar</button>
-            <button onclick="Avaliacao('?id=<?= $id?>')('agendamento.php')">Agendamento</button>
+          <?php
+            include_once __DIR__ . "\\..\\..\\utilitarios\\secaoUsuario.php"
+          ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -65,8 +64,8 @@
       <p id="usuario-email"><?=$aluno['email_aluno']?></p>
 
       <div class="acoes">
-        <a class="btn" href="editar.php">Editar Perfil</a>
-        <a class="btn" href="avaliacao.php">Minhas Avaliações</a>
+        <a class="btn" href="editar.php?id=<?=$id?>">Editar Perfil</a>
+        <a class="btn" href="avaliacao.php?id=<?=$id?>">Minhas Avaliações</a>
       </div>
     </section>
 

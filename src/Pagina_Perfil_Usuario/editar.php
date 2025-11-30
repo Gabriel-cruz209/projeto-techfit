@@ -1,6 +1,30 @@
-
 <?php
-
+  namespace projetoTechfit;
+  require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+  require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
+  $connAluno = new ConnTables("alunos");
+  $table = new ValorTable() ;
+  $id = $_GET['id'];
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_POST['senha'] == $_POST['Csenha']){
+      $aluno = $table->getAlunos();
+      $aluno['id_aluno'] = $id;
+      $aluno['cep_aluno'] = $_POST['cep'];
+      $aluno['cpf_aluno'] = $_POST['cpf'];
+      $aluno['email_aluno'] = $_POST['email'];
+      $aluno['nome_aluno'] = $_POST['nome'];
+      $aluno['telefone_aluno'] = $_POST['telefone'];
+      $aluno['senha_aluno'] = $_POST['senha'];
+      $connAluno->update('id_aluno',$id,$aluno);
+      echo "
+      <script>
+        setTimeout(function() {
+            Perfil('?id=$id');
+        }, 3000);
+      </script>
+      ";
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,10 +42,9 @@
         </div>
         
         <div class="secoes">
-            <button onclick="Perfil()">Perfil</button>
-            <button onclick="Avaliacao()">Avaliacaos</button>
-            <button onclick="Editar()">Editar</button>
-            <button onclick="Agendamento()">Agendamento</button>
+          <?php
+            include_once __DIR__ . "\\..\\..\\utilitarios\\secaoUsuario.php"
+          ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -30,8 +53,8 @@
             </div>
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
-                    <?php 
-                    include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
+                    <?php
+                      include_once __DIR__ . "\\..\\..\\utilitarios\\perfil.php"
                     ?>
                 </ul>
             </div>
@@ -42,26 +65,34 @@
   <main class="pf-main">
     <section class="form-edit">
       <h2>Editar Perfil</h2>
-      <form id="form-editar">
+      <form id="form-editar" method="POST">
+        <?php foreach($connAluno->select() as $dados):?>
+          <?php if($dados['id_aluno'] == $id): ?>
+
         <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text" value="Gabriel Soares" required>
+        <input id="nome" name="nome" type="text" value="<?=$dados['nome_aluno']?>" required>
 
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" value="gabriel@example.com" required>
+        <input id="email" name="email" type="email" value="<?=$dados['email_aluno']?>" required>
 
         <label for="telefone">Telefone</label>
-        <input id="telefone" name="telefone" type="text" value="(19)99999-9999" required>
+        <input id="telefone" name="telefone" type="text" value="<?=$dados['telefone_aluno']?>" required>
 
         <label for="cpf">CPF</label>
-        <input id="cpf" name="cpf" type="text" value="000.000.000-00" required>
+        <input id="cpf" name="cpf" type="text" value="<?=$dados['cpf_aluno']?>" required>
 
         <label for="cep">CEP</label>
-        <input id="cep" name="cep" type="text" value="13040-001">
+        <input id="cep" name="cep" type="text" value="<?=$dados['cep_aluno']?>">
 
         <label for="senha">Senha</label>
-        <input id="senha" name="senha" type="password" placeholder="Nova senha">
+        <input id="senha" name="senha" type="password" value="<?=$dados['senha_aluno']?>">
+
+        <label for="Csenha">Confirmar senha</label>
+        <input id="Csenha" name="Csenha" type="password" value="<?=$dados['senha_aluno']?>">
 
         <button class="btn" type="submit">Salvar Alterações</button>
+        <?php endif ?>
+        <?php endforeach ?>
       </form>
     </section>
   </main>

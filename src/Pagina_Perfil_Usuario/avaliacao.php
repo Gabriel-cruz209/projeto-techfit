@@ -1,6 +1,8 @@
-
 <?php
-
+  namespace projetoTechfit;
+  require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+  $id = $_GET['id'];
+  $connAvaliacao = new ConnTables("avaliacao_fisicas");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,10 +20,9 @@
         </div>
         
         <div class="secoes">
-            <button onclick="Perfil()">Perfil</button>
-            <button onclick="Avaliacao()">Avaliacaos</button>
-            <button onclick="Editar()">Editar</button>
-            <button onclick="Agendamento()">Agendamento</button>
+          <?php 
+            include_once __DIR__ . "\\..\\..\\utilitarios\\secaoUsuario.php"
+          ?>
         </div>
 
         <div class="func-perfil" id="func-perfil">
@@ -48,36 +49,25 @@
           <tr>
             <th>Data</th>
             <th>Tipo</th>
-            <th>Detalhes</th>
           </tr>
         </thead>
         <tbody>
+        <?php foreach($connAvaliacao->select() as $dados): ?>
+          <?php if($dados['id_aluno'] == $id): ?>
           <tr>
-            <td>24/10/2025</td>
-            <td>Inicial</td>
-            <td>Peso: 78kg - Altura: 1.80m</td>
+            <td>
+              <?=$dados['data_avaliacao']?>
+            </td>
+            <td>
+              <?=$dados['tipo_avalicao']?>
+            </td>
           </tr>
-          <tr>
-            <td>15/08/2025</td>
-            <td>Desenvolvimento</td>
-            <td>Progresso: +3kg força</td>
-          </tr>
+          <?php else: ?>
+            <td colspan="0">Você não tem nenhuma avaliaão fisica cadastrada</td>
+          <?php endif ?>
+        <?php endforeach ?>
         </tbody>
       </table>
-
-      <h3>Agendar nova avaliação</h3>
-      <form id="form-avaliacao">
-        <label for="data_av">Data e hora</label>
-        <input id="data_av" name="data_av" type="datetime-local" required>
-
-        <label for="tipo_av">Tipo</label>
-        <select id="tipo_av" name="tipo_av">
-          <option value="inicial">Inicial</option>
-          <option value="desenvolvimento">Desenvolvimento</option>
-        </select>
-
-        <button class="btn" type="submit">Agendar Avaliação</button>
-      </form>
     </section>
   </main>
 
