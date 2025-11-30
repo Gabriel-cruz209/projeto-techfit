@@ -1,5 +1,20 @@
-
 <?php
+    namespace projetoTechfit;
+    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+    require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
+    $id = $_GET['id'];
+    $connInscrevem = new ConnTables("inscrevem");
+    $connAluno = new ConnTables("alunos");
+    $connAulas = new ConnTables("aulas");
+    $aluno;
+    foreach($connAluno->select() as $dados){
+        if($dados['id_aluno'] == $id){
+            $aluno = $dados;
+        }
+    }
+    foreach($connAulas->selectUnique("","","tipo_aula") as $dados){
+        echo $dados['id_aula'];
+    }
 
 ?>
 <!DOCTYPE html>
@@ -18,26 +33,24 @@
     </header>
     <main>
         <div class="container">
-            <form id="inscricao" class="form-inscricao">
+            <form id="inscricao" class="form-inscricao" method="POST">
                 <h2>Inscrição em Aula</h2>
 
-                <label for="nome">Nome completo</label>
-                <input id="nome" name="nome" type="text" placeholder="Seu nome" required>
+                <label for="nome_aluno">Nome completo</label>
+                <input id="nome" name="nome_aluno" type="text" value="<?=$aluno['nome_aluno']?>" readonly="true" required>
 
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="seu@exemplo.com" required>
+                <label for="email_aluno">E-mail</label>
+                <input id="email_aluno" name="email_aluno" type="email" value="<?=$aluno['email_aluno']?>" readonly="true" required>
 
-                <label for="telefone">Telefone</label>
-                <input id="telefone" name="telefone" type="tel" placeholder="(xx) xxxxx-xxxx">
+                <label for="telefone_aluno">Telefone</label>
+                <input id="telefone_aluno" name="telefone_aluno" type="tel" value="<?=$aluno['telefone_aluno']?>" readonly="true" required>
 
                 <label for="aula">Escolha a aula</label>
                 <select id="aula" name="aula" required>
-                    <option value="">-- selecione --</option>
-                    <option value="musculacao">Musculação</option>
-                    <option value="yoga">Yoga</option>
-                    <option value="spinning">Spinning</option>
-                    <option value="pilates">Pilates</option>
-                    <option value="hiit">HIIT</option>
+                    <option value="">selecione a aula</option>
+                    <?php foreach($connAulas->select() as $dados): ?>
+                        <option value="<?=$dados['id_aula']?>"><?=$dados['tipo_aula']?></option>
+                    <?php endforeach ?>
                 </select>
 
                 <label for="data">Data preferida</label>
@@ -47,30 +60,6 @@
             </form>
         </div>
     </main>
-    <script>
-        function voltar(){
-            // volta para a página anterior no histórico
-            window.history.back();
-        }
-
-        document.getElementById('inscricao').addEventListener('submit', function(e){
-            e.preventDefault();
-            const nome = document.getElementById('nome').value.trim();
-            const aula = document.getElementById('aula').value;
-            if(!nome || !aula){
-                alert('Por favor preencha seu nome e selecione uma aula.');
-                return;
-            }
-            // aqui você pode enviar os dados para um servidor via fetch
-            alert('Inscrição enviada!\nNome: ' + nome + '\nAula: ' + aula);
-            this.reset();
-        });
-    </script>
-    <footer>
-        <?php
-            include_once __DIR__ . "\\..\\..\\utilitarios\\footer.php"
-        ?>
-    </footer>
         <script src="/src/js/app.js"></script>
     </body>
 </html>

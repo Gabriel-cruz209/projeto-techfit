@@ -36,10 +36,15 @@ class ConnTables {
         $stmt = $this->conn->prepare("DELETE FROM {$this->table} WHERE $whereField = {$placeholders} ");
         $stmt->execute($filterDates);
     }
-    public function selectUnique($where = "",$orderBy = "", $limit = "",$params = [])
+    public function selectUnique($column = "",$where = "",$orderBy= "",$groupBy= "", $limit = "",$params = [])
     {
-        $sql = "SELECT * FROM {$this->table}";
-
+        $sql = "SELECT";
+        if($column !== ""){
+            $sql .= " {$column}";
+        } else {
+            $sql .= " *";
+        }
+        $sql .= " FROM {$this->table}";
         if ($where !== "") {
             $sql .= " WHERE {$where}";
         }
@@ -47,7 +52,9 @@ class ConnTables {
         if ($orderBy !== "") {
             $sql .= " ORDER BY {$orderBy}";
         }
-
+        if($groupBy !== ""){
+            $sql .= "GROUP BY {$groupBy}";
+        }
         if ($limit !== "") {
             $sql .= " LIMIT {$limit}";
         }

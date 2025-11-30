@@ -67,7 +67,7 @@
                         <h3>Unidade Limeira - SP</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
                         <p>Descrição da aula de Boxe em Limeira. Lorem ipsum dolor sit amet...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>''?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
                 <div class="unidade" estado="SP" cidade="Piracicaba">
@@ -76,7 +76,7 @@
                         <h3>Unidade Piracicaba - SP</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
                         <p>Descrição da aula de Boxe em Piracicaba. Lorem ipsum dolor sit amet...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                         <h3>Unidade Limeira - SP </h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
                 <div class="unidade" estado="MG" cidade="Belo Horizonte">
@@ -98,7 +98,7 @@
                         <h3>Unidade Belo Horizonte - MG</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                         <h3>Unidade Campinas - SP</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
                         <p>Descrição Muay Thay Campinas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
                 <div class="unidade" estado="RJ" cidade="Rio de Janeiro">
@@ -120,7 +120,7 @@
                         <h3>Unidade Rio de Janeiro - RJ</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
                         <p>Descrição Muay Thay RJ. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
                 <div class="unidade" estado="SP" cidade="São Paulo">
@@ -129,7 +129,7 @@
                         <h3>Unidade São Paulo - SP</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
                         <p>Descrição Muay Thay SP. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt...</p>
-                        <button onclick="inscrever()">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
             </div>
