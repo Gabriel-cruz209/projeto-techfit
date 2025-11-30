@@ -45,16 +45,11 @@ class ConnTables {
             $sql .= " *";
         }
         $sql .= " FROM {$this->table}";
-        if ($where !== "") {
-            $sql .= " WHERE {$where}";
-        }
 
         if ($orderBy !== "") {
             $sql .= " ORDER BY {$orderBy}";
         }
-        if($groupBy !== ""){
-            $sql .= "GROUP BY {$groupBy}";
-        }
+
         if ($limit !== "") {
             $sql .= " LIMIT {$limit}";
         }

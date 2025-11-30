@@ -67,7 +67,7 @@
                         <h3>Unidade Limeira - SP</h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
                         <p>Descrição da aula de Boxe em Limeira. Lorem ipsum dolor sit amet...</p>
-                        <button onclick="inscrever('?id=<?=$id?>''?id=<?=$id?>')">Inscrever-se</button>
+                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
                 <div class="unidade" estado="SP" cidade="Piracicaba">
