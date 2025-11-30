@@ -12,11 +12,42 @@ namespace projetoTechfit;
             $aluno = $dados;
         }
     }
-    foreach($connAulas->selectUnique("","","tipo_aula") as $dados){
-        echo $dados['id_aula'];
+    echo "
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const aula = document.getElementById('aula');
+            const data = document.getElementById('data');
+            const dataList = document.getElementById('data-list');
+            dataList.style.display = 'none';
+            // salva todas as opções originais
+            const opcoesOriginais = Array.from(data.options);
+
+            aula.addEventListener('change', function() {
+                dataList.style.display = 'flex';
+                const aulaSelecionada = this.value;
+                // limpar opções
+                data.innerHTML = '';
+
+                // filtrar e recolocar
+                opcoesOriginais.forEach(opt => {
+                    if (opt.dataset.aula === aulaSelecionada) {
+                        data.appendChild(opt);
+                    } else {
+                        
+                    }
+                });
+            });
+        });
+        
+    </script>
+    ";
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $table = new ValorTable();
+        $inscricao = $table->getInscrevem();
+        $inscricao['id_aluno'] = $id;
+        $inscricao['id_aula'] = $_POST['data'];
+        $connInscrevem->insert($inscricao);
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,11 +61,11 @@ namespace projetoTechfit;
     <header>
         <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo TechFit">
         <h1>TECHFIT</h1>
-        <button onclick="voltar()"><img class="volta" src="/Arquivos/de-volta__1_-removebg-preview.png" alt="Botao-voltar"></button>
+        <button onclick="aula('?id=<?=$id?>')"><img class="volta" src="/Arquivos/de-volta__1_-removebg-preview.png" alt="Botao-voltar"></button>
     </header>
     <main>
         <div class="container">
-            <form id="inscricao" class="form-inscricao" method="POST">
+            <form id="inscricao" class="form-inscricao" method="POST" action="#">
                 <h2>Inscrição em Aula</h2>
 
                 <label for="nome_aluno">Nome completo</label>
@@ -49,13 +80,20 @@ namespace projetoTechfit;
                 <label for="aula">Escolha a aula</label>
                 <select id="aula" name="aula" required>
                     <option value="">selecione a aula</option>
-                    <?php foreach($connAulas->select() as $dados): ?>
-                        <option value="<?=$dados['id_aula']?>"><?=$dados['tipo_aula']?></option>
+                    <?php foreach($connAulas->selectUnique('tipo_aula',"","","tipo_aula") as $dados): ?>
+                        <option value="<?=$dados['tipo_aula']?>"><?=$dados['tipo_aula']?></option>
                     <?php endforeach ?>
                 </select>
-
-                <label for="data">Data preferida</label>
-                <input id="data" name="data" type="date">
+                <div id="data-list">
+                    <label for="data">Escolha a Data</label>
+                    <select id="data" name="data" required>
+                        <option value="">selecione a data</option>
+                        <?php foreach($connAulas->select() as $dados): ?>
+                            <option data-aula="<?=$dados['tipo_aula']?>"value="<?=$dados['id_aula']?>"><?=$dados['data_aula']?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                
 
                 <button type="submit" class="btn-enviar">Enviar inscrição</button>
             </form>

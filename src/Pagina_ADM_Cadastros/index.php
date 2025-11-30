@@ -22,7 +22,7 @@
                 $connAulas->insert($aula);
 
 
-                $aulaCadastrada = $connAulas->selectUnique("","","id_aula DESC","1");
+                $aulaCadastrada = $connAulas->selectUnique("","","id_aula DESC","1")[0];
                 $cria = $table->getCriam();
                 $cria['id_aula'] = $aulaCadastrada['id_aula'];
                 $cria['id_funcionario'] = $_POST['id_funcionario'];
@@ -39,7 +39,7 @@
                 $comunicado['titulo_comunicado']= $_POST['titulo_comunicado'];
                 $connComunicados->insert($comunicado);
 
-                $comunicadoCadastrado = $connComunicados->selectUnique("","","id_comunicado DESC","1");
+                $comunicadoCadastrado = $connComunicados->selectUnique("","","id_comunicado DESC","1")[0];
                 $Comenta = $table->getComentam();
                 $Comenta['id_comunicado'] = $comunicadoCadastrado['id_comunicado'];
                 $Comenta['id_funcionario'] = $_POST['id_funcionario'];
@@ -55,7 +55,7 @@
                 $avaliacao['id_aluno'] = $_POST['id_aluno'];
                 $connAvaliacao->insert($avaliacao);
 
-                $avaliacaoCadastrado = $connAvaliacao->selectUnique("","","id_avaliacao DESC","1");
+                $avaliacaoCadastrado = $connAvaliacao->selectUnique("","","id_avaliacao DESC","1")[0];
                 $faze = $table->getFazem();
                 $faze['id_avaliacao'] = $avaliacaoCadastrado['id_avaliacao'];
                 $faze['id_funcionario'] = $_POST['id_funcionario'];

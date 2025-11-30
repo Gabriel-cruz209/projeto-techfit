@@ -49,15 +49,16 @@ class ConnTables {
         if ($orderBy !== "") {
             $sql .= " ORDER BY {$orderBy}";
         }
-
+        if ($groupBy !== "") {
+            $sql .= " GROUP BY {$groupBy}";
+        }
         if ($limit !== "") {
             $sql .= " LIMIT {$limit}";
         }
 
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($params);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     }    

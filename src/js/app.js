@@ -128,19 +128,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if(formAg){ formAg.addEventListener('submit', function(e){ e.preventDefault(); alert('Agendamento realizado (mock).'); }) }
 });
 
-/* --- Inscrição Aula: formulário local (Pagina_Inscrição_Aula) --- */
-document.addEventListener('DOMContentLoaded', function(){
-  const form = document.getElementById('inscricao');
-  if(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const nome = document.getElementById('nome') && document.getElementById('nome').value.trim();
-      const aula = document.getElementById('aula') && document.getElementById('aula').value;
-      if(!nome || !aula){ alert('Por favor preencha seu nome e selecione uma aula.'); return }
-      alert('Inscrição enviada!\nNome: ' + nome + '\nAula: ' + aula);
-      form.reset();
-    });
-  }
-});
+
+
 
 /* Fim de app.js */
