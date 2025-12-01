@@ -1,6 +1,9 @@
-
 <?php
+    namespace projetoTechfit;
+    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
     $id = $_GET['id'];
+    $connComunicados = new ConnTables("comunicados");
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,36 +52,22 @@
         <div class="forma_comu">
             <h3>Importantes</h3>
             <div class="forma_local">
+                <?php foreach($connComunicados->select() as $dados): ?>
+                <?php if($dados['tipo_comunicado'] == 'importante'): ?>
                 <div class="forma_unidade">
-                    <h4>titulo</h4>
+                    <h4><?=$dados['titulo_comunicado']?></h4>
                     <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
+                    <p><?=$dados['informacao_comunicado']?></p>
                     <hr>
                     <div class="sub-info">
                         <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
                         <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                     </div>
                 </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
+                <?php else: ?>
+                    <h4>Não tem nenhum comentario importante</h4>
+                <?php endif ?>
+                <?php endforeach ?>
             </div>
         </div>
 
@@ -86,36 +75,22 @@
         <div class="forma_comu">
             <h3>Parcerias</h3>
             <div class="forma_local">
+                <?php foreach($connComunicados->select() as $dados): ?>
+                <?php if($dados['tipo_comunicado'] == 'parceria'): ?>
                 <div class="forma_unidade">
-                    <h4>titulo</h4>
+                    <h4><?=$dados['titulo_comunicado']?></h4>
                     <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
+                    <p><?=$dados['informacao_comunicado']?></p>
                     <hr>
                     <div class="sub-info">
                         <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
                         <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                     </div>
                 </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
+                <?php else: ?>
+                    <h4>Não tem nenhum comentario importante</h4>
+                <?php endif ?>
+                <?php endforeach ?>
             </div>
         </div>
 
@@ -123,36 +98,22 @@
          <div class="forma_comu">
             <h3>Recentes</h3>
             <div class="forma_local">
+                <?php foreach($connComunicados->select() as $dados): ?>
+                <?php if($dados['tipo_comunicado'] == 'geral'): ?>
                 <div class="forma_unidade">
-                    <h4>titulo</h4>
+                    <h4><?=$dados['titulo_comunicado']?></h4>
                     <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
+                    <p><?=$dados['informacao_comunicado']?></p>
                     <hr>
                     <div class="sub-info">
                         <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
                         <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                     </div>
                 </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
-                <div class="forma_unidade">
-                    <h4>titulo</h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illum voluptatem, quam tempore eaque iure, maxime quae libero </p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
-                    </div>
-                </div>
+                <?php else: ?>
+                    <h4>Não tem nenhum comentario importante</h4>
+                <?php endif ?>
+                <?php endforeach ?>
             </div>
         </div>
 

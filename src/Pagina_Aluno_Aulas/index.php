@@ -1,6 +1,35 @@
 <?php
     namespace projetoTechfit;
+    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
     $id = $_GET['id'];
+    $connAulas = new ConnTables("aulas");
+    $connUnidade = new ConnTables("unidades");
+    echo "
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const select = document.getElementById('menu-tipo');
+        const blocos = document.querySelectorAll('.tipo-aula');
+
+        // esconder todas as aulas no início
+        blocos.forEach(div => div.style.display = 'none');
+
+        // evento para mudar
+        select.addEventListener('change', function () {
+            const valor = this.value; // nome da aula (ex: 'Musculação')
+
+            blocos.forEach(div => {
+                if (div.id === valor) {
+                    div.style.display = 'block';   // mostrar apenas a selecionada
+                } else {
+                    div.style.display = 'none';    // esconder todas as outras
+                }
+            });
+        });
+
+    });
+    </script>
+    "
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,100 +70,40 @@
        <div class="container">
            <div class="area_pesquisa">
                 <div class="barra_pesquisa">
-                    <label for="menu-tipo"><i class="fa-solid fa-dumbbell"></i></label>
-                    <select id="menu-tipo" name="menu-tipo">
-                        <option value="boxe">Boxe</option>
-                        <option value="zumba">Zumba</option>
-                        <option value="muaythay">Muay Thay</option>
+                    <label for="menu-tipo">Escolha a aula</label>
+                    <select id="menu-tipo" name="menu-tipo" required>
+                        <option value="">selecione a aula</option>
+                        <?php foreach($connAulas->selectUnique('tipo_aula',"","","tipo_aula") as $dados): ?>
+                            <option value="<?=$dados['tipo_aula']?>"><?=$dados['tipo_aula']?></option>
+                        <?php endforeach ?>
                     </select>
                 </div>
-                <div class="barra_pesquisa">
-                    <label for="pes_estado"><i class="fa-solid fa-location-dot"></i></label>
-                    <input type="text" id="pes_estado" name="pes_estado" placeholder="Região (Estado)">
-                </div>
-                <div class="barra_pesquisa">
-                    <label for="pes_cidade"><i class="fa-solid fa-city"></i></label>
-                    <input type="text" id="pes_cidade" name="pes_cidade" placeholder="Unidade (Cidade)">
-                </div>
             </div>
        
-       
-            <div id="boxe" class="tipo-aula">
-                <h2>BOXE</h2>
-                <div class="unidade" estado="SP" cidade="Limeira">
+            <?php foreach($connAulas->selectUnique('tipo_aula',"","","tipo_aula") as $dados): ?>
+            <div id="<?=$dados['tipo_aula']?>" class="tipo-aula">
+                <h2><?=$dados['tipo_aula']?></h2>
+                <?php foreach($connAulas->select() as $dadosA): ?>
+                <?php foreach($connUnidade->select() as $dadosU): ?>
+                <?php if($dados['tipo_aula'] == $dadosA['tipo_aula']): ?>
+                <?php if($dadosA['id_unidade'] == $dadosU['id_unidade']): ?>
+                <div class="unidade"> <!--estado="SP" cidade="Limeira" -->
                     <img src="/Arquivos/Imagem-Academia-Real.png" alt="Logo-Panobianco">
                     <div class="local">
-                        <h3>Unidade Limeira - SP</h3>
+                        <h3><?=$dadosU['nome_unidade']?></h3>
                         <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
-                        <p>Descrição da aula de Boxe em Limeira. Lorem ipsum dolor sit amet...</p>
+                        <p><?=$dadosA['descricao_aula']?></p>
                         <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
                     </div>
                 </div>
-                <div class="unidade" estado="SP" cidade="Piracicaba">
-                    <img src="/Arquivos/Imagem-Academia-Real.png" alt="Logo-Panobianco">
-                    <div class="local">
-                        <h3>Unidade Piracicaba - SP</h3>
-                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
-                        <p>Descrição da aula de Boxe em Piracicaba. Lorem ipsum dolor sit amet...</p>
-                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
-                    </div>
-                </div>
+                <?php endif ?>
+                <?php endif ?>
+                <?php endforeach ?>
+                <?php endforeach ?>
             </div>
-
-            <div id="zumba" class="tipo-aula hidden">
-                <h2>ZUMBA</h2>
-                <div class="unidade" estado="SP" cidade="Limeira">
-                    <img src="/Arquivos/Imagem-Academia-Real.png" alt="Logo-Panobianco">
-                    <div class="local">
-                        <h3>Unidade Limeira - SP </h3>
-                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
-                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
-                    </div>
-                </div>
-                <div class="unidade" estado="MG" cidade="Belo Horizonte">
-                    <img src="/Arquivos/Imagem-Academia-Real.png" alt="Logo-Panobianco">
-                    <div class="local">
-                        <h3>Unidade Belo Horizonte - MG</h3>
-                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+Centro/@-22.5845224,-47.4216592,15z/data=!4m6!3m5!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu">Localização</a>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt, alias velit voluptates, nobis labore impedit dolorum minus quam sapiente dolores natus...</p>
-                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="muaythay" class="tipo-aula hidden">
-                <h2>MUAY THAY</h2>
-                <div class="unidade" estado="SP" cidade="Campinas">
-                    <img src="/Arquivos/Imagem-Academia-Real.png" alt="Unidade-MuayThay">
-                    <div class="local">
-                        <h3>Unidade Campinas - SP</h3>
-                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
-                        <p>Descrição Muay Thay Campinas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt...</p>
-                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
-                    </div>
-                </div>
-                <div class="unidade" estado="RJ" cidade="Rio de Janeiro">
-                    <img src="/Arquivos/Imagem-Academia-Real.png" alt="Unidade-MuayThay">
-                    <div class="local">
-                        <h3>Unidade Rio de Janeiro - RJ</h3>
-                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
-                        <p>Descrição Muay Thay RJ. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt...</p>
-                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
-                    </div>
-                </div>
-                <div class="unidade" estado="SP" cidade="São Paulo">
-                    <img src="/Arquivos/Imagem-Academia-Real.png" alt="Unidade-MuayThay">
-                    <div class="local">
-                        <h3>Unidade São Paulo - SP</h3>
-                        <a href="https://www.google.com/maps/place/Panobianco+Academia+-+Limeira+unidade+jd+ouro+verde/@-22.5935294,-47.4293426,13z/data=!4m10!1m2!2m1!1slimeira+localiza%C3%A7%C3%A3o+panobianco!3m6!1s0x94c881c0034f9deb:0xc9dfce08a61d0952!8m2!3d-22.5845224!4d-47.4216592!15sCiBsaW1laXJhIGxvY2FsaXphw6fDo28gcGFub2JpYW5jbyIDiAEBkgEDZ3ltqgFoCg0vZy8xMWgzdmR6NDkyEAEqDiIKcGFub2JpYW5jbygMMh8QASIbmITxjk8T4BAel7NwWC6woxmCL6rxI3CdE4-xMiQQAiIgbGltZWlyYSBsb2NhbGl6YcOnw6NvIHBhbm9iaWFuY2_gAQA!16s%2Fg%2F11fmz_qxs7?authuser=2&entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D">Localização</a>
-                        <p>Descrição Muay Thay SP. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum modi, enim eveniet sunt...</p>
-                        <button onclick="inscrever('?id=<?=$id?>')">Inscrever-se</button>
-                    </div>
-                </div>
-            </div>
-
-        </div> </main>
+            <?php endforeach ?>
+        </div>
+    </main>
     <footer id="tabela-web-footer">
        <?php
             include_once __DIR__ . "\\..\\..\\utilitarios\\footer.php"
