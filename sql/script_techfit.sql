@@ -104,7 +104,7 @@ INSERT INTO Unidades (cep_unidade, nome_unidade) VALUES
 ('97010-000', 'TECHFIT Santa Maria Centro');
 SELECT * FROM Unidades;
 
-INSERT INTO Funcionarios (cep_funcionario, nome_funcionario, data_nascimento_funcionario, email_funcionario, telefone_funcionario, tipo_funcionario, senha_funcioanrio, cpf_funcionario, id_unidade) VALUES
+INSERT INTO Funcionarios (cep_funcionario, nome_funcionario, data_nascimento_funcionario, email_funcionario, telefone_funcionario, tipo_funcionario, senha_funcionario, cpf_funcionario, id_unidade) VALUES
 ('01000-210','Carlos Almeida','1980-02-15','carlos.almeida@techfit.com','(11)99999-0001','CEO','senha123','111.111.111-00',1),
 ('01000-900','Fernanda Souza','1990-05-10','fernanda.souza@techfit.com','(11)98888-0002','Gerente','senha123','111.111.111-01',1),
 ('01000-044','Marcos Silva','1992-06-12','marcos.silva@techfit.com','(11)97777-0003','Personal','senha123','111.111.111-02',1),

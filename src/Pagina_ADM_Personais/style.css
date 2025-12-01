@@ -219,20 +219,30 @@ div.coluna-informacao > a:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+.lista-personais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
 .personal {
+  min-width: 260px;
+  max-width: 330px;
+  flex: 1 1 260px;
   background: #fff;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  flex: 1;
   text-align: center;
 }
+
 .personal img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
-
 @media (max-width: 800px) {
   .lista-personais {
     flex-direction: column;

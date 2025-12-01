@@ -1,6 +1,13 @@
 <?php
     namespace projetoTechfit;
+    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
     $id = $_GET['id'];
+    $connAluno = new ConnTables("alunos");
+    $connAulas = new ConnTables("aulas");
+    $connFuncionario = new ConnTables("funcionarios");
+    $totalAlunos = $connAluno->selectUnique("COUNT(*) AS total")[0]['total'];
+    $totalAulas = $connAulas->selectUnique("COUNT(*) AS total")[0]['total'];
+    $totalFuncionario = $connFuncionario->selectUnique("COUNT(*) AS total","tipo_funcionario = 'personal'")[0]['total'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,11 +48,11 @@
             <div class="cards">
                 <div class="card">
                     <h3>Usuários</h3>
-                    <p class="big">1.234</p>
+                    <p class="big"><?=$totalAlunos?></p>
                 </div>
                 <div class="card">
                     <h3>Aulas</h3>
-                    <p class="big">26</p>
+                    <p class="big"><?=$totalAulas?></p>
                 </div>
                 <div class="card">
                     <h3>Relatórios</h3>
@@ -54,8 +61,8 @@
                 </div>
                 <div class="card">
                     <h3>Personais</h3>
-                    <p class="big">8</p>
-                    <a class="link-card" href="/src/Pagina_ADM_Personais/index.php">Abrir</a>
+                    <p class="big"><?=$totalFuncionario?></p>
+                    <a class="link-card" href="/src/Pagina_ADM_Personais/index.php?id=<?=$id?>">Abrir</a>
                 </div>
             </div>
         </div>

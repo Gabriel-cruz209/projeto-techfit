@@ -56,7 +56,6 @@
                 <?php if($dados['tipo_comunicado'] == 'importante'): ?>
                 <div class="forma_unidade">
                     <h4><?=$dados['titulo_comunicado']?></h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
                     <p><?=$dados['informacao_comunicado']?></p>
                     <hr>
                     <div class="sub-info">
@@ -64,8 +63,6 @@
                         <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                     </div>
                 </div>
-                <?php else: ?>
-                    <h4>Não tem nenhum comentario importante</h4>
                 <?php endif ?>
                 <?php endforeach ?>
             </div>
@@ -79,7 +76,6 @@
                 <?php if($dados['tipo_comunicado'] == 'parceria'): ?>
                 <div class="forma_unidade">
                     <h4><?=$dados['titulo_comunicado']?></h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
                     <p><?=$dados['informacao_comunicado']?></p>
                     <hr>
                     <div class="sub-info">
@@ -87,8 +83,6 @@
                         <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                     </div>
                 </div>
-                <?php else: ?>
-                    <h4>Não tem nenhum comentario importante</h4>
                 <?php endif ?>
                 <?php endforeach ?>
             </div>
@@ -102,7 +96,6 @@
                 <?php if($dados['tipo_comunicado'] == 'geral'): ?>
                 <div class="forma_unidade">
                     <h4><?=$dados['titulo_comunicado']?></h4>
-                    <img src="/Arquivos/imagem-treino1.png" alt="imagem-comunicado">
                     <p><?=$dados['informacao_comunicado']?></p>
                     <hr>
                     <div class="sub-info">
@@ -110,8 +103,6 @@
                         <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                     </div>
                 </div>
-                <?php else: ?>
-                    <h4>Não tem nenhum comentario importante</h4>
                 <?php endif ?>
                 <?php endforeach ?>
             </div>

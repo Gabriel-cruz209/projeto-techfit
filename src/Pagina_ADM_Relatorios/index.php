@@ -203,7 +203,7 @@ function dtLocal($dt)
             <input type="text" name="tipo_funcionario" value="<?= $funcParaEditar["tipo_funcionario"] ?>">
 
             <label>Senha:</label>
-            <input type="password" name="senha_funcionario" value="<?= $funcParaEditar["senha_funcioanrio"] ?>">
+            <input type="password" name="senha_funcionario" value="<?= $funcParaEditar["senha_funcionario"] ?>">
 
             <label>Unidade:</label>
             <select name="id_unidade_funcionario">

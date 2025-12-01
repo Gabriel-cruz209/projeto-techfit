@@ -22,7 +22,7 @@
                 <nav class="menu">
                     <a href="#contatos">Contatos</a>
                 </nav>
-                <button onclick="cadastro()">Inscrever-se</button>
+                <button onclick="cadastro('')">Inscrever-se</button>
             </div>
         </div>
     </header>

@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dadosF = $connFuncionario->select();
         foreach($dadosF as $dadoF){
             if($dadoF['email_funcionario']==$email){
-                if($dadoF['senha_funcioanrio']==$senha){
+                if($dadoF['senha_funcionario']==$senha){
                     echo "
                     <h1>Esta indo ADM</h1>
                     <script>

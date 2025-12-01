@@ -75,7 +75,7 @@
                     $connAluno->insert($aluno);
                 }
             case 'funcionarios':
-                if($_POST['senha_funcioanrio'] == $_POST['Csenha_funcioanrio']){
+                if($_POST['senha_funcionario'] == $_POST['Csenha_funcionario']){
                     $table = new ValorTable();
                     $funcionario = $table->getFuncionarios();
                     $funcionario['cep_funcionario'] = $_POST['cep_funcionario'];
@@ -85,7 +85,7 @@
                     $funcionario['telefone_funcionario'] = $_POST['telefone_funcionario'];
                     $funcionario['id_unidade'] = $_POST['id_unidade'];
                     $funcionario['nome_funcionario'] = $_POST['nome_funcionario'];
-                    $funcionario['senha_funcioanrio'] = $_POST['senha_funcioanrio'];
+                    $funcionario['senha_funcionario'] = $_POST['senha_funcionario'];
                     $funcionario['tipo_funcionario'] = $_POST['tipo_funcioanrio'];
                     $connFuncionario->insert($funcionario);
                 }
@@ -181,11 +181,11 @@
                         <label for="tipo_funcionario">Tipo</label>
                         <input type="text" id="tipo_funcionario" name="tipo_funcionario" required>
 
-                        <label for="senha_funcioanrio">Senha</label>
-                        <input type="password" id="senha_funcioanrio" name="senha_funcioanrio" required>
+                        <label for="senha_funcionario">Senha</label>
+                        <input type="password" id="senha_funcionario" name="senha_funcionario" required>
 
-                        <label for="Csenha_funcioanrio">Confirmar Senha</label>
-                        <input type="password" id="Csenha_funcioanrio" name="Csenha_funcioanrio" required>
+                        <label for="Csenha_funcionario">Confirmar Senha</label>
+                        <input type="password" id="Csenha_funcionario" name="Csenha_funcionario" required>
 
                         <label for="cpf_funcionario">CPF</label>
                         <input type="text" id="cpf_funcionario" name="cpf_funcionario" required>

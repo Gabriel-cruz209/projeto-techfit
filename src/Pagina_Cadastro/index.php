@@ -38,7 +38,7 @@
     <header>
         <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
         <h1>TECHFIT</h1>
-        <button onclick="login()"><img src="../../Arquivos/saida.png" alt="Botao-saida"></button>
+        <button onclick="login('')"><img src="../../Arquivos/saida.png" alt="Botao-saida"></button>
     </header>
 
     <main class="container-cadastro">

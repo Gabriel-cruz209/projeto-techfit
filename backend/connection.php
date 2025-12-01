@@ -11,7 +11,7 @@ class Connection {
                 $host = "localhost";
                 $user = "root";
                 $db = "techfit_academy";
-                $password = "senaisp";
+                $password = "1234";
 
 
                 $dns_server = "mysql:host=$host;dbname=$db;charset=utf8";

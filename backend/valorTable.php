@@ -33,7 +33,7 @@ class ValorTable {
             "id_funcionario"           => null,
             "telefone_funcionario"     => null,
             "tipo_funcionario"         => null,
-            "senha_funcioanrio"        => null, 
+            "senha_funcionario"        => null, 
             "cpf_funcionario"          => null,
             "id_unidade"               => null,
             "whereValue"               => null

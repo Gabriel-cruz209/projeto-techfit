@@ -62,8 +62,6 @@
               <?=$dados['tipo_avalicao']?>
             </td>
           </tr>
-          <?php else: ?>
-            <td colspan="0">Você não tem nenhuma avaliaão fisica cadastrada</td>
           <?php endif ?>
         <?php endforeach ?>
         </tbody>

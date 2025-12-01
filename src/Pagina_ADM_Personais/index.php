@@ -45,14 +45,17 @@
             <h2>Instrutores / Personal Trainers</h2>
             <div class="lista-personais">
                 <?php foreach($connFuncionario->select() as $dados): ?>
-                <?php $aluno = ['whereValue' => $dados['id_funcionario']];?>
+                <?php if($dados['tipo_funcionario']=='Personal'): ?>
                 <article class="personal">
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
                     <h3><?=$dados['nome_funcionario']?></h3>
-                    <?php foreach($connCriam->selectUnique('COUNT(*) as total','id_funcionario = :whereValue','','','',$aluno) as $dado):?>
+
+                    <?php $aluno = ['whereValue' => $dados['id_funcionario']];
+                    foreach($connCriam->selectUnique('COUNT(*) as total','id_funcionario = :whereValue','','','',$aluno) as $dado):?>
                     <p>Quantidade de aulas: <?=$dado['total']?></p>
                     <?php endforeach ?>
                 </article>
+                <?php endif ?>
                 <?php endforeach ?>
             </div>
         </div>

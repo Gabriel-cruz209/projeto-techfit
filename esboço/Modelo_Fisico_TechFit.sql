@@ -1,4 +1,4 @@
--- Geração de Modelo físico
+-- Geraï¿½ï¿½o de Modelo fï¿½sico
 -- Sql ANSI 2003 - brModelo.
 
 
@@ -10,7 +10,7 @@ tipo_aula varchar(100) not null,
 id_aluno int auto_increment not null
 )
 
-CREATE TABLE Avaliação Fisica (
+CREATE TABLE Avaliaï¿½ï¿½o Fisica (
 data_avaliacao datetime not null,
 id_avaliacao int auto_increment not null PRIMARY KEY,
 tipo_avalicao varchar(50) not null,
@@ -25,7 +25,7 @@ email_funcionario varchar(50) not null,
 id_funcionario int auto_increment not null PRIMARY KEY,
 telefone_funcionario varchar(14) not null,
 tipo_funcionario varchar(50) not null,
-senha_funcioanrio varchar(50) not null,
+senha_funcionario varchar(50) not null,
 cpf_funcionario varchar(14) not null,
 id_unidade int auto_increment not null
 )
@@ -83,5 +83,5 @@ FOREIGN KEY(id_funcionario) REFERENCES Funcionario (id_funcionario)/*falha: chav
 )
 
 ALTER TABLE Aulas ADD FOREIGN KEY(id_aluno) REFERENCES Aluno (id_aluno)
-ALTER TABLE Avaliação Fisica ADD FOREIGN KEY(id_aluno) REFERENCES Aluno (id_aluno)
+ALTER TABLE Avaliaï¿½ï¿½o Fisica ADD FOREIGN KEY(id_aluno) REFERENCES Aluno (id_aluno)
 ALTER TABLE Funcionario ADD FOREIGN KEY(id_unidade) REFERENCES Unidades (id_unidade)

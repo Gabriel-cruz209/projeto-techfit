@@ -66,8 +66,6 @@
     <?php endforeach?>
     <?php endif ?>
     <?php endforeach?>
-    <?php else: ?>
-        <p><span>O aluno</span>não se inscreveu em nenhuma aula</p>
     <?php endif ?>
     <?php endforeach?>
     </div>
