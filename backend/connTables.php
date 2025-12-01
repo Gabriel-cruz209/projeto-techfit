@@ -53,6 +53,9 @@ class ConnTables {
         }
         $sql .= " FROM {$this->table}";
 
+        if ($where !== ""){
+            $sql .= " WHERE {$where}";
+        }
         if ($orderBy !== "") {
             $sql .= " ORDER BY {$orderBy}";
         }

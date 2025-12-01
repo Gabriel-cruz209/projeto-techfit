@@ -1,5 +1,9 @@
 <?php
     namespace projetoTechfit;
+    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+    $connFuncionario = new ConnTables("funcionarios");
+    $connCriam = new ConnTables("criam");
+
     $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
@@ -29,16 +33,9 @@
             </div>
             <div class="secoes-perfil" id="menuPerfil">
                 <ul>
-                    <li class="info-usuario">
-                        <span>Usuário</span>
-                        <strong>Gabriel Soares</strong>
-                    </li>
-                    <hr>
-                    <li><a href="/src/Pagina_Perfil_Usuario/index.php"><i class="fas fa-user"></i> Perfil</a></li>
-                    <li><a href="/src/Pagina_ADM_inicio/index.php"><i class="fa-solid fa-house"></i> Home </a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/avaliacao.php"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
-                    <li><a href="/src/Pagina_Perfil_Usuario/agendamento.php"><i class="fa-regular fa-calendar-days"></i> Agendamento</a></li>
-                    <li><a href="/src/tela_inicial_web/index.php"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <?php
+                        include_once __DIR__ . "\\..\\..\\utilitarios\\perfilAdm.php"
+                    ?>
                 </ul>
             </div>
         </div>
@@ -47,18 +44,16 @@
         <div class="container-personais">
             <h2>Instrutores / Personal Trainers</h2>
             <div class="lista-personais">
+                <?php foreach($connFuncionario->select() as $dados): ?>
+                <?php $aluno = ['whereValue' => $dados['id_funcionario']];?>
                 <article class="personal">
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
-                    <h3>Lucas Pereira</h3>
-                    <p>Especialidade: Musculação / Treino funcional</p>
-                    <button onclick="agendaPr()">Ver agenda</button>
+                    <h3><?=$dados['nome_funcionario']?></h3>
+                    <?php foreach($connCriam->selectUnique('COUNT(*) as total','id_funcionario = :whereValue','','','',$aluno) as $dado):?>
+                    <p>Quantidade de aulas: <?=$dado['total']?></p>
+                    <?php endforeach ?>
                 </article>
-                <article class="personal">
-                    <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
-                    <h3>Ana Costa</h3>
-                    <p>Especialidade: Pilates / Reabilitação</p>
-                    <button onclick="agendaPr()">Ver agenda</button>
-                </article>
+                <?php endforeach ?>
             </div>
         </div>
     </main>
