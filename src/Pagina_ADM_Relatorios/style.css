@@ -21,7 +21,7 @@ body {
 main {
   flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 /* Classe utilitária para esconder elementos */
@@ -237,4 +237,148 @@ div.coluna-informacao > a:hover {
   .cards {
     flex-direction: column;
   }
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA AS TABELAS DE RELATÓRIO --- */
+
+/* Contêiner principal para centralizar e dar padding ao conteúdo */
+main {
+    padding: 30px 40px; /* Adiciona padding para o conteúdo da main */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Títulos das tabelas */
+main h2 {
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #CE002D; /* Linha vermelha para destaque */
+    padding-bottom: 5px;
+    font-size: 1.8rem;
+}
+
+/* Onde a mensagem $msg aparece */
+main h2:first-child {
+    color: green; /* Cor de sucesso para a mensagem */
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Estilo base para todas as tabelas */
+table {
+    width: 100%;
+    border-collapse: separate; /* Permite usar border-radius */
+    border-spacing: 0; /* Remove o espaçamento entre as células */
+    background: #ffffff;
+    border-radius: 10px; /* Borda arredondada no card */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+    margin-bottom: 30px;
+}
+
+/* Cabeçalho da tabela (Thead) */
+table tr:first-child {
+    background-color: black; /* Fundo preto para o cabeçalho */
+    color: white;
+}
+
+/* Células do Cabeçalho (TH) */
+table th {
+    padding: 14px 15px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Células de Dados (TD) */
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Linhas divisórias claras */
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Efeito Zebra (alternando cores nas linhas) */
+table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Linha par com cor mais clara */
+}
+
+/* Efeito Hover na Linha */
+table tbody tr:hover {
+    background-color: #ffeaea; /* Fundo vermelho suave ao passar o mouse */
+    cursor: default;
+}
+
+/* Última linha: remove a borda de baixo */
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilização dos botões de Ação na célula */
+table td form {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+table td button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Botão EDITAR */
+table td button:not([name*="deletar"]) {
+    background-color: #007bff; /* Azul padrão, pode ser ajustado */
+    color: white;
+}
+
+/* Botão DELETAR (Vermelho do tema) */
+table td button[onsubmit*="DELETAR"], 
+table td form[onsubmit*="DELETAR"] button {
+    background-color: #CE002D; /* Vermelho do tema */
+    color: white;
+}
+
+table td button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.corpo{
+  display: flex;
+  flex-direction: row;
+}
+
+.sec{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  /* margin-top: 30px; */
+}
+
+.sec>button{
+  background-color: white;
+  border: 1px solid #818181;
+  font-size: 1.3rem;
+  padding: 10px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.sec>button:hover{
+  background-color: #ececec;
+}
+
+.Filtro{
+  border: 1px solid #000000;
+  border-left: #000000;
 }

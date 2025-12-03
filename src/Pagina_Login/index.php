@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <header>
         <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="TechFit Logo">
-        <h1>TechFit</h1>
+        <h1>TECHFIT</h1>
     </header>
     <main class="container-login">
         <h2>Login</h2>
