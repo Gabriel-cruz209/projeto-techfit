@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
-    background-color: #e0e0e0; /* Um fundo sutil para o corpo */
+    background-color: none; /* Um fundo sutil para o corpo */
 }
 
 main {
