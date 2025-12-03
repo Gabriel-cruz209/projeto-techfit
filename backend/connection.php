@@ -111,6 +111,20 @@ class Connection {
                     CONSTRAINT fk_id_aula_inscrevem FOREIGN KEY (id_aula) REFERENCES aulas (id_aula)
                 )
                 ");
+                self::$instancia->exec("
+                INSERT INTO Unidades (cep_unidade, nome_unidade) VALUES
+                ('13150-000','TECHFIT Cosmópolis')
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM Funcionarios WHERE nome_unidade = 'TECHFIT Cosmópolis'
+                )
+                ");
+                self::$instancia->exec("
+                INSERT INTO Funcionarios (cep_funcionario, nome_funcionario, data_nascimento_funcionario, email_funcionario, telefone_funcionario, tipo_funcionario, senha_funcionario, cpf_funcionario, id_unidade) VALUES
+                ('01000-210','Gabriel Soares','2007-07-20','adm@techfit.com','(11)99999-0001','personal','senha123','111.111.111-00',1)
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM Funcionarios WHERE nome_funcionario = 'Gabriel Soares'
+                )
+                ");
 
             }
             catch(PDOException $e) {

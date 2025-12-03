@@ -3,6 +3,7 @@ namespace projetoTechfit;
     require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
     require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
     $id = $_GET['id'];
+    $tipoAula = $_GET['ta'];
     $connInscrevem = new ConnTables("inscrevem");
     $connAluno = new ConnTables("alunos");
     $connAulas = new ConnTables("aulas");
@@ -14,31 +15,46 @@ namespace projetoTechfit;
     }
     echo "
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const aula = document.getElementById('aula');
             const data = document.getElementById('data');
             const dataList = document.getElementById('data-list');
+
             dataList.style.display = 'none';
+
             // salva todas as opções originais
             const opcoesOriginais = Array.from(data.options);
 
-            aula.addEventListener('change', function() {
+            function filtrarAulas() {
+                const aulaSelecionada = aula.value;
+
+                // se for vazio, esconder
+                if (aulaSelecionada === '') {
+                    dataList.style.display = 'none';
+                    data.innerHTML = '';
+                    return;
+                }
+
+                // mostrar
                 dataList.style.display = 'flex';
-                const aulaSelecionada = this.value;
+
                 // limpar opções
                 data.innerHTML = '';
 
-                // filtrar e recolocar
+                // recolocar apenas as válidas
                 opcoesOriginais.forEach(opt => {
                     if (opt.dataset.aula === aulaSelecionada) {
                         data.appendChild(opt);
-                    } else {
-                        
                     }
                 });
-            });
-        });
-        
+            }
+
+            // chama ao mudar o select
+            aula.addEventListener('change', filtrarAulas);
+
+            // chama também ao carregar a página (para valores pré-setados)
+            filtrarAulas();
+        });  
     </script>
     ";
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -81,7 +97,11 @@ namespace projetoTechfit;
                 <select id="aula" name="aula" required>
                     <option value="">selecione a aula</option>
                     <?php foreach($connAulas->selectUnique('tipo_aula',"","","tipo_aula") as $dados): ?>
-                        <option value="<?=$dados['tipo_aula']?>"><?=$dados['tipo_aula']?></option>
+                        <?php if($dados['tipo_aula']== $tipoAula): ?>
+                            <option value="<?=$dados['tipo_aula']?>" selected><?=$dados['tipo_aula']?></option>
+                        <?php else: ?>
+                            <option value="<?=$dados['tipo_aula']?>"><?=$dados['tipo_aula']?></option>
+                        <?php endif ?>
                     <?php endforeach ?>
                 </select>
                 <div id="data-list">

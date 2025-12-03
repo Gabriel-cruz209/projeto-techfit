@@ -15,20 +15,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $alunos['cpf_aluno'] = $_POST['cpf_aluno'];
     $alunos['cep_aluno'] = $_POST['cep_aluno'];
     $alunos['data_nascimento_aluno'] = $_POST['data_nascimento'];
+    foreach($connAluno->select() as $dados){
+        if($dados['email_aluno'] == $_POST['email_aluno']){
+            $msg = "<p class='alert-in'>Email ja cadastrado</p>";
+        }
+    }
     $alunos['email_aluno'] = $_POST['email_aluno'];
     $alunos['telefone_aluno'] = $_POST['telefone_aluno'];
     $alunos['senha_aluno'] = $_POST['senha_aluno'];
     $alunos['id_unidade'] = $_POST['id_unidade'];
-    if ($_POST['senha_aluno'] == $_POST['confirmar_senha']) {
-        $connAluno->insert($alunos);
-        $msg = "<h1 class='go'></h1>
-                    <script>
-                    setTimeout(function() {
-                    login('')
-                    },3000)
-                    </script>";
-    } else {
-        $msg = "<p class='alert-in'>Senha e confirmar senha tem que ser iguais</p>";
+    if($msg == ''){
+        if ($_POST['senha_aluno'] == $_POST['confirmar_senha']) {
+            $connAluno->insert($alunos);
+            $msg = "<h1 class='go'></h1>
+                        <script>
+                        setTimeout(function() {
+                        login('')
+                        },3000)
+                        </script>";
+        } else {
+            $msg = "<p class='alert-in'>Senha e confirmar senha tem que ser iguais</p>";
+        }
     }
 }
 ?>
@@ -63,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-group">
                 <label for="cepAluno">Endereço - CEP</label>
-                <input type="text" id="cepAluno" name="cep_aluno" maxlength="9" required>
+                <input type="text" id="cep" name="cep_aluno" maxlength="9" required>
             </div>
 
             <div class="form-group">
@@ -73,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-group">
                 <label for="cpfAluno">CPF</label>
-                <input type="text" id="cpfAluno" name="cpf_aluno" maxlength="14" required>
+                <input type="text" id="cpf" name="cpf_aluno" maxlength="14" required>
             </div>
 
             <div class="form-group">
