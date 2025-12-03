@@ -1,27 +1,36 @@
 <?php
-    namespace projetoTechfit;
-    require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
-    require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
-    $tables = new ValorTable();
-    $connAluno = new ConnTables("alunos");
-    $connUnidade = new ConnTables('unidades');
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $alunos = $tables->getAlunos();
-        $alunos['nome_aluno'] = $_POST['nome_aluno'];
-        $alunos['cpf_aluno'] = $_POST['cpf_aluno'];
-        $alunos['cep_aluno'] = $_POST['cep_aluno'];
-        $alunos['data_nascimento_aluno'] = $_POST['data_nascimento'];
-        $alunos['email_aluno'] = $_POST['email_aluno'];
-        $alunos['telefone_aluno'] = $_POST['telefone_aluno'];
-        $alunos['senha_aluno'] = $_POST['senha_aluno'];
-        $alunos['id_unidade'] = $_POST['id_unidade'];
-        if($_POST['senha_aluno'] == $_POST['confirmar_senha']){
-            $connAluno->insert($alunos);
-        } else {
-            echo "<p>Senha e confirmar senha tem que ser iguais</p>";
-        }
-        
+
+namespace projetoTechfit;
+
+require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
+require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
+$tables = new ValorTable();
+$connAluno = new ConnTables("alunos");
+$connUnidade = new ConnTables('unidades');
+
+$msg = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $alunos = $tables->getAlunos();
+    $alunos['nome_aluno'] = $_POST['nome_aluno'];
+    $alunos['cpf_aluno'] = $_POST['cpf_aluno'];
+    $alunos['cep_aluno'] = $_POST['cep_aluno'];
+    $alunos['data_nascimento_aluno'] = $_POST['data_nascimento'];
+    $alunos['email_aluno'] = $_POST['email_aluno'];
+    $alunos['telefone_aluno'] = $_POST['telefone_aluno'];
+    $alunos['senha_aluno'] = $_POST['senha_aluno'];
+    $alunos['id_unidade'] = $_POST['id_unidade'];
+    if ($_POST['senha_aluno'] == $_POST['confirmar_senha']) {
+        $connAluno->insert($alunos);
+        $msg = "<h1 class='go'></h1>
+                    <script>
+                    setTimeout(function() {
+                    login('')
+                    },3000)
+                    </script>";
+    } else {
+        $msg = "<p class='alert-in'>Senha e confirmar senha tem que ser iguais</p>";
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -42,7 +51,7 @@
     </header>
 
     <main class="container-cadastro">
-        
+
         <h2>Cadastro</h2>
 
         <form method="POST">
@@ -69,7 +78,7 @@
 
             <div class="form-group">
                 <label for="telefoneAluno">Telefone</label>
-                <input type="text" id="telefoneAluno" name="telefone_aluno" maxlength="15" required>
+                <input type="number" id="telefoneAluno" name="telefone_aluno" maxlength="15" required>
             </div>
 
             <div class="form-group">
@@ -78,6 +87,7 @@
             </div>
 
             <div class="form-group">
+                <label for="unidadeAluno">Unidade</label><br>
                 <select name="id_unidade" id="id_unidade" required>
                     <option value="">Selecione a unidade</option>
 
@@ -99,13 +109,10 @@
                 <label for="CsenhaAluno">Confirmar Senha</label>
                 <input type="password" id="CsenhaAluno" name="confirmar_senha" required>
             </div>
-
             <button type="submit">Cadastrar</button>
-
         </form>
-
         <p><a onclick="login('')">Já Possui Cadastro</a></p>
-        <p><a href="#">Esqueci minha senha</a></p>
+        <?= $msg ?>
     </main>
     <script src="../js/app.js"></script>
 </body>
