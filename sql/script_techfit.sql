@@ -1,15 +1,15 @@
 -- Geração de Modelo físico
 -- Sql ANSI 2003 - brModelo.
-CREATE DATABASE TECHFIT_ACADEMY;
+CREATE DATABASE IF NOT EXISTS TECHFIT_ACADEMY;
 USE TECHFIT_ACADEMY;
 
-CREATE TABLE Unidades (
+CREATE TABLE IF NOT EXISTS Unidades (
 	cep_unidade varchar(9) not null,
 	nome_unidade varchar(100) not null,
 	id_unidade int not null PRIMARY KEY auto_increment
 );
 
-CREATE TABLE Funcionarios (
+CREATE TABLE IF NOT EXISTS Funcionarios (
 	cep_funcionario varchar(9) not null,
 	nome_funcionario varchar(100) not null,
 	data_nascimento_funcionario date not null,
@@ -23,7 +23,7 @@ CREATE TABLE Funcionarios (
     CONSTRAINT fk_id_unidade_funcionario FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
 );
 
-CREATE TABLE Alunos (
+CREATE TABLE IF NOT EXISTS Alunos (
 	nome_aluno varchar(100) not null,
 	cep_aluno varchar(9) not null,
 	data_nascimento_aluno date not null,
@@ -35,7 +35,7 @@ CREATE TABLE Alunos (
 	id_unidade int not null,
 	CONSTRAINT fk_id_unidade FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
 );
-CREATE TABLE Aulas (
+CREATE TABLE IF NOT EXISTS Aulas (
 	id_aula int not null PRIMARY KEY auto_increment,
 	data_aula datetime not null,
 	tipo_aula varchar(100) not null,
@@ -43,7 +43,7 @@ CREATE TABLE Aulas (
 	CONSTRAINT fk_id_aluno_aulas FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
 );
 
-CREATE TABLE Avaliacao_fisicas (
+CREATE TABLE IF NOT EXISTS Avaliacao_fisicas (
 	data_avaliacao datetime not null,
 	id_avaliacao int not null PRIMARY KEY auto_increment,
 	tipo_avalicao varchar(50) not null,
@@ -51,34 +51,34 @@ CREATE TABLE Avaliacao_fisicas (
     CONSTRAINT fk_id_aluno_avaliacao FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
 );
 
-CREATE TABLE Comunicados (
+CREATE TABLE IF NOT EXISTS Comunicados (
 	informacao_comunicado varchar(300) not null,
 	titulo_comunicado varchar(50) not null,
 	id_comunicado int not null PRIMARY KEY auto_increment
 );
 
-CREATE TABLE Contem (
+CREATE TABLE IF NOT EXISTS Contem (
 	id_aula int not null,
 	id_unidade int not null,
 	CONSTRAINT fk_id_aula_contidas FOREIGN KEY(id_aula) REFERENCES Aulas (id_aula),
 	CONSTRAINT fk_id_unidade_contem FOREIGN KEY(id_unidade) REFERENCES Unidades (id_unidade)
 );
 
-CREATE TABLE criam (
+CREATE TABLE IF NOT EXISTS criam (
 	id_aula int not null,
 	id_funcionario int not null,
 	CONSTRAINT fk_id_aula_criadas FOREIGN KEY(id_aula) REFERENCES Aulas (id_aula),
 	CONSTRAINT fk_id_funcionario_criam FOREIGN KEY(id_funcionario) REFERENCES Funcionarios (id_funcionario)
 );
 
-CREATE TABLE comentam (
+CREATE TABLE IF NOT EXISTS comentam (
 	id_comunicado int not null,
 	id_funcionario int not null,
 	CONSTRAINT fk_id_comunicado FOREIGN KEY(id_comunicado) REFERENCES Comunicados (id_comunicado),
 	CONSTRAINT fk_id_funcionario_comentam FOREIGN KEY(id_funcionario) REFERENCES Funcionarios (id_funcionario)
 );
 
-CREATE TABLE fazem (
+CREATE TABLE IF NOT EXISTS fazem (
 	id_funcionario int not null,
 	id_avaliacao int not null,
 	CONSTRAINT fk_id_funcionario_fazem FOREIGN KEY(id_funcionario) REFERENCES Funcionarios (id_funcionario),
@@ -166,20 +166,6 @@ VALUES
 ('Juliana Fernandes', '13900-900', '2001-04-20', '333.222.111-00', '(19)99012-6789', 'juliana.fernandes@email.com', 'senhastu', 15);
 SELECT * FROM Alunos;
 
-
-INSERT INTO Aulas (data_aula, tipo_aula, id_aluno) VALUES
-('2025-10-20 08:00:00', 'Musculação', 1),
-('2025-10-20 09:30:00', 'Funcional', 5),
-('2025-10-21 10:00:00', 'Yoga', 10),
-('2025-10-21 11:30:00', 'Pilates', 15),
-('2025-10-22 08:00:00', 'Spinning', 20),
-('2025-10-22 09:00:00', 'Musculação', 25),
-('2025-10-23 10:30:00', 'Funcional', 2),
-('2025-10-23 11:00:00', 'Yoga', 7),
-('2025-10-24 08:15:00', 'Pilates', 12),
-('2025-10-24 09:45:00', 'Spinning', 30);
-SELECT * FROM Aulas;
-
 INSERT INTO Avaliacao_fisicas (data_avaliacao, tipo_avalicao, id_aluno) VALUES
 ('2025-10-20 08:00:00', 'inicial', 3),
 ('2025-10-20 09:00:00', 'Desenvolvimento', 6),
@@ -192,19 +178,6 @@ INSERT INTO Avaliacao_fisicas (data_avaliacao, tipo_avalicao, id_aluno) VALUES
 ('2025-10-24 08:45:00', 'Inicial', 1),
 ('2025-10-24 09:50:00', 'Desenvolvimento', 30);
 SELECT * FROM Avaliacao_fisicas;
-
-INSERT INTO Comunicados (informacao_comunicado, titulo_comunicado) VALUES
-('A academia estará fechada no feriado de 15 de novembro.', 'Feriado'),
-('Nova aula de Zumba disponível a partir da próxima semana.', 'Novidade de Aula'),
-('Lembrete: pagamento da mensalidade vence dia 25.', 'Pagamento'),
-('Evento especial: avaliação física gratuita neste sábado.', 'Evento Especial'),
-('Atenção: uso obrigatório de máscara nas áreas internas.', 'Aviso Importante'),
-('Mudança de horário: aula de Pilates agora às 18h.', 'Alteração de Horário'),
-('Inscreva-se no campeonato interno de Crossfit.', 'Campeonato Interno'),
-('Dica de saúde: mantenha-se hidratado durante os treinos.', 'Dica de Saúde'),
-('Promoção: 20% de desconto em planos trimestrais.', 'Promoção'),
-('Aviso: manutenção no equipamento de esteira amanhã.', 'Manutenção');
-select * FROM Comunicados;
 
 INSERT INTO Contem (id_aula, id_unidade) VALUES
 (1, 1),
@@ -219,30 +192,17 @@ INSERT INTO Contem (id_aula, id_unidade) VALUES
 (10, 15);
 SELECT * FROM Contem;
 
-INSERT INTO criam (id_aula, id_funcionario) VALUES
-(1, 2),
-(2, 5),
-(3, 8),
-(4, 11),
-(5, 14),
-(6, 17),
-(7, 20),
-(8, 23),
-(9, 1),
-(10, 25);
-SELECT * FROM criam;
-
 INSERT INTO comentam (id_comunicado, id_funcionario) VALUES
-(1, 3),
-(2, 6),
-(3, 9),
-(4, 12),
-(5, 15),
-(6, 18),
-(7, 21),
-(8, 24),
-(9, 2),
-(10, 20);
+(1, 30),
+(2, 26),
+(3, 29),
+(4, 32),
+(5, 35),
+(6, 38),
+(7, 41),
+(8, 44),
+(9, 27),
+(10, 50);
 SELECT * FROM comentam;
 
 ALTER TABLE FAZEM DROP CONSTRAINT fk_id_avaliacao;
@@ -261,7 +221,19 @@ alter table aulas add constraint fk_id_unidade_aulas FOREIGN KEY (id_unidade) RE
 
 alter table aulas add COLUMN descricao_aula varchar(256);
 
-CREATE TABLE inscrevem(
+INSERT INTO Aulas (data_aula, tipo_aula, id_unidade, descricao_aula) VALUES
+('2025-02-01 07:00:00', 'Musculacao', 1, 'Treino focado em hipertrofia utilizando maquinas e pesos livres'),
+('2025-02-01 08:30:00', 'Spinning', 2, 'Aula de ciclismo indoor com alta intensidade e intervalos'),
+('2025-02-01 10:00:00', 'Yoga', 3, 'Pratica de posturas para melhorar flexibilidade e respiracao'),
+('2025-02-01 11:30:00', 'Pilates', 1, 'Exercicios de controle corporal e fortalecimentos do core'),
+('2025-02-02 18:00:00', 'Funcional', 4, 'Treino em circuito com foco em resistencia e agilidade'),
+('2025-02-02 19:30:00', 'Zumba', 5, 'Aula ritmada com coreografias de alta energia'),
+('2025-02-03 07:00:00', 'Cross Training', 3, 'Treino misto envolvendo levantamento de peso e condicionamento'),
+('2025-02-03 09:00:00', 'Alongamento', 2, 'Sessao focada em extensao muscular e relaxamento'),
+('2025-02-03 17:00:00', 'Boxe', 4, 'Treino de golpes, defesa e condicionamento cardiaco'),
+('2025-02-03 18:30:00', 'HIIT', 1, 'Aula de alta intensidade com intervalos curtos para queima rapida de calorias');
+
+CREATE TABLE IF NOT EXISTS inscrevem(
     id_aula int not null,
     id_aluno int not null,
     CONSTRAINT fk_id_aluno_inscrevem FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno),
@@ -269,19 +241,33 @@ CREATE TABLE inscrevem(
 );
 
 alter table comunicados add COLUMN tipo_comunicado VARCHAR(128) not null;
+INSERT INTO Comunicados 
+(informacao_comunicado, titulo_comunicado, tipo_comunicado)
+VALUES
+('Aviso sobre manutencao preventiva nas unidades da academia', 'Manutencao preventiva', 'importante'),
+('Parceria com loja de suplementos oferecendo descontos exclusivos', 'Parceria suplementos', 'parceria'),
+('Comunicado geral sobre novos horarios das aulas coletivas', 'Novos horarios', 'geral'),
+('Atualizacao importante sobre regras de uso dos vestiarios', 'Regras vestiario', 'importante'),
+('Parceria com nutricionista para consultorias personalizadas', 'Parceria nutricional', 'parceria'),
+('Comunicado geral sobre eventos esportivos deste mes', 'Eventos mensais', 'geral'),
+('Aviso importante sobre troca de equipamentos danificados', 'Troca de equipamentos', 'importante'),
+('Parceria com studio de fisioterapia para atendimentos com desconto', 'Parceria fisioterapia', 'parceria'),
+('Comunicado geral sobre funcionamento nos feriados', 'Feriados', 'geral'),
+('Aviso importante sobre atualizacao de cadastro dos alunos', 'Atualizacao cadastral', 'importante');
 
 INSERT INTO inscrevem (id_aula, id_aluno) VALUES
-(1, 3),
-(2, 7),
-(3, 12),
-(4, 1),
-(5, 18),
-(6, 25),
-(7, 9),
-(8, 30),
-(9, 14),
-(10, 21);
+(11, 3),
+(12, 7),
+(13, 12),
+(14, 1),
+(15, 18),
+(16, 25),
+(17, 9),
+(18, 30),
+(19, 14),
+(20, 21);
 
 alter table fazem drop constraint fk_id_avaliacao;
 alter table fazem drop index fk_id_avaliacao;
 alter table fazem add Constraint fk_id_avaliacao FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_fisicas (id_avaliacao);
+
