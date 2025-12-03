@@ -54,15 +54,15 @@
             <div class="forma_local">
                 <?php foreach($connComunicados->select() as $dados): ?>
                 <?php if($dados['tipo_comunicado'] == 'importante'): ?>
-                <div class="forma_unidade">
-                    <h4><?=$dados['titulo_comunicado']?></h4>
-                    <p><?=$dados['informacao_comunicado']?></p>
-                    <hr>
-                    <div class="sub-info">
-                        <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
-                        <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                    <div class="forma_unidade">
+                        <h4><?=$dados['titulo_comunicado']?></h4>
+                        <p><?=$dados['informacao_comunicado']?></p>
+                        <hr>
+                        <div class="sub-info">
+                            <button class="botao-curtir" onclick="curtir(this)"><i class="far fa-heart"></i></button>
+                            <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
+                        </div>
                     </div>
-                </div>
                 <?php endif ?>
                 <?php endforeach ?>
             </div>

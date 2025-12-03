@@ -58,6 +58,7 @@
             <div class="forma_local">
                 <?php if(!empty($connComunicados->select())): ?>
                     <?php foreach($connComunicados->select() as $comunicado): ?>
+                        <?php if($comunicado['tipo_comunicado'] == 'importante'): ?>
                     <div class="forma_unidade">
                         <h4><?= $comunicado['titulo_comunicado']; ?></h4>
                         <p><?= $comunicado['informacao_comunicado']; ?></p>
@@ -67,10 +68,11 @@
                             <span class="contador-curtidas" data-count="0">Curtidas: 0</span>
                         </div>
                     </div>
+                        <?php endif ?>
                     <?php endforeach ?>
-                    <?php else: ?>
+                <?php else: ?>
                         <p>Não há nenhum comunicado importante</p>
-                    <?php endif ?>
+                <?php endif ?>
             </div>
         </div>
         
