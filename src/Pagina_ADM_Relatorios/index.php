@@ -148,7 +148,9 @@ function dtLocal($dt)
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechFit - Relatórios</title>
+    <link rel="shortcut icon" href="/Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 
