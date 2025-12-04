@@ -19,7 +19,7 @@
     <!-- HEADER -->
     <header>
         <div class="logo-academia">
-            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia">
+            <img src="/Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia" style="cursor: pointer" onclick="inicioWeb('')('../../index.php')">
             <h1>TECHFIT</h1>
         </div>
         

@@ -25,6 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     },3000)
                     </script>";
                 }
+                else {
+                    $msg = "<p class='alert-in'>Senha ou Email Incorreto</p>";
+                }
             }
         }
     } else {
@@ -39,10 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     },3000)
                     </script>";
                 }
+                else {
+                   $msg = "<p class='alert-in'>Senha ou Email Incorreto</p>"; 
+                }
             }
         }
     }
-}
+} 
+
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header>
-        <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="TechFit Logo">
+        <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="TechFit Logo style="cursor: pointer" onclick="inicioWeb('')('../../index.php')" >
         <h1>TECHFIT</h1>
     </header>
     <main class="container-login">

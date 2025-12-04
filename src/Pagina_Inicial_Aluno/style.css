@@ -162,11 +162,16 @@ header h1 {
 }
 
 /* Parte Principal */
+main{
+    padding: 30px 30px 30px 30px;
+}
 
 main h1{
-    padding-top: 150px;
     text-align: center;
     font-size: 3rem;
+    color: black;
+    border-bottom: 5px solid #CE002D;
+    margin-bottom: 30px;
 }
 
 #tabela-web-footer {

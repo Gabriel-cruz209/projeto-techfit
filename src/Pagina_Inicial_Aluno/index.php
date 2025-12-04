@@ -27,7 +27,7 @@
     <header>
         <div class="logo-academia" style="cursor: pointer" onclick="inicioWeb('')('../../index.php')">
             <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo da TechFit">
-            <p>TECHFIT</p>
+            <h1>TECHFIT</h1>
         </div>
         
         <div class="secoes">

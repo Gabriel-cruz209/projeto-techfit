@@ -161,7 +161,7 @@ function dtLocal($dt)
 
         <div class="secoes">
             <?php
-            include_once __DIR__ . "\\..\\..\\utilitarios\\secaoAdm.php"
+                include_once __DIR__ . "\\..\\..\\utilitarios\\secaoAdm.php"
             ?>
         </div>
 
@@ -181,16 +181,17 @@ function dtLocal($dt)
     <div class="corpo">
     <div class="Filtro">
         <div class="sec">
-            <button onclick="s('ALUNO')">Aluno</button>
-            <button onclick="s('AULA')">Aula</button>
-            <button onclick="s('FUNCIONARIO')">Funcionário</button>
+            <button onclick="location.href='#ALUNO'">ALUNO</button>
+            <button onclick="location.href='#AULA'">AULA</button>
+            <button onclick="location.href='#FUNCIONARIO'">FUNCIONARIO</button>
+            <button onclick="location.href='#EDIT'">EDITAR</button>
         </div>
     </div>
     <main>
         <h2><?= $msg ?></h2>
         <!-- ================= FORM EDITAR ALUNO ================== -->
         <?php if ($alunoParaEditar): ?>
-            <form method="POST">
+            <form method="POST" id="EDIT">
                 <input type="hidden" name="action" value="editar_aluno">
                 <input type="hidden" name="id_aluno" value="<?= $alunoParaEditar["id_aluno"] ?>">
 
@@ -206,7 +207,7 @@ function dtLocal($dt)
                 <input type="email" name="email_aluno" value="<?= $alunoParaEditar["email_aluno"] ?>">
 
                 <label>Telefone:</label>
-                <input type="text" name="telefone_aluno" value="<?= $alunoParaEditar["telefone_aluno"] ?>">
+                <input type="text" name="telefone_aluno" value="<?= $alunoParaEditar["telefone_aluno"] ?>"><br>
 
                 <label>Data Nascimento:</label>
                 <input type="date" name="data_nascimento_aluno" value="<?= $alunoParaEditar["data_nascimento_aluno"] ?>">
@@ -217,6 +218,7 @@ function dtLocal($dt)
                 <label>Senha:</label>
                 <input type="password" name="senha_aluno" value="<?= $alunoParaEditar["senha_aluno"] ?>">
 
+                <br>
                 <label>Unidade:</label>
                 <select name="id_unidade">
                     <?php foreach ($unidades as $u): ?>
@@ -225,6 +227,7 @@ function dtLocal($dt)
                         </option>
                     <?php endforeach; ?>
                 </select>
+                <br>
 
                 <button>Salvar</button>
             </form>
@@ -233,7 +236,7 @@ function dtLocal($dt)
 
             <!-- ================= FORM EDITAR FUNCIONÁRIO ================== -->
         <?php elseif ($funcParaEditar): ?>
-            <form method="POST">
+            <form method="POST" id="EDIT">
                 <input type="hidden" name="action" value="editar_funcionario">
                 <input type="hidden" name="id_funcionario" value="<?= $funcParaEditar["id_funcionario"] ?>">
 
@@ -249,7 +252,7 @@ function dtLocal($dt)
                 <input type="email" name="email_funcionario" value="<?= $funcParaEditar["email_funcionario"] ?>">
 
                 <label>Telefone:</label>
-                <input type="text" name="telefone_funcionario" value="<?= $funcParaEditar["telefone_funcionario"] ?>">
+                <input type="text" name="telefone_funcionario" value="<?= $funcParaEditar["telefone_funcionario"] ?>"><br>
 
                 <label>Data Nascimento:</label>
                 <input type="date" name="data_nascimento_funcionario" value="<?= $funcParaEditar["data_nascimento_funcionario"] ?>">
@@ -271,6 +274,7 @@ function dtLocal($dt)
                         </option>
                     <?php endforeach; ?>
                 </select>
+                <br>
 
                 <button>Salvar</button>
             </form>
@@ -279,7 +283,7 @@ function dtLocal($dt)
 
             <!-- ================= FORM EDITAR AULA ================== -->
         <?php elseif ($aulaParaEditar): ?>
-            <form method="POST">
+            <form method="POST" id="EDIT">
                 <input type="hidden" name="action" value="editar_aula">
                 <input type="hidden" name="id_aula" value="<?= $aulaParaEditar["id_aula"] ?>">
 
@@ -299,17 +303,18 @@ function dtLocal($dt)
                         </option>
                     <?php endforeach; ?>
                 </select>
+                <br>
 
                 <label>Descrição:</label>
                 <input type="text" name="descricao_aula" value="<?= $aulaParaEditar["descricao_aula"] ?>">
-
+                <br>
                 <button>Salvar</button>
             </form>
         <?php endif; ?>
 
 
         <!-- ================= TABELAS ================== -->
-        <div class="hidden" id="ALUNO">
+        <div id="ALUNO">
             <h2>Lista de Alunos</h2>
             <table border="1">
                 <tr>
@@ -331,7 +336,7 @@ function dtLocal($dt)
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="editar_aluno_id" value="<?= $a["id_aluno"] ?>">
-                                <button>Editar</button>
+                                <button onclick="location.href='#EDIT'">Editar</button>
                             </form>
                             <form method="POST" onsubmit="return confirm('Tem certeza que deseja DELETAR o aluno <?= $a['nome_aluno'] ?>?');">
                                 <input type="hidden" name="deletar_aluno_id" value="<?= $a["id_aluno"] ?>">
@@ -343,7 +348,7 @@ function dtLocal($dt)
             </table>
         </div>
 
-        <div class="hidden" id="FUNCIONARIO">
+        <div id="FUNCIONARIO">
             <h2>Lista de Funcionários</h2>
             <table border="1">
                 <tr>
@@ -365,7 +370,7 @@ function dtLocal($dt)
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="editar_funcionario_id" value="<?= $f["id_funcionario"] ?>">
-                                <button>Editar</button>
+                                <button onclick="location.href='#EDIT'">Editar</button>
                             </form>
                             <form method="POST" onsubmit="return confirm('Tem certeza que deseja DELETAR o funcionario <?= $f['nome_funcionario'] ?>?');">
                                 <input type="hidden" name="deletar_funcioario_id" value="<?= $f["id_funcionario"] ?>">
@@ -376,7 +381,7 @@ function dtLocal($dt)
                 <?php endforeach; ?>
             </table>
         </div>
-        <div class="hidden" id="AULA">
+        <div id="AULA">
             <h2>Lista de Aulas</h2>
             <table border="1">
                 <tr>
@@ -396,7 +401,7 @@ function dtLocal($dt)
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="editar_aula_id" value="<?= $au["id_aula"] ?>">
-                                <button>Editar</button>
+                                <button onclick="location.href='#EDIT'">Editar</button>
                             </form>
                             <form method="POST" onsubmit="return confirm('Tem certeza que deseja DELETAR a Aula <?= $au['tipo_aula'] ?>?');">
                                 <input type="hidden" name="deletar_aula_id" value="<?= $au["id_aula"] ?>">
