@@ -32,7 +32,7 @@ main {
 /* --- HEADER (NOVO) --- */
 header {
     background-color: black;
-    box-shadow: 0 4px 10px -2px #CE002D; /* Sombra mais suave */
+    /* box-shadow: 0 4px 10px -2px #CE002D; Sombra mais suave */
     width: 100%;
     color: white;
     display: flex;
@@ -160,7 +160,6 @@ header h1 {
 div.container {
     width: 100%;
     padding: 20px 5%; /* Padding responsivo */
-    background-color: #f9f9f9;
 }
 
 /* --- Área de Pesquisa (Mantido) --- */
@@ -336,4 +335,12 @@ div.coluna-informacao>a:hover{
 .logo {
     font-size: 1.6em;
     text-shadow: 2px 2px 1px #ce002d;
+}
+
+main h2{
+    text-align: center;
+    font-size: 3rem;
+    color: black;
+    border-bottom: 5px solid #CE002D;
+    margin-bottom: 30px;
 }

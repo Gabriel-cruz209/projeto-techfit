@@ -363,7 +363,7 @@ table td button:hover {
   display: flex;
   flex-direction: column;
   background-color: white;
-  /* margin-top: 30px; */
+  position: fixed;
 }
 
 .sec>button{
@@ -372,6 +372,7 @@ table td button:hover {
   font-size: 1.3rem;
   padding: 10px 10px;
   transition: background-color 0.3s ease;
+  border-radius: 7px;
 }
 
 .sec>button:hover{
@@ -381,4 +382,42 @@ table td button:hover {
 .Filtro{
   border: 1px solid #000000;
   border-left: #000000;
+  position: fixed;
+}
+
+#EDIT{
+  background-color: #000000;
+  color: white;
+  padding: 20px 20px;
+  gap: 50px;
+  border-radius: 8px;
+}
+
+#EDIT>h3{
+  font-size: 2rem;
+}
+
+#EDIT>label,input,select{
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+#EDIT>input, select{
+  padding: 7px;
+  border-radius: 7px;
+}
+
+#EDIT>button{
+  padding: 7px 15px;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 10px;
+  font-size: 1.3rem;
+  border: 1px solid #0000;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#EDIT>button:hover{
+  background-color: #ce002d;
+  color: white;
 }

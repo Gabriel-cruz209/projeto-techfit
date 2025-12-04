@@ -1,12 +1,17 @@
 <?php
+
 namespace projetoTechfit;
+
 use PDO;
 use PDOException;
-class Connection {
+
+class Connection
+{
     private static $instancia = null;
 
-    public static function getInstancia() {
-        if(!self::$instancia) {
+    public static function getInstancia()
+    {
+        if (!self::$instancia) {
             try {
                 $host = "localhost";
                 $user = "root";
@@ -22,7 +27,7 @@ class Connection {
                     $password
                 );
 
-                self::$instancia->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                self::$instancia->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$instancia->exec("CREATE DATABASE IF NOT EXISTS $db");
                 self::$instancia->exec("USE $db");
 
@@ -80,6 +85,12 @@ class Connection {
                 )
                 ");
                 self::$instancia->exec("
+                CREATE TABLE IF NOT EXISTS Comunicados (
+	            informacao_comunicado varchar(300) not null,
+	            titulo_comunicado varchar(50) not null,
+	            id_comunicado int not null PRIMARY KEY auto_increment)"                 
+                );
+                self::$instancia->exec("
                 CREATE TABLE IF NOT EXISTS criam (
                     id_aula int not null,
                     id_funcionario int not null,
@@ -112,31 +123,25 @@ class Connection {
                 )
                 ");
                 self::$instancia->exec("
-                INSERT INTO Unidades (cep_unidade, nome_unidade) VALUES
-                ('13150-000','TECHFIT Cosmópolis')
+                INSERT INTO Unidades (cep_unidade, nome_unidade) SELECT
+                '13150-000','TECHFIT Cosmópolis'
+                FROM DUAL
                 WHERE NOT EXISTS (
-                    SELECT 1 FROM Funcionarios WHERE nome_unidade = 'TECHFIT Cosmópolis'
+                    SELECT 1 FROM Unidades WHERE nome_unidade = 'TECHFIT Cosmópolis'
                 )
                 ");
                 self::$instancia->exec("
-                INSERT INTO Funcionarios (cep_funcionario, nome_funcionario, data_nascimento_funcionario, email_funcionario, telefone_funcionario, tipo_funcionario, senha_funcionario, cpf_funcionario, id_unidade) VALUES
-                ('01000-210','Gabriel Soares','2007-07-20','adm@techfit.com','(11)99999-0001','personal','senha123','111.111.111-00',1)
+                INSERT INTO Funcionarios (cep_funcionario, nome_funcionario, data_nascimento_funcionario, email_funcionario, telefone_funcionario, tipo_funcionario, senha_funcionario, cpf_funcionario, id_unidade) SELECT
+                '01000-210','Gabriel Soares','2007-07-20','adm@techfit.com','(11)99999-0001','personal','senha123','111.111.111-00',1
+                FROM DUAL
                 WHERE NOT EXISTS (
                     SELECT 1 FROM Funcionarios WHERE nome_funcionario = 'Gabriel Soares'
                 )
                 ");
-
+            } catch (PDOException $e) {
+                die("ERROR: " . $e->getMessage());
             }
-            catch(PDOException $e) {
-                die("ERROR: ". $e->getMessage());
-            }
-            
         }
         return self::$instancia;
     }
 }
-
-
-
-
-?>
