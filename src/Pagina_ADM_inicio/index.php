@@ -58,7 +58,7 @@
                 <div class="card">
                     <h3>Relatórios</h3>
                     <p class="big">Ver</p>
-                    <a class="link-card" href="/src/Pagina_ADM_Relatorios/index.php">Abrir</a>
+                    <a class="link-card" href="/src/Pagina_ADM_Relatorios/index.php?id=<?=$id?>">Abrir</a>
                 </div>
                 <div class="card">
                     <h3>Personais</h3>

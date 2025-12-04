@@ -60,6 +60,7 @@ class ValorTable {
             "senha_aluno"           => null,
             "id_aluno"              => null,
             "id_unidade"            => null,
+            "id_plano"            => null,
             "whereValue"            => null
         ];
     }
@@ -103,6 +104,15 @@ class ValorTable {
             "id_funcionario" => null,
             "id_avaliacao"   => null,
             "whereValue"     => null
+        ];
+    }
+    public static function getPlanos() {
+        return [
+            "id_plano" => null,
+            "nome_plano" => null,
+            "descricao_plano" => null,
+            "preco_plano"=> null,
+            "whereValue" => null
         ];
     }
 }

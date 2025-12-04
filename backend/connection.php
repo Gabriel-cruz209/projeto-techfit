@@ -38,6 +38,15 @@ class Connection
                         id_unidade int not null PRIMARY KEY auto_increment
                     )");
                 self::$instancia->exec("
+                create table if not exists planos (
+                    id_plano int not null AUTO_INCREMENT,
+                    nome_plano varchar(128) not null,
+                    preco_plano decimal(7,2) not null,
+                    descricao_plano TEXT not NULL,
+                    PRIMARY KEY (id_plano)
+                )
+                ");
+                self::$instancia->exec("
                     CREATE TABLE IF NOT EXISTS Funcionarios (
                         cep_funcionario varchar(9) not null,
                         nome_funcionario varchar(100) not null,
@@ -49,6 +58,8 @@ class Connection
                         senha_funcionario varchar(50) not null,
                         cpf_funcionario varchar(14) not null,
                         id_unidade int not null,
+                        id_plano int not null,
+                        CONSTRAINT fk_aluno_plano FOREIGN KEY (id_plano) REFERENCES planos (id_plano),
                         CONSTRAINT fk_id_unidade_funcionario FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
                     )");
                 self::$instancia->exec("
@@ -122,6 +133,7 @@ class Connection
                     CONSTRAINT fk_id_aula_inscrevem FOREIGN KEY (id_aula) REFERENCES aulas (id_aula)
                 )
                 ");
+                
                 self::$instancia->exec("
                 INSERT INTO Unidades (cep_unidade, nome_unidade) SELECT
                 '13150-000','TECHFIT Cosmópolis'
