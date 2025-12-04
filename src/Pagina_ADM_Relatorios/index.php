@@ -13,7 +13,7 @@ $alunos = $alunoTable->select();
 $funcionarios = $funcTable->select();
 $aulas = $aulaTable->select();
 $unidades = $unidTable->select();
-
+$id = $_GET['id'];
 $msg = "";
 
 /* ---------------------- EDITAR ALUNO ----------------------- */
