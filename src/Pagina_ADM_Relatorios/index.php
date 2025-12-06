@@ -8,12 +8,15 @@ $alunoTable = new ConnTables("Alunos");
 $funcTable  = new ConnTables("Funcionarios");
 $aulaTable  = new ConnTables("Aulas");
 $unidTable  = new ConnTables("Unidades");
+$planoTable = new ConnTables("Planos"); // ADICIONADO
 
 $alunos = $alunoTable->select();
 $funcionarios = $funcTable->select();
 $aulas = $aulaTable->select();
 $unidades = $unidTable->select();
-$id = $_GET['id'];
+$planos = $planoTable->select(); // ADICIONADO
+
+$id = $_GET['id'] ?? null;
 $msg = "";
 
 /* ---------------------- EDITAR ALUNO ----------------------- */
@@ -28,7 +31,8 @@ if (isset($_POST["action"]) && $_POST["action"] === "editar_aluno") {
         "data_nascimento_aluno" => $_POST["data_nascimento_aluno"],
         "cep_aluno" => $_POST["cep_aluno"],
         "senha_aluno" => $_POST["senha_aluno"],
-        "id_unidade" => $_POST["id_unidade"]
+        "id_unidade" => $_POST["id_unidade"],
+        "id_plano" => $_POST["id_plano"] // ADICIONADO: atualizar plano do aluno
     ]);
 
     $msg = "Aluno atualizado com sucesso!";
@@ -90,7 +94,7 @@ if (isset($_POST["deletar_funcionario_id"])) {
     $id = $_POST["deletar_funcionario_id"];
     $delete['whereValue'] = $id;
     $funcTable->delete($delete, "id_funcionario");
-    $msg = "funcionario deletado com sucesso!";
+    $msg = "Funcionário deletado com sucesso!";
     $funcionarios = $funcTable->select();
 }
 
@@ -98,13 +102,11 @@ if (isset($_POST["deletar_aula_id"])) {
     $id = $_POST["deletar_aula_id"];
     $delete['whereValue'] = $id;
     $aulaTable->delete($delete, "id_aula");
-    $msg = "aula deletado com sucesso!";
+    $msg = "Aula deletada com sucesso!";
     $aulas = $aulaTable->select();
 }
 
 /* ---------------------- PEGAR ITEM PARA EDIÇÃO ----------------------- */
-
-
 
 $alunoParaEditar = null;
 $funcParaEditar = null;
@@ -163,7 +165,7 @@ function dtLocal($dt)
 
         <div class="secoes">
             <?php
-                include_once __DIR__ . "\\..\\..\\utilitarios\\secaoAdm.php"
+            include_once __DIR__ . "\\..\\..\\utilitarios\\secaoAdm.php"
             ?>
         </div>
 
@@ -181,240 +183,298 @@ function dtLocal($dt)
         </div>
     </header>
     <div class="corpo">
-    <div class="Filtro">
-        <div class="sec">
-            <button onclick="location.href='#ALUNO'">ALUNO</button>
-            <button onclick="location.href='#AULA'">AULA</button>
-            <button onclick="location.href='#FUNCIONARIO'">FUNCIONARIO</button>
-            <button onclick="location.href='#EDIT'">EDITAR</button>
+        <div class="Filtro">
+            <div class="sec">
+                <button onclick="location.href='#ALUNO'">ALUNO</button>
+                <button onclick="location.href='#AULA'">AULA</button>
+                <button onclick="location.href='#FUNCIONARIO'">FUNCIONARIO</button>
+                <button onclick="location.href='#EDIT'">EDITAR</button>
+            </div>
         </div>
+        <main>
+            <h2><?= $msg ?></h2>
+            <!-- ================= FORM EDITAR ALUNO ================== -->
+            <?php if ($alunoParaEditar): ?>
+                <form method="POST" id="EDIT">
+                    <input type="hidden" name="action" value="editar_aluno">
+                    <input type="hidden" name="id_aluno" value="<?= $alunoParaEditar["id_aluno"] ?>">
+
+                    <h3>Editar Aluno</h3>
+
+                    <label>Nome:</label>
+                    <input type="text" name="nome_aluno" value="<?= $alunoParaEditar["nome_aluno"] ?>">
+
+                    <label>CPF:</label>
+                    <input type="text" name="cpf_aluno" value="<?= $alunoParaEditar["cpf_aluno"] ?>">
+
+                    <label>Email:</label>
+                    <input type="email" name="email_aluno" value="<?= $alunoParaEditar["email_aluno"] ?>">
+
+                    <label>Telefone:</label>
+                    <input type="text" name="telefone_aluno" value="<?= $alunoParaEditar["telefone_aluno"] ?>"><br>
+
+                    <label>Data Nascimento:</label>
+                    <input type="date" name="data_nascimento_aluno" value="<?= $alunoParaEditar["data_nascimento_aluno"] ?>">
+
+                    <label>CEP:</label>
+                    <input type="text" name="cep_aluno" value="<?= $alunoParaEditar["cep_aluno"] ?>">
+
+                    <label>Senha:</label>
+                    <input type="password" name="senha_aluno" value="<?= $alunoParaEditar["senha_aluno"] ?>">
+
+                    <br>
+                    <label>Unidade:</label>
+                    <select name="id_unidade">
+                        <?php foreach ($unidades as $u): ?>
+                            <option value="<?= $u["id_unidade"] ?>" <?= $u["id_unidade"] == $alunoParaEditar["id_unidade"] ? "selected" : "" ?>>
+                                <?= $u["nome_unidade"] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <br>
+
+                    <!-- === SELETOR DE PLANO ADICIONADO === -->
+                    <label>Plano:</label>
+                    <select name="id_plano">
+                        <?php foreach ($planos as $p): ?>
+                            <option value="<?= $p["id_plano"] ?>" <?= (isset($alunoParaEditar["id_plano"]) && $alunoParaEditar["id_plano"] == $p["id_plano"]) ? "selected" : "" ?>>
+                                <?= $p["nome_plano"] ?> — R$ <?= $p["valor_plano"] ?? $p["preco_plano"] ?? '' ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <br>
+
+                    <button>Salvar</button>
+                </form>
+
+
+
+                <!-- ================= FORM EDITAR FUNCIONÁRIO ================== -->
+            <?php elseif ($funcParaEditar): ?>
+                <form method="POST" id="EDIT">
+                    <input type="hidden" name="action" value="editar_funcionario">
+                    <input type="hidden" name="id_funcionario" value="<?= $funcParaEditar["id_funcionario"] ?>">
+
+                    <h3>Editar Funcionário</h3>
+
+                    <label>Nome:</label>
+                    <input type="text" name="nome_funcionario" value="<?= $funcParaEditar["nome_funcionario"] ?>">
+
+                    <label>CPF:</label>
+                    <input type="text" name="cpf_funcionario" value="<?= $funcParaEditar["cpf_funcionario"] ?>">
+
+                    <label>Email:</label>
+                    <input type="email" name="email_funcionario" value="<?= $funcParaEditar["email_funcionario"] ?>">
+
+                    <label>Telefone:</label>
+                    <input type="text" name="telefone_funcionario" value="<?= $funcParaEditar["telefone_funcionario"] ?>"><br>
+
+                    <label>Data Nascimento:</label>
+                    <input type="date" name="data_nascimento_funcionario" value="<?= $funcParaEditar["data_nascimento_funcionario"] ?>">
+
+                    <label>CEP:</label>
+                    <input type="text" name="cep_funcionario" value="<?= $funcParaEditar["cep_funcionario"] ?>">
+
+                    <label>Tipo Funcionário:</label>
+                    <input type="text" name="tipo_funcionario" value="<?= $funcParaEditar["tipo_funcionario"] ?>">
+
+                    <label>Senha:</label>
+                    <input type="password" name="senha_funcionario" value="<?= $funcParaEditar["senha_funcionario"] ?>">
+
+                    <label>Unidade:</label>
+                    <select name="id_unidade_funcionario">
+                        <?php foreach ($unidades as $u): ?>
+                            <option value="<?= $u["id_unidade"] ?>" <?= $u["id_unidade"] == $funcParaEditar["id_unidade"] ? "selected" : "" ?>>
+                                <?= $u["nome_unidade"] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <br>
+
+                    <button>Salvar</button>
+                </form>
+
+
+
+                <!-- ================= FORM EDITAR AULA ================== -->
+            <?php elseif ($aulaParaEditar): ?>
+                <form method="POST" id="EDIT">
+                    <input type="hidden" name="action" value="editar_aula">
+                    <input type="hidden" name="id_aula" value="<?= $aulaParaEditar["id_aula"] ?>">
+
+                    <h3>Editar Aula</h3>
+
+                    <label>Tipo de Aula:</label>
+                    <input type="text" name="tipo_aula" value="<?= $aulaParaEditar["tipo_aula"] ?>">
+
+                    <label>Data Hora:</label>
+                    <input type="datetime-local" name="data_aula" value="<?= dtLocal($aulaParaEditar["data_aula"]) ?>">
+
+                    <label>Unidade:</label>
+                    <select name="id_unidade_aula">
+                        <?php foreach ($unidades as $u): ?>
+                            <option value="<?= $u["id_unidade"] ?>" <?= $u["id_unidade"] == $aulaParaEditar["id_unidade"] ? "selected" : "" ?>>
+                                <?= $u["nome_unidade"] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <br>
+
+                    <label>Descrição:</label>
+                    <input type="text" name="descricao_aula" value="<?= $aulaParaEditar["descricao_aula"] ?>">
+                    <br>
+                    <button>Salvar</button>
+                </form>
+            <?php endif; ?>
+
+
+            <!-- ================= TABELAS ================== -->
+            <div id="ALUNO">
+                <h2>Lista de Alunos</h2>
+
+                <!-- ================= FILTRO POR PLANO ================= -->
+                <form method="GET" style="margin-bottom: 15px;">
+                    <label><strong>Filtrar por Plano:</strong></label>
+                    <select name="filtro_plano" onchange="this.form.submit()">
+                        <option value="">Todos</option>
+                        <?php foreach ($planos as $p): ?>
+                            <option value="<?= $p["id_plano"] ?>"
+                                <?= (isset($_GET["filtro_plano"]) && $_GET["filtro_plano"] == $p["id_plano"]) ? "selected" : "" ?>>
+                                <?= $p["nome_plano"] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+
+                <?php
+                // ================== FILTRO APLICADO ==================
+                $alunosFiltrados = $alunos;
+
+                if (!empty($_GET["filtro_plano"])) {
+                    $idPlanoFiltro = $_GET["filtro_plano"];
+                    $alunosFiltrados = array_filter($alunos, function ($a) use ($idPlanoFiltro) {
+                        return isset($a["id_plano"]) && $a["id_plano"] == $idPlanoFiltro;
+                    });
+                }
+                ?>
+
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Plano</th>
+                        <th>Ação</th>
+                    </tr>
+
+                    <?php foreach ($alunosFiltrados as $a): ?>
+                        <tr>
+                            <td><?= $a["id_aluno"] ?></td>
+                            <td><?= $a["nome_aluno"] ?></td>
+                            <td><?= $a["cpf_aluno"] ?></td>
+                            <td><?= $a["email_aluno"] ?></td>
+                            <td><?= $a["telefone_aluno"] ?></td>
+
+                            <td>
+                                <?php
+                                $nomePlano = '—';
+                                if (isset($a['id_plano'])) {
+                                    foreach ($planos as $p) {
+                                        if ($p["id_plano"] == $a["id_plano"]) {
+                                            $nomePlano = $p["nome_plano"];
+                                            break;
+                                        }
+                                    }
+                                }
+                                echo $nomePlano;
+                                ?>
+                            </td>
+
+                            <td>
+                                <form method="POST" style="display:inline">
+                                    <input type="hidden" name="editar_aluno_id" value="<?= $a["id_aluno"] ?>">
+                                    <button type="submit" onclick="location.href='#EDIT'">Editar</button>
+                                </form>
+
+                                <form method="POST" style="display:inline"
+                                    onsubmit="return confirm('Tem certeza que deseja DELETAR o aluno <?= htmlspecialchars($a['nome_aluno']) ?>?');">
+                                    <input type="hidden" name="deletar_aluno_id" value="<?= $a["id_aluno"] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+
+            <div id="FUNCIONARIO">
+                <h2>Lista de Funcionários</h2>
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Ação</th>
+                    </tr>
+
+                    <?php foreach ($funcionarios as $f): ?>
+                        <tr>
+                            <td><?= $f["id_funcionario"] ?></td>
+                            <td><?= $f["nome_funcionario"] ?></td>
+                            <td><?= $f["tipo_funcionario"] ?></td>
+                            <td><?= $f["email_funcionario"] ?></td>
+                            <td><?= $f["telefone_funcionario"] ?></td>
+                            <td>
+                                <form method="POST" style="display:inline">
+                                    <input type="hidden" name="editar_funcionario_id" value="<?= $f["id_funcionario"] ?>">
+                                    <button type="submit" onclick="location.href='#EDIT'">Editar</button>
+                                </form>
+                                <form method="POST" style="display:inline" onsubmit="return confirm('Tem certeza que deseja DELETAR o funcionário <?= htmlspecialchars($f['nome_funcionario']) ?>?');">
+                                    <input type="hidden" name="deletar_funcionario_id" value="<?= $f["id_funcionario"] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+            <div id="AULA">
+                <h2>Lista de Aulas</h2>
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Data</th>
+                        <th>Unidade</th>
+                        <th>Ação</th>
+                    </tr>
+
+                    <?php foreach ($aulas as $au): ?>
+                        <tr>
+                            <td><?= $au["id_aula"] ?></td>
+                            <td><?= $au["tipo_aula"] ?></td>
+                            <td><?= $au["data_aula"] ?></td>
+                            <td><?= $au["id_unidade"] ?></td>
+                            <td>
+                                <form method="POST" style="display:inline">
+                                    <input type="hidden" name="editar_aula_id" value="<?= $au["id_aula"] ?>">
+                                    <button type="submit" onclick="location.href='#EDIT'">Editar</button>
+                                </form>
+                                <form method="POST" style="display:inline" onsubmit="return confirm('Tem certeza que deseja DELETAR a Aula <?= htmlspecialchars($au['tipo_aula']) ?>?');">
+                                    <input type="hidden" name="deletar_aula_id" value="<?= $au["id_aula"] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </main>
     </div>
-    <main>
-        <h2><?= $msg ?></h2>
-        <!-- ================= FORM EDITAR ALUNO ================== -->
-        <?php if ($alunoParaEditar): ?>
-            <form method="POST" id="EDIT">
-                <input type="hidden" name="action" value="editar_aluno">
-                <input type="hidden" name="id_aluno" value="<?= $alunoParaEditar["id_aluno"] ?>">
-
-                <h3>Editar Aluno</h3>
-
-                <label>Nome:</label>
-                <input type="text" name="nome_aluno" value="<?= $alunoParaEditar["nome_aluno"] ?>">
-
-                <label>CPF:</label>
-                <input type="text" name="cpf_aluno" value="<?= $alunoParaEditar["cpf_aluno"] ?>">
-
-                <label>Email:</label>
-                <input type="email" name="email_aluno" value="<?= $alunoParaEditar["email_aluno"] ?>">
-
-                <label>Telefone:</label>
-                <input type="text" name="telefone_aluno" value="<?= $alunoParaEditar["telefone_aluno"] ?>"><br>
-
-                <label>Data Nascimento:</label>
-                <input type="date" name="data_nascimento_aluno" value="<?= $alunoParaEditar["data_nascimento_aluno"] ?>">
-
-                <label>CEP:</label>
-                <input type="text" name="cep_aluno" value="<?= $alunoParaEditar["cep_aluno"] ?>">
-
-                <label>Senha:</label>
-                <input type="password" name="senha_aluno" value="<?= $alunoParaEditar["senha_aluno"] ?>">
-
-                <br>
-                <label>Unidade:</label>
-                <select name="id_unidade">
-                    <?php foreach ($unidades as $u): ?>
-                        <option value="<?= $u["id_unidade"] ?>" <?= $u["id_unidade"] == $alunoParaEditar["id_unidade"] ? "selected" : "" ?>>
-                            <?= $u["nome_unidade"] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <br>
-
-                <button>Salvar</button>
-            </form>
-
-
-
-            <!-- ================= FORM EDITAR FUNCIONÁRIO ================== -->
-        <?php elseif ($funcParaEditar): ?>
-            <form method="POST" id="EDIT">
-                <input type="hidden" name="action" value="editar_funcionario">
-                <input type="hidden" name="id_funcionario" value="<?= $funcParaEditar["id_funcionario"] ?>">
-
-                <h3>Editar Funcionário</h3>
-
-                <label>Nome:</label>
-                <input type="text" name="nome_funcionario" value="<?= $funcParaEditar["nome_funcionario"] ?>">
-
-                <label>CPF:</label>
-                <input type="text" name="cpf_funcionario" value="<?= $funcParaEditar["cpf_funcionario"] ?>">
-
-                <label>Email:</label>
-                <input type="email" name="email_funcionario" value="<?= $funcParaEditar["email_funcionario"] ?>">
-
-                <label>Telefone:</label>
-                <input type="text" name="telefone_funcionario" value="<?= $funcParaEditar["telefone_funcionario"] ?>"><br>
-
-                <label>Data Nascimento:</label>
-                <input type="date" name="data_nascimento_funcionario" value="<?= $funcParaEditar["data_nascimento_funcionario"] ?>">
-
-                <label>CEP:</label>
-                <input type="text" name="cep_funcionario" value="<?= $funcParaEditar["cep_funcionario"] ?>">
-
-                <label>Tipo Funcionário:</label>
-                <input type="text" name="tipo_funcionario" value="<?= $funcParaEditar["tipo_funcionario"] ?>">
-
-                <label>Senha:</label>
-                <input type="password" name="senha_funcionario" value="<?= $funcParaEditar["senha_funcionario"] ?>">
-
-                <label>Unidade:</label>
-                <select name="id_unidade_funcionario">
-                    <?php foreach ($unidades as $u): ?>
-                        <option value="<?= $u["id_unidade"] ?>" <?= $u["id_unidade"] == $funcParaEditar["id_unidade"] ? "selected" : "" ?>>
-                            <?= $u["nome_unidade"] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <br>
-
-                <button>Salvar</button>
-            </form>
-
-
-
-            <!-- ================= FORM EDITAR AULA ================== -->
-        <?php elseif ($aulaParaEditar): ?>
-            <form method="POST" id="EDIT">
-                <input type="hidden" name="action" value="editar_aula">
-                <input type="hidden" name="id_aula" value="<?= $aulaParaEditar["id_aula"] ?>">
-
-                <h3>Editar Aula</h3>
-
-                <label>Tipo de Aula:</label>
-                <input type="text" name="tipo_aula" value="<?= $aulaParaEditar["tipo_aula"] ?>">
-
-                <label>Data Hora:</label>
-                <input type="datetime-local" name="data_aula" value="<?= dtLocal($aulaParaEditar["data_aula"]) ?>">
-
-                <label>Unidade:</label>
-                <select name="id_unidade_aula">
-                    <?php foreach ($unidades as $u): ?>
-                        <option value="<?= $u["id_unidade"] ?>" <?= $u["id_unidade"] == $aulaParaEditar["id_unidade"] ? "selected" : "" ?>>
-                            <?= $u["nome_unidade"] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <br>
-
-                <label>Descrição:</label>
-                <input type="text" name="descricao_aula" value="<?= $aulaParaEditar["descricao_aula"] ?>">
-                <br>
-                <button>Salvar</button>
-            </form>
-        <?php endif; ?>
-
-
-        <!-- ================= TABELAS ================== -->
-        <div id="ALUNO">
-            <h2>Lista de Alunos</h2>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Ação</th>
-                </tr>
-
-                <?php foreach ($alunos as $a): ?>
-                    <tr>
-                        <td><?= $a["id_aluno"] ?></td>
-                        <td><?= $a["nome_aluno"] ?></td>
-                        <td><?= $a["cpf_aluno"] ?></td>
-                        <td><?= $a["email_aluno"] ?></td>
-                        <td><?= $a["telefone_aluno"] ?></td>
-                        <td>
-                            <form method="POST">
-                                <input type="hidden" name="editar_aluno_id" value="<?= $a["id_aluno"] ?>">
-                                <button onclick="location.href='#EDIT'">Editar</button>
-                            </form>
-                            <form method="POST" onsubmit="return confirm('Tem certeza que deseja DELETAR o aluno <?= $a['nome_aluno'] ?>?');">
-                                <input type="hidden" name="deletar_aluno_id" value="<?= $a["id_aluno"] ?>">
-                                <button>Deletar</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        </div>
-
-        <div id="FUNCIONARIO">
-            <h2>Lista de Funcionários</h2>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Ação</th>
-                </tr>
-
-                <?php foreach ($funcionarios as $f): ?>
-                    <tr>
-                        <td><?= $f["id_funcionario"] ?></td>
-                        <td><?= $f["nome_funcionario"] ?></td>
-                        <td><?= $f["tipo_funcionario"] ?></td>
-                        <td><?= $f["email_funcionario"] ?></td>
-                        <td><?= $f["telefone_funcionario"] ?></td>
-                        <td>
-                            <form method="POST">
-                                <input type="hidden" name="editar_funcionario_id" value="<?= $f["id_funcionario"] ?>">
-                                <button onclick="location.href='#EDIT'">Editar</button>
-                            </form>
-                            <form method="POST" onsubmit="return confirm('Tem certeza que deseja DELETAR o funcionario <?= $f['nome_funcionario'] ?>?');">
-                                <input type="hidden" name="deletar_funcioario_id" value="<?= $f["id_funcionario"] ?>">
-                                <button>Deletar</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        </div>
-        <div id="AULA">
-            <h2>Lista de Aulas</h2>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Tipo</th>
-                    <th>Data</th>
-                    <th>Unidade</th>
-                    <th>Ação</th>
-                </tr>
-
-                <?php foreach ($aulas as $au): ?>
-                    <tr>
-                        <td><?= $au["id_aula"] ?></td>
-                        <td><?= $au["tipo_aula"] ?></td>
-                        <td><?= $au["data_aula"] ?></td>
-                        <td><?= $au["id_unidade"] ?></td>
-                        <td>
-                            <form method="POST">
-                                <input type="hidden" name="editar_aula_id" value="<?= $au["id_aula"] ?>">
-                                <button onclick="location.href='#EDIT'">Editar</button>
-                            </form>
-                            <form method="POST" onsubmit="return confirm('Tem certeza que deseja DELETAR a Aula <?= $au['tipo_aula'] ?>?');">
-                                <input type="hidden" name="deletar_aula_id" value="<?= $au["id_aula"] ?>">
-                                <button>Deletar</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        </div>
-    </main></div>
     <footer id="tabela-web-footer">
         <?php
         include_once __DIR__ . "\\..\\..\\utilitarios\\footer.php"

@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS Alunos (
 	senha_aluno varchar(50) not null,
 	id_aluno int not null PRIMARY KEY auto_increment,
 	id_unidade int not null,
+	id_plano int not null,
+	CONSTRAINT fk_id_plano FOREIGN KEY (id_plano) REFERENCES Planos (id_plano),
 	CONSTRAINT fk_id_unidade FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
 );
 CREATE TABLE IF NOT EXISTS Aulas (
@@ -41,6 +43,21 @@ CREATE TABLE IF NOT EXISTS Aulas (
 	tipo_aula varchar(100) not null,
 	id_aluno int not null,
 	CONSTRAINT fk_id_aluno_aulas FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
+);
+CREATE TABLE IF NOT EXISTS Planos (
+	id_plano int not null PRIMARY KEY auto_increment,
+	nome_plano varchar(100) not null,
+	valor_plano decimal(10, 2) not null,
+	descricao_plano varchar(200) not null
+);
+CREATE TABLE IF NOT EXISTS Pagamento (
+	id_pagamento int not null PRIMARY KEY auto_increment,
+	numero_cartao_pagamento int not null,
+	nome_cartao_pagamento varchar(100) not null,
+	ccv_cartao_pagamento int not null,
+	validade_cartao_pagamento date not null,
+	id_aluno int not null,
+	CONSTRAINT fk_id_aluno_pagamento FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
 );
 
 CREATE TABLE IF NOT EXISTS Avaliacao_fisicas (

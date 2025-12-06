@@ -38,15 +38,6 @@ class Connection
                         id_unidade int not null PRIMARY KEY auto_increment
                     )");
                 self::$instancia->exec("
-                create table if not exists planos (
-                    id_plano int not null AUTO_INCREMENT,
-                    nome_plano varchar(128) not null,
-                    preco_plano decimal(7,2) not null,
-                    descricao_plano TEXT not NULL,
-                    PRIMARY KEY (id_plano)
-                )
-                ");
-                self::$instancia->exec("
                     CREATE TABLE IF NOT EXISTS Funcionarios (
                         cep_funcionario varchar(9) not null,
                         nome_funcionario varchar(100) not null,
@@ -58,8 +49,6 @@ class Connection
                         senha_funcionario varchar(50) not null,
                         cpf_funcionario varchar(14) not null,
                         id_unidade int not null,
-                        id_plano int not null,
-                        CONSTRAINT fk_aluno_plano FOREIGN KEY (id_plano) REFERENCES planos (id_plano),
                         CONSTRAINT fk_id_unidade_funcionario FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
                     )");
                 self::$instancia->exec("
@@ -73,6 +62,8 @@ class Connection
                     senha_aluno varchar(50) not null,
                     id_aluno int not null PRIMARY KEY auto_increment,
                     id_unidade int not null,
+                    id_plano int not null,
+	                CONSTRAINT fk_id_plano FOREIGN KEY (id_plano) REFERENCES Planos (id_plano),
                     CONSTRAINT fk_id_unidade FOREIGN KEY (id_unidade) REFERENCES Unidades (id_unidade)
                 );
                 ");
@@ -95,11 +86,12 @@ class Connection
                     CONSTRAINT fk_id_aluno_avaliacao FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
                 )
                 ");
-                self::$instancia->exec("
+                self::$instancia->exec(
+                    "
                 CREATE TABLE IF NOT EXISTS Comunicados (
 	            informacao_comunicado varchar(300) not null,
 	            titulo_comunicado varchar(50) not null,
-	            id_comunicado int not null PRIMARY KEY auto_increment)"                 
+	            id_comunicado int not null PRIMARY KEY auto_increment)"
                 );
                 self::$instancia->exec("
                 CREATE TABLE IF NOT EXISTS criam (
@@ -133,7 +125,25 @@ class Connection
                     CONSTRAINT fk_id_aula_inscrevem FOREIGN KEY (id_aula) REFERENCES aulas (id_aula)
                 )
                 ");
-                
+                self::$instancia->exec("
+                CREATE TABLE IF NOT EXISTS Pagamento (
+                    id_pagamento int not null PRIMARY KEY auto_increment,
+                    numero_cartao_pagamento int not null,
+                    nome_cartao_pagamento varchar(100) not null,
+                    ccv_cartao_pagamento int not null,
+                    validade_cartao_pagamento date not null,
+                    id_aluno int not null,
+                    CONSTRAINT fk_id_aluno_pagamento FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
+                );
+                ");
+                self::$instancia->exec("
+                CREATE TABLE IF NOT EXISTS Planos (
+                    id_plano int not null PRIMARY KEY auto_increment,
+                    nome_plano varchar(100) not null,
+                    valor_plano decimal(10, 2) not null,
+                    descricao_plano varchar(200) not null
+                );
+                ");
                 self::$instancia->exec("
                 INSERT INTO Unidades (cep_unidade, nome_unidade) SELECT
                 '13150-000','TECHFIT Cosmópolis'

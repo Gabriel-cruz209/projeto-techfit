@@ -1,251 +1,237 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap");
 
+/* === RESET E BASICS === */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  font-size: 16px; /* Base para unidades rem */
+    font-size: 16px;
+    scroll-behavior: smooth; /* Rolagem suave para os links de âncora */
 }
 
 body {
-  font-family: "Oswald", sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
-  background-color: #f9f9f9; /* Um fundo sutil para o corpo */
+    font-family: "Oswald", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Fundo mais suave */
 }
 
-main {
-  flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Classe utilitária para esconder elementos */
+/* === UTILS === */
 .hidden {
-  display: none; /* !important para garantir a sobreposição */
+    display: none !important;
 }
 
-/* --- HEADER --- */
+/* === HEADER === */
 header {
-  background-color: black;
-  /* box-shadow: 0 4px 10px -2px #CE002D;  */
-  width: 100%;
-  color: white;
-  display: flex;
-  align-items: center; /* Alinha verticalmente os itens do cabeçalho */
-  justify-content: space-between; /* Distribui o espaço automaticamente */
-  padding: 10px 40px; /* Espaçamento interno mais consistente */
+    background-color: #1a1a1a; /* Preto mais suave */
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-academia {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Espaçamento entre logo e texto */
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .logo-academia img {
-  width: 70px;
-  height: auto; /* Mantém a proporção */
+    width: 70px;
+    height: auto;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  text-shadow: 2px 2px 1px #ce002d;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 2px #ce002d;
 }
 
 .secoes {
-  display: flex;
-  gap: 60px; /* Espaçamento mais controlado */
+    display: flex;
+    gap: 30px; /* Espaçamento ajustado */
 }
 
 .secoes > button {
-  font-size: 1.3rem;
-  color: white;
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid transparent; /* Base para o efeito hover */
-  cursor: pointer;
-  padding: 10px 5px;
-  transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
+    font-size: 1.1rem; /* Tamanho ligeiramente menor */
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    padding: 10px 5px;
+    transition: all 0.3s ease;
+    font-family: "Space Grotesk", sans-serif; /* Fonte para botões de navegação */
+    font-weight: 500;
 }
 
 .secoes > button:hover {
-  transform: translateY(-3px);
-  border-color: #ffffff; /* Evita o uso de border-bottom direto */
+    color: #ce002d;
+    border-color: #ce002d;
+    transform: translateY(-2px);
 }
 
 /* --- MENU PERFIL --- */
 .func-perfil {
-  position: relative;
+    position: relative;
 }
 
 .perfil img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid #ce002d;
+    width: 50px; /* Reduzido para melhor proporção */
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid #ce002d;
+    transition: border-color 0.3s ease;
+}
+
+.perfil img:hover {
+    border-color: #ffffff;
 }
 
 .secoes-perfil {
-  display: none;
-  position: absolute;
-  top: 75px;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 220px;
-  z-index: 1000;
-  overflow: hidden; /* Garante que os filhos respeitem o border-radius */
+    display: none;
+    position: absolute;
+    top: 65px; /* Ajustado */
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Sombra mais destacada */
+    width: 250px;
+    z-index: 1000;
+    overflow: hidden;
 }
 
 .secoes-perfil.show {
-  display: block;
+    display: block;
 }
 
 .secoes-perfil ul {
-  list-style: none;
+    list-style: none;
 }
 
 .secoes-perfil li a {
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
-  transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 .secoes-perfil li a:hover {
-  background-color: #f5f5f5;
+    background-color: #ce002d; /* Hover com cor do tema */
+    color: white;
 }
 
 .secoes-perfil li a i {
-  margin-right: 12px;
-  width: 20px;
-  text-align: center;
-  color: #666;
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    color: inherit; /* Herda a cor do link */
 }
 
 .secoes-perfil hr {
-  border: 0;
-  border-top: 1px solid #e0e0e0;
-  margin: 5px 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 5px 0;
 }
 
 .info-usuario {
-  padding: 15px;
-  font-size: 1rem;
-}
-
-.info-usuario span {
-  display: block;
-  font-size: 0.8rem;
-  color: #666;
+    padding: 15px;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
 }
 
 .info-usuario strong {
-  color: #111;
+    display: block;
+    color: #111;
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-/* --- RODAPÉ (FOOTER) --- */
-#tabela-web-footer {
-  background-color: #000000;
-  color: white;
-  display: flex;
-  justify-content: space-around; /* Distribui melhor os itens */
-  align-items: center;
-  padding: 20px 0;
-  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
-  gap: 20px;
-  padding-bottom: 0;
-  margin-bottom: 0;
+.info-usuario span {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-.coluna-informacao {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Espaçamento entre ícone e texto */
+/* === CORPO (LAYOUT PRINCIPAL) - MELHORIA! === */
+.corpo {
+    display: flex;
+    flex-grow: 1; /* Permite que o corpo preencha o espaço entre header e footer */
+    /* Remove flex-direction: row em mobile via media query */
 }
 
-div.coluna-informacao > a {
-  text-decoration: none;
-  color: white;
-  transition: color 0.3s ease;
+/* === FILTRO (SIDEBAR) - MELHORIA! === */
+.Filtro {
+    position: sticky; /* Sticky em vez de fixed */
+    top: 0; /* Coloca no topo da viewport */
+    height: 100vh; /* Altura total da viewport */
+    padding: 20px 0;
+    background-color: #212121; /* Cor escura para sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 900;
 }
 
-div.coluna-informacao > a:hover {
-  color: #ce002d;
-}
-
-.coluna-informacao > img {
-  max-width: 80px;
-}
-
-.logo {
-  font-size: 1.6em;
-  text-shadow: 2px 2px 1px #ce002d;
-}
-
-.container-relatorios {
-  padding: 100px 24px 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.cards {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.card {
-  background: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  flex: 1;
-}
-.card .big {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 8px;
-}
-.tabela-rel table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.tabela-rel th,
-.tabela-rel td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-}
-.tabela-rel thead {
-  background: #fafafa;
-}
-
-@media (max-width: 700px) {
-  .cards {
+.sec {
+    display: flex;
     flex-direction: column;
-  }
+    gap: 10px;
+    padding: 0 15px; /* Padding ajustado */
+    /* Removido position: fixed do .sec, agora é controlado por .Filtro */
 }
 
-/* --- ESTILOS ESPECÍFICOS PARA AS TABELAS DE RELATÓRIO --- */
+.sec > button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-left: 4px solid transparent;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    text-align: left;
+    cursor: pointer;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+}
 
-/* Contêiner principal para centralizar e dar padding ao conteúdo */
+.sec > button:hover {
+    background-color: rgba(206, 0, 45, 0.1); /* Hover suave com cor tema */
+    border-left: 4px solid #ce002d;
+    color: #ce002d;
+}
+
+/* === MAIN CONTENT - MELHORIA! === */
 main {
-    padding: 30px 40px; /* Adiciona padding para o conteúdo da main */
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    max-width: 100%; /* Garante que não ultrapasse a largura */
+    width: 100%;
+    margin-left: 200px; /* Espaço para a sidebar fixa/sticky. Ajustar conforme largura da sidebar */
+}
+
+/* Ajusta o main quando o filtro está oculto em telas pequenas */
+@media (max-width: 900px) {
+    main {
+        margin-left: 0;
+    }
+    .Filtro {
+        display: none; /* Oculta a sidebar em telas pequenas */
+    }
 }
 
 /* Títulos das tabelas */
@@ -253,34 +239,42 @@ main h2 {
     color: #333;
     margin-top: 40px;
     margin-bottom: 15px;
-    border-bottom: 2px solid #CE002D; /* Linha vermelha para destaque */
+    border-bottom: 2px solid #ce002d;
     padding-bottom: 5px;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
-/* Onde a mensagem $msg aparece */
+/* Onde a mensagem $msg aparece (Sucesso) */
 main h2:first-child {
-    color: green; /* Cor de sucesso para a mensagem */
+    color: #28a745; /* Cor verde de sucesso */
     text-align: center;
     border-bottom: none;
-    margin-bottom: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    padding: 10px;
+    background-color: #e6ffe6;
+    border-radius: 5px;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-/* Estilo base para todas as tabelas */
+/* === ESTILO BASE PARA TODAS AS TABELAS === */
+/* === ESTILO BASE PARA TODAS AS TABELAS (NOVO VISUAL) === */
 table {
     width: 100%;
-    border-collapse: separate; /* Permite usar border-radius */
-    border-spacing: 0; /* Remove o espaçamento entre as células */
+    border-collapse: separate;
+    border-spacing: 0;
     background: #ffffff;
-    border-radius: 10px; /* Borda arredondada no card */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
-    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+    border-radius: 8px; /* Borda levemente arredondada */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra mais sutil */
+    overflow: hidden;
     margin-bottom: 30px;
+    table-layout: auto;
 }
 
-/* Cabeçalho da tabela (Thead) */
-table tr:first-child {
-    background-color: black; /* Fundo preto para o cabeçalho */
+/* Cabeçalho da tabela (Thead) - Fundo Escuro */
+table thead tr {
+    background-color: #212121; /* Fundo escuro para o cabeçalho */
     color: white;
 }
 
@@ -289,28 +283,31 @@ table th {
     padding: 14px 15px;
     text-align: left;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: "Space Grotesk", sans-serif;
+    border: none; /* Remove bordas internas para um visual mais limpo */
 }
 
 /* Células de Dados (TD) */
 table td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #eee; /* Linhas divisórias claras */
+    border-bottom: 1px solid #e0e0e0; /* Linhas divisórias claras e sutis */
     font-size: 0.95rem;
     color: #444;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 /* Efeito Zebra (alternando cores nas linhas) */
 table tbody tr:nth-child(even) {
-    background-color: #f8f8f8; /* Linha par com cor mais clara */
+    background-color: #f9f9f9; /* Linha par com cor mais clara */
 }
 
 /* Efeito Hover na Linha */
 table tbody tr:hover {
-    background-color: #ffeaea; /* Fundo vermelho suave ao passar o mouse */
+    background-color: #f0f0f0; /* Hover cinza suave para destacar a linha */
     cursor: default;
 }
 
@@ -319,105 +316,256 @@ table tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* Estilização dos botões de Ação na célula */
+/* Estilização dos botões de Ação na célula (Mantidos, mas com ajuste para melhor contraste) */
 table td form {
     display: inline-block;
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 table td button {
-    padding: 6px 10px;
+    padding: 8px 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px; /* Mais quadrados (flat) */
     cursor: pointer;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.1s ease;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    box-shadow: none; /* Remove a sombra para um visual flat */
 }
 
 /* Botão EDITAR */
 table td button:not([name*="deletar"]) {
-    background-color: #007bff; /* Azul padrão, pode ser ajustado */
+    background-color: #007bff; /* Azul padrão */
     color: white;
 }
 
 /* Botão DELETAR (Vermelho do tema) */
-table td button[onsubmit*="DELETAR"], 
+table td button[onsubmit*="DELETAR"],
 table td form[onsubmit*="DELETAR"] button {
-    background-color: #CE002D; /* Vermelho do tema */
+    background-color: #ce002d;
     color: white;
 }
 
 table td button:hover {
-    transform: translateY(-1px);
+    transform: none; /* Remove o translateY para visual flat */
     opacity: 0.9;
+    box-shadow: none;
 }
 
-.corpo{
-  display: flex;
-  flex-direction: row;
+@media (max-width: 900px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }
 
-.sec{
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  position: fixed;
+/* === FORMULÁRIO DE EDIÇÃO (#EDIT) - MELHORIA! === */
+#EDIT {
+    background-color: #1a1a1a; 
+    color: white;
+    padding: 30px;
+    gap: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; 
+    max-width: 100%;
+    /* margin: 40px auto;  */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
-.sec>button{
-  background-color: white;
-  border: 1px solid #818181;
-  font-size: 1.3rem;
-  padding: 10px 10px;
-  transition: background-color 0.3s ease;
-  border-radius: 7px;
+#EDIT > h3 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #ce002d; /* Título em cor de destaque */
+    text-align: center;
 }
 
-.sec>button:hover{
-  background-color: #ececec;
+#EDIT > label {
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 500;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-.Filtro{
-  border: 1px solid #000000;
-  border-left: #000000;
-  position: fixed;
+#EDIT > input,
+#EDIT > select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    margin-top: 5px;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-#EDIT{
-  background-color: #000000;
-  color: white;
-  padding: 20px 20px;
-  gap: 50px;
-  border-radius: 8px;
+#EDIT > select option {
+    background-color: #333;
+    color: white;
 }
 
-#EDIT>h3{
-  font-size: 2rem;
+#EDIT > button {
+    padding: 10px 20px;
+    background-color: #ce002d; /* Botão de destaque do tema */
+    color: white;
+    border-radius: 20px;
+    margin-top: 25px;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
 }
 
-#EDIT>label,input,select{
-  font-size: 1rem;
-  margin-top: 10px;
+#EDIT > button:hover {
+    background-color: #a00024; /* Tonalidade mais escura no hover */
+    transform: translateY(-2px) scale(1.02);
 }
 
-#EDIT>input, select{
-  padding: 7px;
-  border-radius: 7px;
+/* === FOOTER === */
+#tabela-web-footer {
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: auto; /* Empurra o footer para baixo */
 }
 
-#EDIT>button{
-  padding: 7px 15px;
-  background-color: white;
-  border-radius: 15px;
-  margin-top: 10px;
-  font-size: 1.3rem;
-  border: 1px solid #0000;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.coluna-informacao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-#EDIT>button:hover{
-  background-color: #ce002d;
-  color: white;
+div.coluna-informacao > a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+div.coluna-informacao > a:hover {
+    color: #ce002d;
+}
+
+.coluna-informacao > img {
+    max-width: 60px; /* Tamanho ajustado */
+}
+
+.logo {
+    font-size: 1.4em;
+    text-shadow: 1px 1px 1px #ce002d;
+}
+
+
+.cards {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.card {
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    flex: 1;
+    width: 100%;
+}
+.card .big {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+
+/* === MEDIA QUERIES === */
+
+@media (max-width: 1024px) {
+    header {
+        padding: 10px 20px;
+    }
+    .secoes {
+        gap: 15px;
+    }
+    .secoes > button {
+        font-size: 1rem;
+        padding: 8px 5px;
+    }
+    .logo-academia img {
+        width: 60px;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    /* Ajuste de margem em main para telas menores */
+    main {
+        margin-left: 180px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    /* Layout Vertical para Mobile */
+    .corpo {
+        flex-direction: column;
+    }
+    /* Filtro (Sidebar) fica no topo e horizontal */
+    .Filtro {
+        position: static;
+        height: auto;
+        padding: 10px 0;
+        box-shadow: none;
+        background-color: #333;
+    }
+    .sec {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0 10px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    .sec > button {
+        flex-shrink: 0;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        font-size: 0.9rem;
+    }
+    .sec > button:hover {
+        border-left: none;
+        border-bottom: 2px solid #ce002d;
+    }
+    /* Main ocupa a largura total */
+    main {
+        margin-left: 0;
+        padding: 20px 15px;
+    }
+    .cards {
+        flex-direction: column;
+    }
+    table {
+        /* Permite rolagem horizontal para tabelas em mobile */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    #EDIT {
+        padding: 20px;
+    }
+    .func-perfil {
+        margin-left: auto; /* Alinha o perfil à direita em mobile */
+    }
+    .secoes {
+        display: none; /* Oculta a navegação principal para focar no conteúdo */
+    }
 }
