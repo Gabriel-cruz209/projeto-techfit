@@ -65,7 +65,7 @@
   <main class="pf-main">
     <section class="form-edit">
       <h2>Editar Perfil</h2>
-      <form id="form-editar" method="POST">
+      <form id="form_validacao" method="POST">
         <?php foreach($connAluno->select() as $dados):?>
           <?php if($dados['id_aluno'] == $id): ?>
 
@@ -100,7 +100,8 @@
   <footer class="pf-footer">
     <small>© TECHFIT</small>
   </footer>
-
-    <script src="/src/js/app.js"></script>
+  <script src="/src/js/app.js"></script>
+  <script src="../js/regex.js"></script>
+  <script src="../js/validacoes.js"></script>
 </body>
 </html>

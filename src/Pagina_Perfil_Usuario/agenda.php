@@ -46,28 +46,34 @@
 
   <main class="pf-main">
     <div class="lista-aulas">
-    <?php foreach($connInscrevem->select() as $dados): ?>
-    <?php if($dados['id_aluno'] == $id): ?>
-    <?php foreach($connAulas->select() as $dadosA): ?>
-    <?php if($dados['id_aula'] == $dadosA['id_aula']): ?>
-    <?php foreach($connUnidade->select() as $dadosU): ?>
-    <?php if($dadosA['id_unidade'] == $dadosU['id_unidade']): ?>
-      <div class="item-aula">
-          <div class="tipo-aula"><?=$dadosA['tipo_aula']?></div>
-          <div class="unidade"><?=$dadosU['nome_unidade']?></div>
+    <?php if($connInscrevem->selectUnique("","id_aluno = :id_aluno","","","",['id_aluno' => $id])): ?>
+      <?php foreach($connInscrevem->select() as $dados): ?>
+      <?php if($dados['id_aluno'] == $id): ?>
+        <?php foreach($connAulas->select() as $dadosA): ?>
+          <?php if($dados['id_aula'] == $dadosA['id_aula']): ?>
+            <?php foreach($connUnidade->select() as $dadosU): ?>
+              <?php if($dadosA['id_unidade'] == $dadosU['id_unidade']): ?>
+                <div class="item-aula">
+                    <div class="tipo-aula"><?=$dadosA['tipo_aula']?></div>
+                    <div class="unidade"><?=$dadosU['nome_unidade']?></div>
 
-          <div class="descricao">
-              <?=$dadosA['descricao_aula']?>
-          </div>
+                    <div class="descricao">
+                        <?=$dadosA['descricao_aula']?>
+                    </div>
 
-          <div class="data-aula"><?=$dadosA['data_aula']?></div>
+                    <div class="data-aula"><?=$dadosA['data_aula']?></div>
+                </div>
+              <?php endif ?>
+            <?php endforeach?>
+          <?php endif ?>
+        <?php endforeach?>
+      <?php endif ?>
+      <?php endforeach?>
+    <?php else: ?>
+      <div class="mensagem">
+        <p>Você não tem nenhuma aula agendada</p>
       </div>
     <?php endif ?>
-    <?php endforeach?>
-    <?php endif ?>
-    <?php endforeach?>
-    <?php endif ?>
-    <?php endforeach?>
     </div>
   </main>
 

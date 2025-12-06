@@ -74,6 +74,7 @@
                     $aluno['cep_aluno'] = $_POST['cep_aluno'];
                     $connAluno->insert($aluno);
                 }
+                break;
             case 'funcionarios':
                 if($_POST['senha_funcionario'] == $_POST['Csenha_funcionario']){
                     $table = new ValorTable();
@@ -86,15 +87,17 @@
                     $funcionario['id_unidade'] = $_POST['id_unidade'];
                     $funcionario['nome_funcionario'] = $_POST['nome_funcionario'];
                     $funcionario['senha_funcionario'] = $_POST['senha_funcionario'];
-                    $funcionario['tipo_funcionario'] = $_POST['tipo_funcioanrio'];
+                    $funcionario['tipo_funcionario'] = $_POST['tipo_funcionario'];
                     $connFuncionario->insert($funcionario);
                 }
+                break;
             case 'unidades':
                 $table = new ValorTable();
                 $unidade = $table->getUnidades();
                 $unidade['cep_unidade']= $_POST['cep_unidade'];
                 $unidade['nome_unidade']= $_POST['nome_unidade'];
                 $connUnidade->insert($unidade);
+                break;
         }  
     }
 ?>
@@ -150,21 +153,21 @@
 
             <div class="form-container">
                 <div class="hidden" id="Unidade">
-                    <form id="form-unidades" class="cadastro-form" method="post" action="#">
+                    <form id="form_validacao" class="cadastro-form" method="post" action="#">
                         <input type="hidden" name="action" value="unidades">
                         <h3>Unidades</h3>
                         <label for="nome_unidade">Nome da Unidade</label>
                         <input type="text" id="nome_unidade" name="nome_unidade" required>
 
-                        <label for="cep_unidade">CEP</label>
-                        <input type="text" id="cep_unidade" name="cep_unidade" placeholder="00000-000" required>
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep_unidade" placeholder="00000-000" required>
 
                         <button type="submit">Cadastrar Unidade</button>
                     </form>
                 </div>
 
                 <div class="hidden" id="Funcionario">
-                    <form id="form-funcionarios" class="cadastro-form" method="POST" action="#">
+                    <form id="form_validacao" class="cadastro-form" method="POST" action="#">
                         <input type="hidden" name="action" value="funcionarios"> 
                         <h3>Funcionários</h3>
                         <label for="nome_funcionario">Nome</label>
@@ -173,11 +176,11 @@
                         <label for="data_nascimento_funcionario">Data de Nascimento</label>
                         <input type="date" id="data_nascimento_funcionario" name="data_nascimento_funcionario" required>
 
-                        <label for="email_funcionario">Email</label>
-                        <input type="email" id="email_funcionario" name="email_funcionario" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email_funcionario" required>
 
-                        <label for="telefone_funcionario">Telefone</label>
-                        <input type="text" id="telefone_funcionario" name="telefone_funcionario" required>
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" name="telefone_funcionario" required>
 
                         <label for="tipo_funcionario">Tipo</label>
                         <input type="text" id="tipo_funcionario" name="tipo_funcionario" required>
@@ -188,8 +191,8 @@
                         <label for="Csenha_funcionario">Confirmar Senha</label>
                         <input type="password" id="Csenha_funcionario" name="Csenha_funcionario" required>
 
-                        <label for="cpf_funcionario">CPF</label>
-                        <input type="text" id="cpf_funcionario" name="cpf_funcionario" required>
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf_funcionario" required>
 
                         <label for="id_unidade">Unidade</label>
                         <select name="id_unidade" id="id_unidade" required>
@@ -204,14 +207,14 @@
                         </select>
 
                         <label for="cep_funcionario">CEP</label>
-                        <input type="text" id="cep_funcionario" name="cep_funcionario" required>
+                        <input type="text" id="cep" name="cep_funcionario" required>
 
                         <button type="submit">Cadastrar Funcionário</button>
                     </form>
                 </div>
 
                 <div class="hidden" id="Aluno">
-                    <form id="form-alunos" class="cadastro-form" method="POST" action="#">
+                    <form id="form_validacao" class="cadastro-form" method="POST" action="#">
                         <input type="hidden" name="action" value="alunos">
                         <h3>Alunos</h3>
                         <label for="nome_aluno">Nome</label>
@@ -220,11 +223,11 @@
                         <label for="data_nascimento_aluno">Data de Nascimento</label>
                         <input type="date" id="data_nascimento_aluno" name="data_nascimento_aluno" required>
 
-                        <label for="cpf_aluno">CPF</label>
-                        <input type="text" id="cpf_aluno" name="cpf_aluno" required>
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf_aluno" required>
 
                         <label for="telefone_aluno">Telefone</label>
-                        <input type="text" id="telefone_aluno" name="telefone_aluno" required>
+                        <input type="text" id="telefone" name="telefone_aluno" required>
 
                         <label for="email_aluno">Email</label>
                         <input type="email" id="email_aluno" name="email_aluno" required>
@@ -235,8 +238,8 @@
                         <label for="Csenha_aluno">Confirmar Senha</label>
                         <input type="password" id="Csenha_aluno" name="Csenha_aluno" required>
 
-                        <label for="cep_aluno">CEP</label>
-                        <input type="text" id="cep_aluno" name="cep_aluno" required>
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep_aluno" required>
                         
                         <label for="id_unidade">Unidade</label>
                         <select name="id_unidade" id="id_unidade" required>
@@ -398,6 +401,8 @@
     </footer>
 
     <script src="/src/js/app.js"></script>
+    <script src="../js/regex.js"></script>
+    <script src="../js/validacoes.js"></script>
 </body>
 
 </html>
