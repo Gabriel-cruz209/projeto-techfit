@@ -78,6 +78,9 @@ function login(link) {
 function inicioAdm(link) {
   window.location.href = `/src/Pagina_ADM_inicio/index.php${link}`;
 }
+function plano(link) {
+  window.location.href = `/src/Pagina_Perfil_Usuario/planos.php${link}`;
+}
 function cadastroAdm(link) {
   window.location.href = `/src/Pagina_ADM_Cadastros/index.php${link}`;
 }
@@ -90,6 +93,7 @@ function inicioWeb(link) {
 function voltar(link) {
   window.history.back();
 }
+
 
 /* Funções de autenticação / cadastro simples (mock) */
 function acessoLogin() {

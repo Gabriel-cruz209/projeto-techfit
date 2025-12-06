@@ -3,8 +3,11 @@
   require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
   $aluno;
   $unidade;
+  $plano;
   $connAluno = new ConnTables("alunos");
   $connUnidade = new ConnTables("unidades");
+  $connPlano = new ConnTables("planos");
+  $dadosP = $connPlano->select();
   $dadosU = $connUnidade->select();
   $dados = $connAluno->select();
   $id = $_GET['id'];
@@ -15,6 +18,11 @@
       foreach($dadosU as $dadoU ){
         if($dado['id_unidade']==$dadoU['id_unidade']){
           $unidade = $dadoU;
+        }
+      }
+      foreach($dadosP as $dadoP){
+        if($dado['id_plano']==$dadoP['id_plano']){
+          $plano = $dadoP;
         }
       }
     }
@@ -75,6 +83,9 @@
         <li><strong>CPF:</strong> <span id="usuario-cpf"><?=$aluno['cpf_aluno']?></span></li>
         <li><strong>Telefone:</strong> <span id="usuario-tel"><?=$aluno['telefone_aluno']?></span></li>
         <li><strong>Unidade:</strong> <span id="usuario-unidade"></span><?= $unidade['nome_unidade'] ?></li>
+      </ul>
+      <ul>
+        <li><strong>Plano:</strong><span id="usuario-plano"></span><?= $plano['nome_plano'] ?></li> 
       </ul>
     </section>
   </main>

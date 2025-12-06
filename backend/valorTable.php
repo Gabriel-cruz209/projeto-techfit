@@ -111,7 +111,19 @@ class ValorTable {
             "id_plano" => null,
             "nome_plano" => null,
             "descricao_plano" => null,
-            "preco_plano"=> null,
+            "valor_plano"=> null,
+            "whereValue" => null
+        ];
+    }
+
+    public static function getPagamentos(){
+        return [
+            "id_pagamento" => null,
+            "numero_cartao_pagamento" => null,
+            "nome_cartao_pagamento" => null,
+            "ccv_cartao_pagamento" => null,
+            "validade_cartao_pagamento" => null,
+            "id_aluno" => null,
             "whereValue" => null
         ];
     }
