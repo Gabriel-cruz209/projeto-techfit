@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <h2>Cadastro</h2>
 
-        <form method="POST">
+        <form id="form_validacao" method="POST">
 
             <div class="form-group">
                 <label>Nome do Aluno</label>
@@ -105,13 +105,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="form-group">
-                <label>CPF</label>
-                <input type="text" name="cpf_aluno" maxlength="14" required>
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf_aluno" maxlength="14" required>
             </div>
 
             <div class="form-group">
-                <label>Telefone</label>
-                <input type="number" name="telefone_aluno" maxlength="15" required>
+                <label for="telefoneAluno">Telefone</label>
+                <input type="text" id="telefone" name="telefone_aluno" maxlength="15" required>
             </div>
 
             <div class="form-group">
@@ -185,6 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </main>
 
     <script src="../js/app.js"></script>
+    <script src="../js/regex.js"></script>
+    <script src="../js/validacoes.js"></script>
 </body>
 
 </html>

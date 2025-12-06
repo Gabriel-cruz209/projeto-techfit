@@ -91,7 +91,7 @@ namespace projetoTechfit;
                 <input id="email_aluno" name="email_aluno" type="email" value="<?=$aluno['email_aluno']?>" readonly="true" required>
 
                 <label for="telefone_aluno">Telefone</label>
-                <input id="telefone_aluno" name="telefone_aluno" type="tel" value="<?=$aluno['telefone_aluno']?>" readonly="true" required>
+                <input id="telefone" name="telefone_aluno" type="tel" value="<?=$aluno['telefone_aluno']?>" readonly="true" required>
 
                 <label for="aula">Escolha a aula</label>
                 <select id="aula" name="aula" required>

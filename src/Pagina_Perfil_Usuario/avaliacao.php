@@ -43,7 +43,7 @@
   <main class="pf-main">
     <section class="avaliacoes-list">
       <h2>Minhas Avaliações</h2>
-
+      <?php if($connAvaliacao->selectUnique("","id_aluno = :id_aluno","","","",['id_aluno'=>$id])): ?>
       <table id="tabela-avaliacoes" class="tabela-avaliacoes">
         <thead>
           <tr>
@@ -66,6 +66,11 @@
         <?php endforeach ?>
         </tbody>
       </table>
+      <?php else: ?>
+        <div class="mensagem">
+          Você não tem nenhuma avaliação fisica cadastrada
+        </div>
+      <?php endif ?>
     </section>
   </main>
 
