@@ -113,8 +113,6 @@ namespace projetoTechfit;
                         <?php endforeach ?>
                     </select>
                 </div>
-                
-
                 <button type="submit" class="btn-enviar">Enviar inscrição</button>
             </form>
         </div>

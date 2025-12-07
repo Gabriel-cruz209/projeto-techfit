@@ -169,6 +169,32 @@ class Connection
                     SELECT 1 FROM Funcionarios WHERE nome_funcionario = 'Gabriel Soares'
                 )
                 ");
+                self::$instancia->exec("
+                INSERT INTO Alunos (nome_aluno, cep_aluno, data_nascimento_aluno, cpf_aluno, telefone_aluno, email_aluno, senha_aluno, id_unidade)
+                SELECT
+                ('Eduardo Ribeiro', '13010-010', '2000-02-14', '101.202.303-44', '(19)90011-2233',
+                 'eduardo.ribeiro@email.com', 'senha001', 1)
+                FROM DUAL
+                WHERE NOT EXISTS (
+                SELECT 1 FROM Alunos WHERE nome_aluno = 'Eduardo Ribeiro'
+                )
+                ");
+                self::$instancia->exec("
+                INSERT INTO Aulas (data_aula, tipo_aula, id_unidade, descricao_aula) SELECT
+                ('2025-02-01 07:00:00', 'Musculacao', 1, 'Treino focado em hipertrofia utilizando maquinas e pesos livres')
+                FROM DUAL
+                WHERE NOT EXISTS (
+                SELECT 1 FROM Aulas WHERE tipo_aula = 'Musculação'
+                )
+                ");
+                self::$instancia->exec("
+                INSERT INTO Planos (nome_plano, valor_plano, descricao_plano) SELECT
+                ('Plano Premium', 159.90, 'Acesso total + aulas + personal trainer 1x por semana')
+                FROM DUAL
+                WHERE NOT EXISTS (
+                SELECT 1 FROM Planos WHERE nome_plano = 'Plano Premium'
+                )
+                ");
             } catch (PDOException $e) {
                 die("ERROR: " . $e->getMessage());
             }

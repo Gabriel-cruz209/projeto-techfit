@@ -1,112 +1,108 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap');
 
-/* === RESET E BASICS === */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Melhora o controle de tamanho dos elementos */
 }
 
 html {
-    font-size: 16px;
-    scroll-behavior: smooth; /* Rolagem suave para os links de âncora */
+    font-size: 16px; /* Base para unidades rem */
 }
 
 body {
     font-family: "Oswald", sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background-color: #f4f4f4; /* Fundo mais suave */
+    min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+    background-color: none; /* Um fundo sutil para o corpo */
 }
 
-/* === UTILS === */
+main {
+    flex-grow: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
+    display: flex;
+    flex-direction: row; /* Mantido, embora o .container ocupe tudo */
+}
+
+/* Classe utilitária para esconder elementos (CORRIGIDA) */
 .hidden {
-    display: none !important;
+    display: none !important; /* !important para garantir a sobreposição */
 }
 
-/* === HEADER === */
+/* --- HEADER (NOVO) --- */
 header {
-    background-color: #1a1a1a; /* Preto mais suave */
+    background-color: black;
+    /* box-shadow: 0 4px 10px -2px #CE002D; Sombra mais suave */
     width: 100%;
     color: white;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 40px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    align-items: center; /* Alinha verticalmente os itens do cabeçalho */
+    justify-content: space-between; /* Distribui o espaço automaticamente */
+    padding: 10px 40px; /* Espaçamento interno mais consistente */
 }
 
 .logo-academia {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 15px; /* Espaçamento entre logo e texto */
 }
 
 .logo-academia img {
     width: 70px;
-    height: auto;
+    height: auto; /* Mantém a proporção */
 }
 
 header h1 {
     font-size: 2.5rem;
-    text-shadow: 1px 1px 2px #ce002d;
+    text-shadow: 2px 2px 1px #CE002D;
 }
 
 .secoes {
     display: flex;
-    gap: 30px; /* Espaçamento ajustado */
+    gap: 60px; /* Espaçamento mais controlado */
 }
 
-.secoes > button {
-    font-size: 1.1rem; /* Tamanho ligeiramente menor */
+.secoes>button {
+    font-size: 1.3rem;
     color: white;
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid transparent; /* Base para o efeito hover */
     cursor: pointer;
     padding: 10px 5px;
-    transition: all 0.3s ease;
-    font-family: "Space Grotesk", sans-serif; /* Fonte para botões de navegação */
-    font-weight: 500;
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Transição mais fluida */
 }
 
-.secoes > button:hover {
-    color: #ce002d;
-    border-color: #ce002d;
-    transform: translateY(-2px);
+.secoes>button:hover {
+    transform: translateY(-3px);
+    border-color: #ffffff; /* Evita o uso de border-bottom direto */
 }
 
-/* --- MENU PERFIL --- */
+/* --- MENU PERFIL (NOVO) --- */
 .func-perfil {
     position: relative;
 }
 
 .perfil img {
-    width: 50px; /* Reduzido para melhor proporção */
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     cursor: pointer;
-    border: 3px solid #ce002d;
-    transition: border-color 0.3s ease;
-}
-
-.perfil img:hover {
-    border-color: #ffffff;
+    border: 2px solid #CE002D;
 }
 
 .secoes-perfil {
     display: none;
     position: absolute;
-    top: 65px; /* Ajustado */
+    top: 75px; 
     right: 0;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Sombra mais destacada */
-    width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 220px;
     z-index: 1000;
-    overflow: hidden;
+    overflow: hidden; /* Garante que os filhos respeitem o border-radius */
 }
 
 .secoes-perfil.show {
@@ -124,20 +120,18 @@ header h1 {
     text-decoration: none;
     color: #333;
     font-size: 1rem;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    font-family: "Space Grotesk", sans-serif;
+    transition: background-color 0.2s ease;
 }
 
 .secoes-perfil li a:hover {
-    background-color: #ce002d; /* Hover com cor do tema */
-    color: white;
+    background-color: #f5f5f5;
 }
 
 .secoes-perfil li a i {
     margin-right: 12px;
     width: 20px;
     text-align: center;
-    color: inherit; /* Herda a cor do link */
+    color: #666;
 }
 
 .secoes-perfil hr {
@@ -149,22 +143,16 @@ header h1 {
 .info-usuario {
     padding: 15px;
     font-size: 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.info-usuario strong {
-    display: block;
-    color: #111;
-    font-size: 1.1rem;
-    margin-bottom: 3px;
-    font-family: "Space Grotesk", sans-serif;
 }
 
 .info-usuario span {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #666;
-    font-family: "Space Grotesk", sans-serif;
+}
+
+.info-usuario strong {
+    color: #111;
 }
 
 /* === CORPO (LAYOUT PRINCIPAL) - MELHORIA! === */
