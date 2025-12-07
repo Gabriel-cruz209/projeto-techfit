@@ -9,7 +9,9 @@ $funcTable  = new ConnTables("Funcionarios");
 $aulaTable  = new ConnTables("Aulas");
 $unidTable  = new ConnTables("Unidades");
 $planoTable = new ConnTables("Planos"); // ADICIONADO
+$connPagamento = new ConnTables("pagamento");
 
+$pagamentos = $connPagamento->select();
 $alunos = $alunoTable->select();
 $funcionarios = $funcTable->select();
 $aulas = $aulaTable->select();
@@ -106,11 +108,40 @@ if (isset($_POST["deletar_aula_id"])) {
     $aulas = $aulaTable->select();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // DELETAR PLANO
+    if (isset($_POST['deletar_plano_id'])) {
+        $id = $_POST['deletar_plano_id'];
+        $delete['whereValue'] = $id;
+        $planoTable->delete($delete, "id_plano");
+        $msg = "Plano deletada com sucesso!";
+        $planos = $planoTable->select();
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // DELETAR UNIDADE
+    if (isset($_POST['deletar_unidade_id'])) {
+        $id = $_POST['deletar_unidade_id'];
+        $delete['whereValue'] = $id;
+        $unidTable->delete($delete, 'id_unidade');
+        $msg = "Plano deletada com sucesso!";
+        $unidades = $unidTable->select();
+    }
+
+}
+
+
 /* ---------------------- PEGAR ITEM PARA EDIÇÃO ----------------------- */
 
 $alunoParaEditar = null;
 $funcParaEditar = null;
 $aulaParaEditar = null;
+$unidadeParaEditar = null;
+$planoParaEditar = null;
+
 
 if (isset($_POST["editar_aluno_id"])) {
     foreach ($alunos as $a) {
@@ -138,6 +169,54 @@ if (isset($_POST["editar_aula_id"])) {
         }
     }
 }
+if (isset($_POST["editar_unidade_id"])) {
+    foreach ($unidades as $u) {
+        if ($u["id_unidade"] == $_POST["editar_unidade_id"]) {
+            $unidadeParaEditar = $u;
+            break;
+        }
+    }
+}
+
+if (isset($_POST["editar_plano_id"])) {
+    foreach ($planos as $p) {
+        if ($p["id_plano"] == $_POST["editar_plano_id"]) {
+            $planoParaEditar = $p;
+            break;
+        }
+    }
+}
+
+
+/* ---------------------- EDITAR UNIDADE ----------------------- */
+if (isset($_POST["action"]) && $_POST["action"] === "editar_unidade") {
+    $id = $_POST["id_unidade"];
+
+    $unidTable->update("id_unidade", $id, [
+        "nome_unidade" => $_POST["nome_unidade"],
+        "cep_unidade" => $_POST["cep_unidade"]
+    ]);
+
+    $msg = "Unidade atualizada com sucesso!";
+    $unidades = $unidTable->select();
+}
+
+/* ---------------------- EDITAR PLANO ----------------------- */
+if (isset($_POST["action"]) && $_POST["action"] === "editar_plano") {
+    $id = $_POST["id_plano"];
+
+    $planoTable->update("id_plano", $id, [
+        "nome_plano" => $_POST["nome_plano"],
+        "valor_plano" => $_POST["valor_plano"],
+        "descricao_plano" => $_POST["descricao_plano"]
+    ]);
+
+    $msg = "Plano atualizado com sucesso!";
+    $planos = $planoTable->select();
+}
+
+/* ---------------------- EDITAR PAGAMENTO ----------------------- */
+
 
 function dtLocal($dt)
 {
@@ -270,7 +349,40 @@ if (!empty($pesquisa)) {
                     <button>Salvar</button>
                 </form>
 
+            <?php elseif ($planoParaEditar): ?>
+                <form method="POST" id="EDIT">
+                    <input type="hidden" name="action" value="editar_plano">
+                    <input type="hidden" name="id_plano" value="<?= $planoParaEditar["id_plano"] ?>">
 
+                    <h3>Editar Plano</h3>
+
+                    <label>Nome do Plano:</label>
+                    <input type="text" name="nome_plano" value="<?= $planoParaEditar["nome_plano"] ?>">
+
+                    <label>Valor (R$):</label>
+                    <input type="number" step="0.01" name="valor_plano" value="<?= $planoParaEditar["valor_plano"] ?>">
+
+                    <label>Descrição:</label>
+                    <input type="text" name="descricao_plano" value="<?= $planoParaEditar["descricao_plano"] ?>">
+
+                    <button>Salvar</button>
+                </form>
+
+            <?php elseif ($unidadeParaEditar): ?>
+                <form method="POST" id="EDIT">
+                    <input type="hidden" name="action" value="editar_unidade">
+                    <input type="hidden" name="id_unidade" value="<?= $unidadeParaEditar["id_unidade"] ?>">
+
+                    <h3>Editar Unidade</h3>
+
+                    <label>Nome da Unidade:</label>
+                    <input type="text" name="nome_unidade" value="<?= $unidadeParaEditar["nome_unidade"] ?>">
+
+                    <label>CEP:</label>
+                    <input type="text" name="cep_unidade" value="<?= $unidadeParaEditar["cep_unidade"] ?>">
+
+                    <button>Salvar</button>
+                </form>
 
                 <!-- ================= FORM EDITAR FUNCIONÁRIO ================== -->
             <?php elseif ($funcParaEditar): ?>
@@ -539,6 +651,16 @@ if (!empty($pesquisa)) {
                             <td><?= $u["cep_unidade"] ?></td>
                             <td><?= $totalFunc ?></td>
                             <td><?= $totalAlunos ?></td>
+                            <td>
+                                <form method="POST" style="display:inline">
+                                    <input type="hidden" name="editar_unidade_id" value="<?= $u["id_unidade"] ?>">
+                                    <button type="submit" onclick="location.href='#EDIT'">Editar</button>
+                                </form>
+                                <form method="POST" style="display:inline" onsubmit="return confirm('Tem certeza que deseja deletar esta unidade?');">
+                                    <input type="hidden" name="deletar_unidade_id" value="<?= $u['id_unidade'] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
 
@@ -572,16 +694,21 @@ if (!empty($pesquisa)) {
                             <td><?= $p["nome_plano"] ?></td>
                             <td><?= $p["valor_plano"] ?? $p["preco_plano"] ?></td>
                             <td><?= $totalAlunos ?></td>
+                            <td>
+                                <form method="POST" style="display:inline">
+                                    <input type="hidden" name="editar_plano_id" value="<?= $p["id_plano"] ?>">
+                                    <button type="submit" onclick="location.href='#EDIT'">Editar</button>
+                                </form>
+                                <form method="POST" style="display:inline" onsubmit="return confirm('Tem certeza que deseja deletar este plano?');">
+                                    <input type="hidden" name="deletar_plano_id" value="<?= $p['id_plano'] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
 
                 </table>
             </div>
-            <?php
-            $connPagamento = new ConnTables("pagamentos");
-            $pagamentos = $connPagamento->select();
-            ?>
-
             <div class="hidden" id="PAGAMENTO">
                 <h2>Relatório de Pagamentos</h2>
                 <form method="GET" style="margin-bottom: 20px;">
