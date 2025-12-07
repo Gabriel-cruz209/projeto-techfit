@@ -1,26 +1,27 @@
 <?php
 
 namespace projetoTechfit;
-
+use DateTime;
 require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
 $plano;
 $aluno;
 $connAluno = new ConnTables("alunos");
-$connPlanos = new ConnTables("planos");
-$dadosP = $connPlanos->select();
-$dados = $connAluno->select();
+$connPlano = new ConnTables("planos");
+$connAssinam = new ConnTables("assinam");
+$connPagamento = new ConnTables("pagamento");
 $id = $_GET['id'];
-
-foreach($dados as $dado) {
-    if($dado['id_aluno'] == $id){
-      $aluno = $dado;
-      foreach($dadosP as $dadoP){
-        if($dado['id_plano']==$dadoP['id_plano']){
-          $plano = $dadoP;
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    foreach($connAssinam->select() as $dados) {
+        if($_POST['id_plano'] !== $dados['id_plano']) {
+            $assina['id_plano'] = $_POST['id_plano'];
+            foreach($connPagamento->select() as $dadosP) {
+                if($dadosP['id_aluno'] == $id) {
+                    $connAssinam->update('id_pagamento',$dadosP['id_pagamento'],$assina);
+                }
+            }   
         }
-      }
     }
-  }
+}
 
 ?>
 <!DOCTYPE html>
@@ -69,49 +70,45 @@ foreach($dados as $dado) {
             <form method="POST" action="processarPlano.php">
 
                 <div class="planos">
+                    <?php foreach($connPlano->select() as $dados): ?>
+                    <?php 
+                    $duracao = $dados['duracao_plano'];
 
+                    $dataInicio = new DateTime(); 
+                    $dataVencimento = (clone $dataInicio)->modify("+$duracao days"); 
+                    ?>
                     <label class="plano">
-                        <input type="radio" name="plano" value="mensal">
-                        <h3>Mensal</h3>
-                        <p>R$ 79,90 / mês</p>
+                        <input type="radio" name="plano" value="<?=$dados['id_plano']?>">
+                        <h3><?=$dados['nome_plano']?></h3>
+                        <p>R$ <?=$dados['preco_plano']?> / <?=$dataVencimento->format('m');?> <?php if($dataVencimento->format('m') == 1){echo "mês";}  else {echo "meses";} ?></p>
                     </label>
-
-                    <label class="plano">
-                        <input type="radio" name="plano" value="trimestral">
-                        <h3>Trimestral</h3>
-                        <p>R$ 199,90 / 3 meses</p>
-                    </label>
-
-                    <label class="plano">
-                        <input type="radio" name="plano" value="anual">
-                        <h3>Anual</h3>
-                        <p>R$ 699,90 / ano</p>
-                    </label>
-
+                    <?php endforeach ?>
                 </div>
 
                 <h2>Dados do Cartão</h2>
 
                 <div class="cartao-form">
+                    <?php if($connPagamento->selectUnique("","id_aluno = :id_aluno","","","",['id_aluno'=>$id])): ?>
+                    <?php foreach($connPagamento->select() as $dados): ?>
+                    <?php if($dados['id_aluno'] == $id): ?>
+                    <input type="hidden" name="id_pagamento" value="<?=$dados['id_pagamento']?>">
+                    <label for="num_cartao">Número do Cartão</label>
+                    <input id="num_cartao" type="text" name="numero_cartao_pagamento" maxlength="19" value="<?=$dados['numero_cartao_pagamento']?>" required>
 
-                    <label>Número do Cartão</label>
-                    <input type="text" name="numero_cartao" placeholder="0000 0000 0000 0000" required>
+                    <label>Nome Impresso no Cartão</label>
+                    <input type="text" name="nome_cartao_pagamento" value="<?=$dados['nome_cartao_pagamento']?>" required>
 
-                    <label>Nome no Cartão</label>
-                    <input type="text" name="nome_cartao" placeholder="Ex: João Silva" required>
-
-                    <div class="linha">
-                        <div style="flex:1;">
-                            <label>Validade</label>
-                            <input type="text" name="validade" placeholder="MM/AA" required>
-                        </div>
-
-                        <div style="flex:1;">
-                            <label>CVV</label>
-                            <input type="text" name="cvv" placeholder="000" required>
-                        </div>
-                    </div>
-
+                    <label for="val_cartao">Validade</label>
+                    <input id="val_num" type="text" name="validade_cartao_pagamento" maxlength="5" value="<?=$dados['validade_cartao_pagamento']?>" required>
+                    
+                    <label for="ccv_cartao">CCV</label>
+                    <input id="ccv_cartao" type="text" name="ccv_cartao_pagamento" maxlength="4" value="<?=$dados['ccv_cartao_pagamento']?>" required>
+                    
+                    <?php endif ?>
+                    <?php endforeach ?>
+                    <?php else: ?>
+                        <p>Não há nenhuma forma de pagamento cadastrada</p>
+                    <?php endif ?>
                 </div>
 
                 <button type="submit" class="btn-finalizar">Confirmar Plano</button>

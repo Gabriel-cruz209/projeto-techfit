@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <header>
         <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="TechFit Logo" style="cursor: pointer" onclick="inicioWeb('../../index.php')" >
         <h1>TECHFIT</h1>
+        <button onclick="inicioWeb('')"><img src="../../Arquivos/saida.png" alt="Botao-saida"></button>
     </header>
     <main class="container-login">
         <h2>Login</h2>

@@ -11,7 +11,9 @@
   $dadosU = $connUnidade->select();
   $dados = $connAluno->select();
   $id = $_GET['id'];
-
+  $aluno = '';
+  $unidade ='';
+  $plano= '';
   foreach($dados as $dado) {
     if($dado['id_aluno'] == $id){
       $aluno = $dado;
@@ -82,10 +84,12 @@
       <ul>
         <li><strong>CPF:</strong> <span id="usuario-cpf"><?=$aluno['cpf_aluno']?></span></li>
         <li><strong>Telefone:</strong> <span id="usuario-tel"><?=$aluno['telefone_aluno']?></span></li>
-        <li><strong>Unidade:</strong> <span id="usuario-unidade"></span><?= $unidade['nome_unidade'] ?></li>
-      </ul>
-      <ul>
-        <li><strong>Plano:</strong><span id="usuario-plano"></span><?= $plano['nome_plano'] ?></li> 
+        <li><strong>Unidade:</strong> <span id="usuario-unidade"></span><?=$unidade['nome_unidade']?></li>
+        <?php if($plano): ?>
+        <li><strong>Plano:</strong><span id="usuario-plano"></span><?=$plano['nome_plano']?></li>
+        <?php else: ?>
+        <li><strong>Plano:</strong><span id="usuario-plano"></span>Nenhum plano selecionado</li>
+        <?php endif ?>
       </ul>
     </section>
   </main>

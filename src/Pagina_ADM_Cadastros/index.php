@@ -75,8 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $aluno['email_aluno'] = $_POST['email_aluno'];
                 $aluno['senha_aluno'] = $_POST['senha_aluno'];
                 $aluno['cep_aluno'] = $_POST['cep_aluno'];
+                $aluno['id_unidade'] = $_POST['id_unidade'];
+                $aluno['id_plano'] = 0;
                 $connAluno->insert($aluno);
             }
+            break;
         case 'funcionarios':
             if ($_POST['senha_funcionario'] == $_POST['Csenha_funcionario']) {
                 $table = new ValorTable();
@@ -89,22 +92,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $funcionario['id_unidade'] = $_POST['id_unidade'];
                 $funcionario['nome_funcionario'] = $_POST['nome_funcionario'];
                 $funcionario['senha_funcionario'] = $_POST['senha_funcionario'];
-                $funcionario['tipo_funcionario'] = $_POST['tipo_funcioanrio'];
+                $funcionario['tipo_funcionario'] = $_POST['tipo_funcionario'];
                 $connFuncionario->insert($funcionario);
             }
+            break;
         case 'unidades':
             $table = new ValorTable();
             $unidade = $table->getUnidades();
             $unidade['cep_unidade'] = $_POST['cep_unidade'];
             $unidade['nome_unidade'] = $_POST['nome_unidade'];
             $connUnidade->insert($unidade);
+            break;
         case 'planos':
             $table = new ValorTable();
             $plano = $table->getPlanos();
             $plano['nome_plano'] = $_POST['nome_plano'];
-            $plano['valor_plano'] = $_POST['valor_plano'];
+            $plano['preco_plano'] = $_POST['valor_plano'];
+            $plano['duracao_plano'] = $_POST['duracao_plano'];
             $plano['descricao_plano'] = $_POST['descricao_plano'];
             $connPlano->insert($plano);
+            break;
     }
 }
 ?>
@@ -161,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-container">
                 <div class="hidden" id="Unidade">
-                    <form id="form_validacao" class="cadastro-form" method="post" action="#">
+                    <form class="cadastro-form form_validacao" method="post" action="#">
                         <input type="hidden" name="action" value="unidades">
                         <h3>Unidades</h3>
                         <label for="nome_unidade">Nome da Unidade</label>
@@ -175,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="hidden" id="Funcionario">
-                    <form id="form-funcionarios" class="cadastro-form" method="POST" action="#">
+                    <form class="cadastro-form form_validacao" method="POST" action="#">
                         <input type="hidden" name="action" value="funcionarios">
                         <h3>Funcionários</h3>
                         <label for="nome_funcionario">Nome</label>
@@ -184,8 +191,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="data_nascimento_funcionario">Data de Nascimento</label>
                         <input type="date" id="data_nascimento_funcionario" name="data_nascimento_funcionario" required>
 
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email_funcionario" required>
+                        <label for="email_funcionario">Email</label>
+                        <input type="email" id="email_funcionario" name="email_funcionario" required>
 
                         <label for="telefone">Telefone</label>
                         <input type="text" id="telefone" name="telefone_funcionario" required>
@@ -207,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <option value="">Selecione a unidade</option>
 
                             <?php foreach ($connUnidade->select() as $unidade): ?>
-                                <option value="<?= $unidade['id_unidade'] ?>">
+                                <option value="<?=$unidade['id_unidade']?>">
                                     <?= $unidade['nome_unidade'] ?>
                                 </option>
                             <?php endforeach; ?>
@@ -222,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="hidden" id="Aluno">
-                    <form id="form_validacao" class="cadastro-form" method="POST" action="#">
+                    <form class="cadastro-form form_validacao" method="POST" action="#">
                         <input type="hidden" name="action" value="alunos">
                         <h3>Alunos</h3>
                         <label for="nome_aluno">Nome</label>
@@ -254,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <option value="">Selecione a unidade</option>
 
                             <?php foreach ($connUnidade->select() as $unidade): ?>
-                                <option value="<?= $unidade['id_unidade'] ?>">
+                                <option value="<?=$unidade['id_unidade']?>">
                                     <?= $unidade['nome_unidade'] ?>
                                 </option>
                             <?php endforeach; ?>
@@ -289,7 +296,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <?php foreach ($connFuncionario->select() as $funcionario): ?>
                                 <?php if ($funcionario['tipo_funcionario'] == 'personal'): ?>
-                                    <option value="<?= $funcionario['id_funcionario'] ?>">
+                                    <option value="<?=$funcionario['id_funcionario']?>">
                                         <?= $funcionario['nome_funcionario'] ?>
                                     </option>
                                 <?php else: ?>
@@ -344,7 +351,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <?php foreach ($connFuncionario->select() as $funcionario): ?>
                                 <?php if ($funcionario['tipo_funcionario'] == 'personal'): ?>
-                                    <option value="<?= $funcionario['id_funcionario'] ?>">
+                                    <option value="<?=$funcionario['id_funcionario']?>">
                                         <?= $funcionario['nome_funcionario'] ?>
                                     </option>
                                 <?php else: ?>
@@ -373,7 +380,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <option value="">Selecione o Aluno</option>
 
                             <?php foreach ($connAluno->select() as $aluno): ?>
-                                <option value="<?= $aluno['id_aluno'] ?>">
+                                <option value="<?=$aluno['id_aluno']?>">
                                     <?= $aluno['nome_aluno'] ?>
                                 </option>
                             <?php endforeach; ?>
@@ -401,7 +408,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="hidden" id="Planos">
-                    <form id="form-avaliacoes" class="cadastro-form" method="POST" action="#">
+                    <form id="form-planos" class="cadastro-form" method="POST" action="#">
                         <input type="hidden" name="action" value="planos">
                         <h3>Dados do Plano</h3>
 
@@ -423,14 +430,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             placeholder="Ex: 99.90"
                             required>
 
-                        <label for="descricao_plano">Descrição do Plano</label>
+                        <label for="duracao_plano">Duração do plano em dias</label>
+                        <input type="number" id="duracao_plano" name="duracao_plano" required>
+
+                        <label for="descricao_plano">Descrição do Plano (Escreva entre virgulas)</label>
                         <input
                             id="descricao_plano"
                             name="descricao_plano"
                             maxlength="200"
                             placeholder="Descreva o plano..."
                             required>
-
                         <button type="submit">Cadastrar Plano</button>
                     </form>
                 </div>

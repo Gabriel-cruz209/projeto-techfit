@@ -1,5 +1,4 @@
 <?php
-
 namespace projetoTechfit;
 
 require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
@@ -9,7 +8,10 @@ $tables = new ValorTable();
 $connAluno = new ConnTables("alunos");
 $connUnidade = new ConnTables('unidades');
 $connPlano = new ConnTables('planos');
-$connPagamento = new ConnTables("pagamentos");
+$id_plano = '';
+if($_GET){
+    $id_plano = $_GET['id_plano'];
+}
 
 $msg = '';
 
@@ -33,25 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $alunos['telefone_aluno'] = $_POST['telefone_aluno'];
     $alunos['senha_aluno'] = $_POST['senha_aluno'];
     $alunos['id_unidade'] = $_POST['id_unidade'];
-    $alunos['id_plano'] = $_POST['id_plano']; // AQUI ESTAVA DANDO ERRO — AGORA FUNCIONA
+    $alunos['id_plano'] = $_POST['id_plano']; 
 
-    // PAGAMENTO
-    $pagamentos = $tables->getPagamentos();
-    $pagamentos['numero_cartao_pagamento'] = $_POST['numero_cartao_pagamento'];
-    $pagamentos['nome_cartao_pagamento'] = $_POST['nome_cartao_pagamento'];
-    $pagamentos['ccv_cartao_pagamento'] = $_POST['ccv_cartao_pagamento'];
-    $pagamentos['validade_cartao_pagamento'] = $_POST['validade_cartao_pagamento'];
+    
 
     // Se não houve erro até agora
     if ($msg == '') {
 
         if ($_POST['senha_aluno'] == $_POST['confirmar_senha']) {
-
             // Insere aluno
             $connAluno->insert($alunos);
-
-            // Insere pagamento
-            $connPagamento->insert($pagamentos);
+        
 
             $msg = "<h1 class='go'></h1>
                 <script>
@@ -80,14 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <header>
         <img src="../../Arquivos/LogoTechFit-removebg-preview.png" alt="Logo-Academia" style="cursor: pointer" onclick="inicioWeb('../../index.php')">
         <h1>TECHFIT</h1>
-        <button onclick="login('')"><img src="../../Arquivos/saida.png" alt="Botao-saida"></button>
+        <button onclick="inicioWeb('')"><img src="../../Arquivos/saida.png" alt="Botao-saida"></button>
     </header>
 
     <main class="container-cadastro">
 
         <h2>Cadastro</h2>
 
-        <form id="form_validacao" method="POST">
+        <form class="form_validacao" method="POST">
 
             <div class="form-group">
                 <label>Nome do Aluno</label>
@@ -131,19 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </select>
             </div>
 
-            <div class="form-group">
-                <label>Plano</label>
-                <select name="id_plano" required>
-                    <option value="">Selecione o Plano</option>
-
-                    <?php foreach ($connPlano->select() as $plano): ?>
-                        <option value="<?= $plano['id_plano'] ?>">
-                            <?= $plano['nome_plano'] ?> — R$ <?= $plano['valor_plano'] ?>
-                        </option>
-                    <?php endforeach; ?>
-
-                </select>
-            </div>
+            
 
             <div class="form-group">
                 <label>Criar Senha</label>
@@ -155,28 +137,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="password" name="confirmar_senha" required>
             </div>
 
-            <h2>Cadastro Forma de Pagamento</h2>
-
             <div class="form-group">
-                <label>Número do Cartão</label>
-                <input type="text" name="numero_cartao_pagamento" maxlength="19" placeholder="0000 0000 0000 0000" required>
-            </div>
+                <label>Plano</label>
+                <select  id="select_plano" name="id_plano" required>
+                    <option value="">Selecione o Plano</option>
 
-            <div class="form-group">
-                <label>Nome Impresso no Cartão</label>
-                <input type="text" name="nome_cartao_pagamento" required>
-            </div>
+                    <?php foreach ($connPlano->select() as $plano): ?>
+                        <?php if($plano['id_plano'] == $id_plano):  ?>
+                        <option value="<?=$plano['id_plano']?>" selected>
+                            <?= $plano['nome_plano'] ?> — R$ <?= $plano['preco_plano'] ?>
+                        </option>
+                        <?php else: ?>
+                        <option value="<?=$plano['id_plano']?>">
+                            <?= $plano['nome_plano'] ?> — R$ <?= $plano['preco_plano'] ?>
+                        </option>
+                        <?php endif ?>
+                    <?php endforeach; ?>
 
-            <div class="form-group">
-                <label>Validade</label>
-                <input type="text" name="validade_cartao_pagamento" maxlength="5" placeholder="MM/AA" required>
+                </select>
+                <div id="mensagem_plano"></div>
             </div>
-
-            <div class="form-group">
-                <label>CCV</label>
-                <input type="text" name="ccv_cartao_pagamento" maxlength="4" required>
-            </div>
-
             <button type="submit">Cadastrar</button>
         </form>
 

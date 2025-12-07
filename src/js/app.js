@@ -29,6 +29,7 @@ function sec(secao) {
   document.getElementById("Aulas").classList.add("hidden");
   document.getElementById("Funcionario").classList.add("hidden");
   document.getElementById("AvFisica").classList.add("hidden");
+  document.getElementById("Planos").classList.add("hidden");
 
   document.getElementById(secao).classList.remove("hidden");
 }
@@ -218,3 +219,31 @@ function curtir(buttonElement) {
     contagemEl.dataset.count = contagem;
   }
 }
+
+
+
+// pagina Cadastro, escolha usuario pagamento
+document.addEventListener("DOMContentLoaded", function() {
+
+    const select = document.getElementById("select_plano");
+    const mensagemDiv = document.getElementById("mensagem_plano");
+
+    function mostrarMensagem() {
+
+        // Evita duplicar a mensagem
+        if (mensagemDiv.innerHTML.trim() !== "") return;
+
+        mensagemDiv.innerHTML = `
+            <p style="margin-top: 8px; color: #ffffffff; font-size: 14px; background-color: #f00; border-radius: 16px; text-align: center;">
+              Complete o cadastro do pagamento no seu perfil para confirmar a sua assinatura!!!
+          </p>
+        `;
+    }
+
+    select.addEventListener("focus", mostrarMensagem);
+
+    select.addEventListener("change", mostrarMensagem);
+
+    window.addEventListener("DOMContentLoaded", mostrarMensagem);
+});
+        

@@ -7,11 +7,13 @@ require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
 $connAluno = new ConnTables("alunos");
 $connUnidade = new ConnTables('unidades');
 $connPlano = new ConnTables('planos');
-$connPagamento = new ConnTables("pagamentos");
+$connPagamento = new ConnTables("pagamento");
+$connAssinam = new ConnTables("assinam");
 $table = new ValorTable();
 $id = $_GET['id'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($_POST['senha'] == $_POST['Csenha']) {
+    $assina = $table->getAssinam();
     $aluno = $table->getAlunos();
     $aluno['id_aluno'] = $id;
     $aluno['cep_aluno'] = $_POST['cep'];
@@ -22,14 +24,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $aluno['senha_aluno'] = $_POST['senha'];
     $aluno['id_unidade'] = $_POST['unidade'];
     $aluno['id_plano'] = $_POST['id_plano'];
+    
     $connAluno->update('id_aluno', $id, $aluno);
     $pagamentos = $table->getPagamentos();
-    $pagamentos['id_aluno'] = $id;
-    $pagamentos['numero_cartao_pagamento'] = $_POST['numero_cartao_pagamento'];
-    $pagamentos['nome_cartao_pagamento'] = $_POST['nome_cartao_pagamento'];
-    $pagamentos['ccv_cartao_pagamento'] = $_POST['ccv_cartao_pagamento'];
-    $pagamentos['validade_cartao_pagamento'] = $_POST['validade_cartao_pagamento'];
-    $connPagamento->update('id_aluno', $id, $pagamentos);
+    if($_POST['action'] == 'inserir') {
+      $pagamentos['id_aluno'] = $id;
+      $pagamentos['numero_cartao_pagamento'] = $_POST['numero_cartao_pagamento'];
+      $pagamentos['nome_cartao_pagamento'] = $_POST['nome_cartao_pagamento'];
+      $pagamentos['ccv_cartao_pagamento'] = $_POST['ccv_cartao_pagamento'];
+      $pagamentos['validade_cartao_pagamento'] = $_POST['validade_cartao_pagamento'];
+      $connPagamento->insert($pagamentos);
+    }
+    if($_POST['action'] == 'atualizar'){
+      $pagamentos['id_aluno'] = $id;
+      $pagamentos['numero_cartao_pagamento'] = $_POST['numero_cartao_pagamento'];
+      $pagamentos['nome_cartao_pagamento'] = $_POST['nome_cartao_pagamento'];
+      $pagamentos['ccv_cartao_pagamento'] = $_POST['ccv_cartao_pagamento'];
+      $pagamentos['validade_cartao_pagamento'] = $_POST['validade_cartao_pagamento'];
+      $connPagamento->update('id_aluno', $id, $pagamentos);
+    }
+    
+    if($connAssinam->selectUnique("","id_plano = :id_plano","","","",['id_plano'=>$_POST['id_plano']])[0]) {
+      foreach($connAssinam->select() as $dados) {
+        if($_POST['id_plano'] !== $dados['id_plano']) {
+          $assina['id_plano'] = $_POST['id_plano'];
+          foreach($connPagamento->select() as $dadosP) {
+            if($dadosP['id_aluno'] == $id) {
+              $connAssinam->update('id_pagamento',$dadosP['id_pagamento'],$assina);
+            }
+          }
+        }
+      }
+    } else {
+      $assina['id_plano'] = $_POST['id_plano'];
+      foreach($connPagamento->select() as $dados) {
+        if($dados['id_aluno'] == $id) {
+          $assina['id_pagamento'] = $dados['id_pagamento'];
+          $connAssinam->insert($assina);
+        }
+      }
+    }
+   
+    
     echo "
       <script>
         setTimeout(function() {
@@ -81,78 +117,101 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <main class="pf-main">
     <section class="form-edit">
       <h2>Editar Perfil</h2>
-      <form id="form_validacao" method="POST">
+      <form class="form_validacao" method="POST">
         <?php foreach($connAluno->select() as $dados):?>
           <?php if($dados['id_aluno'] == $id): ?>
 
             <label for="nome">Nome</label>
-            <input id="nome" name="nome" type="text" value="<?= $dados['nome_aluno'] ?>" required>
+            <input id="nome" name="nome" type="text" value="<?=$dados['nome_aluno']?>" required>
 
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" value="<?= $dados['email_aluno'] ?>" required>
+            <input id="email" name="email" type="email" value="<?=$dados['email_aluno']?>" required>
 
             <label for="telefone">Telefone</label>
-            <input id="telefone" name="telefone" type="text" value="<?= $dados['telefone_aluno'] ?>" required>
+            <input id="telefone" name="telefone" type="text" value="<?=$dados['telefone_aluno']?>" required>
 
             <label for="cpf">CPF</label>
-            <input id="cpf" name="cpf" type="text" value="<?= $dados['cpf_aluno'] ?>" required>
+            <input id="cpf" name="cpf" type="text" value="<?=$dados['cpf_aluno']?>" required>
 
             <label for="cep">CEP</label>
-            <input id="cep" name="cep" type="text" value="<?= $dados['cep_aluno'] ?>">
+            <input id="cep" name="cep" type="text" value="<?=$dados['cep_aluno']?>">
 
             <!-- SELEÇÃO DE UNIDADE -->
             <label for="unidade">Unidade</label>
             <select id="unidade" name="unidade" required>
-              <option value="<?= $dados['id_unidade'] ?>">Unidade atual</option>
 
               <?php foreach ($connUnidade->select() as $uni): ?>
-                <option value="<?= $uni['id_unidade'] ?>">
-                  <?= $uni['nome_unidade'] ?>
+                <?php if($dados['id_unidade'] == $uni['id_unidade']): ?>
+                <option value="<?=$uni['id_unidade']?>" selected>
+                  <?=$uni['nome_unidade']?>
                 </option>
+                <?php else: ?>
+                <option value="<?=$uni['id_unidade']?>">
+                  <?=$uni['nome_unidade']?>
+                </option>
+                <?php endif ?>
               <?php endforeach; ?>
             </select>
 
             <!-- SELEÇÃO DE PLANO -->
             <label for="planoAluno">Plano</label>
             <select name="id_plano" id="id_plano" required>
-              <option value="<?= $dados['id_plano'] ?>">Plano atual</option>
-
+              <option value="" selected>
+                Nenhum plano selecionado!
+              </option>
               <?php foreach ($connPlano->select() as $plano): ?>
-                <option value="<?= $plano['id_plano'] ?>">
-                  <?= $plano['nome_plano'] ?> - R$ <?= $plano['valor_plano'] ?>
+                <?php if($dados['id_plano'] == $plano['id_plano']): ?>
+                <option value="<?=$plano['id_plano']?>" selected>
+                  <?=$plano['nome_plano']?> - R$ <?=$plano['preco_plano']?>
                 </option>
+                <?php else: ?>
+                
+                <option value="<?=$plano['id_plano']?>">
+                  <?=$plano['nome_plano']?> - R$ <?=$plano['preco_plano']?>
+                </option>
+                <?php endif ?>
               <?php endforeach; ?>
             </select>
 
             <!-- DADOS DO CARTÃO -->
             <h3>Informações do Cartão</h3>
+            <?php if($connPagamento->selectUnique("","id_aluno=:id_aluno","","","",['id_aluno' => $id])): ?>
+            <?php foreach($connPagamento->select() as $dadosP): ?>
+            <?php if($dadosP['id_aluno'] == $id): ?>
+             <input type="hidden" name="action" value="atualizar">
+            <label for="num_cartao">Número do Cartão</label>
+            <input id="num_cartao" type="text" name="numero_cartao_pagamento" maxlength="19" value="<?=$dadosP['numero_cartao_pagamento']?>" required>
 
+            <label>Nome Impresso no Cartão</label>
+            <input type="text" name="nome_cartao_pagamento" value="<?=$dadosP['nome_cartao_pagamento']?>" required>
+
+            <label for="val_cartao">Validade</label>
+            <input id="val_num" type="text" name="validade_cartao_pagamento" maxlength="5" value="<?=$dadosP['validade_cartao_pagamento']?>" required>
             
-            <label for="numero_cartao_pagamento">Número do cartão</label>
-            <input id="numero_cartao_pagamento" name="numero_cartao_pagamento"
-              type="text" maxlength="16"
-              value="<?= $dadosPagamento['numero_cartao_pagamento'] ?? '' ?>" required>
+            <label for="ccv_cartao">CCV</label>
+            <input id="ccv_cartao" type="text" name="ccv_cartao_pagamento" maxlength="4" value="<?=$dadosP['ccv_cartao_pagamento']?>" required>
+            <?php endif ?>
+            <?php endforeach ?>
+            <?php else: ?>
+            <input type="hidden" name="action" value="inserir">
+            <label for="num_cartao">Número do Cartão</label>
+            <input id="num_cartao" type="text" name="numero_cartao_pagamento" maxlength="19" placeholder="0000 0000 0000 0000" required>
 
-            <label for="nome_cartao_pagamento">Nome no cartão</label>
-            <input id="nome_cartao_pagamento" name="nome_cartao_pagamento"
-              type="text" value="<?= $dadosPagamento['nome_cartao_pagamento'] ?? '' ?>" required>
+            <label>Nome Impresso no Cartão</label>
+            <input type="text" name="nome_cartao_pagamento" required>
 
-            <label for="ccv_cartao_pagamento">CCV</label>
-            <input id="ccv_cartao_pagamento" name="ccv_cartao_pagamento"
-              type="text" maxlength="3"
-              value="<?= $dadosPagamento['ccv_cartao_pagamento'] ?? '' ?>" required>
-
-            <label for="validade_cartao_pagamento">Validade</label>
-            <input id="validade_cartao_pagamento" name="validade_cartao_pagamento"
-              type="month" value="<?= $dadosPagamento['validade_cartao_pagamento'] ?? '' ?>" required>
-
-
+            <label for="val_cartao">Validade</label>
+            <input id="val_num" type="text" name="validade_cartao_pagamento" maxlength="5" placeholder="MM/AA" required>
+            
+            <label for="ccv_cartao">CCV</label>
+            <input id="ccv_cartao" type="text" name="ccv_cartao_pagamento" maxlength="4" required>
+            <?php endif ?>
             <!-- SENHAS -->
             <label for="senha">Senha</label>
-            <input id="senha" name="senha" type="password" value="<?= $dados['senha_aluno'] ?>">
+            <input id="senha" name="senha" type="password" value="<?=$dados['senha_aluno']?>">
 
             <label for="Csenha">Confirmar senha</label>
-            <input id="Csenha" name="Csenha" type="password" value="<?= $dados['senha_aluno'] ?>">
+            <input id="Csenha" name="Csenha" type="password" value="<?=$dados['senha_aluno']?>">
 
             <button class="btn" type="submit">Salvar Alterações</button>
 

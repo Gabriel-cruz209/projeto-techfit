@@ -141,7 +141,16 @@ class Connection
                     id_plano int not null PRIMARY KEY auto_increment,
                     nome_plano varchar(100) not null,
                     valor_plano decimal(10, 2) not null,
+                    duracao_plano int not null,
                     descricao_plano varchar(200) not null
+                );
+                ");
+                self::$instancia->exec("
+                CREATE TABLE IF NOT EXISTS assinam (
+                    id_pagamento int not null,
+                    id_plano int not null,
+                    CONSTRAINT fk_assinam_pagamento FOREIGN KEY (id_pagamento) REFERENCES pagamento (id_pagamento),
+                    CONSTRAINT fk_assinam_plano FOREIGN KEY (id_plano) REFERENCES planos (id_plano)
                 );
                 ");
                 self::$instancia->exec("

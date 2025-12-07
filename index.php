@@ -1,5 +1,7 @@
 <?php
-
+    namespace projetoTechfit;
+    require_once __DIR__ . "\\backend\\connTables.php";
+    $connPlano = new ConnTables("planos");
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -60,89 +62,33 @@
             <div class="container">
                 <h2>Planos</h2>
                 <div class="cards">
+                    <?php foreach($connPlano->select() as $dados): ?>
+                    <?php $descricaos = explode(",",$dados['descricao_plano']) ?>
                     <div class="card">
                         <div class="card-content">
                             <div class="title">
-                                <h1>BASICO</h1>
-                                <h3>Para começar</h3>
+                                <h1><?=$dados['nome_plano']?></h1>
+                                <h3>DNA - TechFit</h3>
                             </div>
                             <div class="content">
                                <ul class="beneficios">
-                                    <li class="item">Acesso livre à unidade local</li>
-                                    <li class="item">Treinos básicos com acompanhamento inicial</li>
-                                    <li class="item">Horário livre em período comercial</li>
-                                    <li class="item">Acesso aos equipamentos principais</li>
-                                    <li class="item">Avaliação física inicial gratuita</li>
+                                    <?php foreach($descricaos as $descricao): ?>
+                                    <li class="item"><?=trim($descricao)?></li>
+                                    <?php endforeach ?>
                                 </ul>
                                 <div class="price-details">
                                     <p class="price">
                                         <span>
                                             R$
                                         </span>
-                                        69,99
+                                        <?=$dados['preco_plano']?>
                                     </p>
-                                    <button>Assinar</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="title">
-                                <h1>AVANÇADO</h1>
-                                <h3>Para disfrutar da academia</h3>
-                            </div>
-                            <div class="content">
-                               <ul class="beneficios">
-                                    <li class="item">Acesso a todas as unidades TechFit</li>
-                                    <li class="item">Treinos personalizados com acompanhamento mensal</li>
-                                    <li class="item">Consultoria nutricional online</li>
-                                    <li class="item">Participação em aulas coletivas exclusivas</li>
-                                    <li class="item">Descontos em suplementos e produtos parceiros</li>
-                                    <li class="item">Prioridade no agendamento de horários</li>
-                                </ul>
-                                <div class="price-details">
-                                    <p class="price">
-                                        <span>
-                                            R$
-                                        </span>
-                                        105,99
-                                    </p>
-                                    <button>Assinar</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="title">
-                                <h1>FAMILIA</h1>
-                                <h3>Para toda familia</h3>
-                            </div>
-                            <div class="content">
-                                <ul class="beneficios">
-                                    <li class="item">Plano compartilhado para até 4 pessoas</li>
-                                    <li class="item">Acesso total a todas as unidades</li>
-                                    <li class="item">Treinos personalizados para cada membro</li>
-                                    <li class="item">Consultoria nutricional familiar</li>
-                                    <li class="item">Descontos em planos anuais e eventos TechFit</li>
-                                    <li class="item">Acesso ilimitado a aulas coletivas</li>
-                                    <li class="item">Área exclusiva de lazer e descanso</li>
-                                </ul>
-                                <div class="price-details">
-                                    <p class="price">
-                                        <span>
-                                            R$
-                                        </span>
-                                        149,99
-                                    </p>
-                                    <button>Assinar</button>
+                                    <button onclick="cadastro('?id_plano=<?=$dados['id_plano']?>')">Assinar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php endforeach ?>
                 </div>
             </div>
         </section>

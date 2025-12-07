@@ -46,7 +46,7 @@
             <h2>Instrutores / Personal Trainers</h2>
             <div class="lista-personais">
                 <?php foreach($connFuncionario->select() as $dados): ?>
-                <?php if($dados['tipo_funcionario']=='Personal'): ?>
+                <?php if($dados['tipo_funcionario']=='personal'): ?>
                 <article class="personal">
                     <img src="/Arquivos/perfil-removebg-preview.png" alt="Personal">
                     <h3><?=$dados['nome_funcionario']?></h3>

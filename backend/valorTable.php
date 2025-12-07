@@ -111,7 +111,8 @@ class ValorTable {
             "id_plano" => null,
             "nome_plano" => null,
             "descricao_plano" => null,
-            "valor_plano"=> null,
+            "preco_plano"=> null,
+            "duracao_plano"=> null,
             "whereValue" => null
         ];
     }
@@ -125,6 +126,12 @@ class ValorTable {
             "validade_cartao_pagamento" => null,
             "id_aluno" => null,
             "whereValue" => null
+        ];
+    }
+    public static function getAssinam() {
+        return [
+            'id_pagamento' => null,
+            'id_plano' => null
         ];
     }
 }
