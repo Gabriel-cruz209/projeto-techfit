@@ -120,3 +120,22 @@ header > img{
   .form-inscricao{ padding: 16px; }
   container{width: 100%;}
 }
+
+.go {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://i.pinimg.com/originals/8a/c1/29/8ac12962c05648c55ca85771f4a69b2d.gif"); /* Substitua pelo caminho real do seu GIF */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100px 100px;
+}

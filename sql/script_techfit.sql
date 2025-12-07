@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Planos (
 );
 CREATE TABLE IF NOT EXISTS Pagamento (
 	id_pagamento int not null PRIMARY KEY auto_increment,
-	numero_cartao_pagamento int not null,
+	numero_cartao_pagamento varchar(30) not null,
 	nome_cartao_pagamento varchar(100) not null,
 	ccv_cartao_pagamento int not null,
 	validade_cartao_pagamento date not null,
@@ -151,7 +151,7 @@ SELECT * FROM Funcionarios;
 
 INSERT INTO Alunos (nome_aluno, cep_aluno, data_nascimento_aluno, cpf_aluno, telefone_aluno, email_aluno, senha_aluno, id_unidade)
 VALUES
-('Eduardo Ribeiro', '13010-010', '2000-02-14', '101.202.303-44', '(19)90011-2233', 'eduardo.ribeiro@email.com', 'senha001', 4),
+c,
 ('Fernanda Souza', '13120-020', '2001-07-19', '202.303.404-55', '(19)91122-3344', 'fernanda.souza@email.com', 'senha002', 8),
 ('Marcelo Dias', '13230-030', '2002-11-03', '303.404.505-66', '(19)92233-4455', 'marcelo.dias@email.com', 'senha003', 11),
 ('Patrícia Gomes', '13340-040', '2000-05-29', '404.505.606-77', '(19)93344-5566', 'patricia.gomes@email.com', 'senha004', 2),

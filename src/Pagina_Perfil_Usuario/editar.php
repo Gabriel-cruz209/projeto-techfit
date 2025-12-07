@@ -162,12 +162,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <?php foreach ($connPlano->select() as $plano): ?>
                 <?php if($dados['id_plano'] == $plano['id_plano']): ?>
                 <option value="<?=$plano['id_plano']?>" selected>
-                  <?=$plano['nome_plano']?> - R$ <?=$plano['preco_plano']?>
+                  <?=$plano['nome_plano']?> - R$ <?=$plano['valor_plano']?>
                 </option>
                 <?php else: ?>
                 
                 <option value="<?=$plano['id_plano']?>">
-                  <?=$plano['nome_plano']?> - R$ <?=$plano['preco_plano']?>
+                  <?=$plano['nome_plano']?> - R$ <?=$plano['valor_plano']?>
                 </option>
                 <?php endif ?>
               <?php endforeach; ?>

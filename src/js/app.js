@@ -38,6 +38,9 @@ function s(secao) {
   document.getElementById("AULA").classList.add("hidden");
   document.getElementById("ALUNO").classList.add("hidden");
   document.getElementById("FUNCIONARIO").classList.add("hidden");
+  document.getElementById("PLANO").classList.add("hidden");
+  document.getElementById("PAGAMENTO").classList.add("hidden");
+  document.getElementById("UNIDADE").classList.add("hidden");
 
   document.getElementById(secao).classList.remove("hidden");
 }
@@ -246,4 +249,141 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.addEventListener("DOMContentLoaded", mostrarMensagem);
 });
-        
+      
+document.getElementById("pesquisa").addEventListener("input", function () {
+    let filtro = this.value.toLowerCase();
+
+    const abas = ["ALUNO"];
+
+    let abaAtiva = abas.find(aba => {
+        let div = document.getElementById(aba);
+        return div && div.style.display !== "none";
+    });
+
+    if (!abaAtiva) return;
+
+    let tabela = document.querySelector(`#${abaAtiva} table`);
+    if (!tabela) return;
+
+    let linhas = tabela.querySelectorAll("tr:not(:first-child)");
+
+    linhas.forEach(linha => {
+        let texto = linha.textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});
+
+document.getElementById("pesquisa2").addEventListener("input", function () {
+    let filtro = this.value.toLowerCase();
+
+    const abas = ["FUNCIONARIO"];
+
+    let abaAtiva = abas.find(aba => {
+        let div = document.getElementById(aba);
+        return div && div.style.display !== "none";
+    });
+
+    if (!abaAtiva) return;
+
+    let tabela = document.querySelector(`#${abaAtiva} table`);
+    if (!tabela) return;
+
+    let linhas = tabela.querySelectorAll("tr:not(:first-child)");
+
+    linhas.forEach(linha => {
+        let texto = linha.textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});
+
+document.getElementById("pesquisa3").addEventListener("input", function () {
+    let filtro = this.value.toLowerCase();
+
+    const abas = ["AULA"];
+
+    let abaAtiva = abas.find(aba => {
+        let div = document.getElementById(aba);
+        return div && div.style.display !== "none";
+    });
+
+    if (!abaAtiva) return;
+
+    let tabela = document.querySelector(`#${abaAtiva} table`);
+    if (!tabela) return;
+
+    let linhas = tabela.querySelectorAll("tr:not(:first-child)");
+
+    linhas.forEach(linha => {
+        let texto = linha.textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});
+
+document.getElementById("pesquisa4").addEventListener("input", function () {
+    let filtro = this.value.toLowerCase();
+
+    const abas = ["UNIDADE"];
+
+    let abaAtiva = abas.find(aba => {
+        let div = document.getElementById(aba);
+        return div && div.style.display !== "none";
+    });
+
+    if (!abaAtiva) return;
+
+    let tabela = document.querySelector(`#${abaAtiva} table`);
+    if (!tabela) return;
+
+    let linhas = tabela.querySelectorAll("tr:not(:first-child)");
+
+    linhas.forEach(linha => {
+        let texto = linha.textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});
+
+document.getElementById("pesquisa5").addEventListener("input", function () {
+    let filtro = this.value.toLowerCase();
+
+    const abas = ["PLANO"];
+
+    let abaAtiva = abas.find(aba => {
+        let div = document.getElementById(aba);
+        return div && div.style.display !== "none";
+    });
+
+    if (!abaAtiva) return;
+
+    let tabela = document.querySelector(`#${abaAtiva} table`);
+    if (!tabela) return;
+
+    let linhas = tabela.querySelectorAll("tr:not(:first-child)");
+
+    linhas.forEach(linha => {
+        let texto = linha.textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});
+
+document.getElementById("pesquisa6").addEventListener("input", function () {
+    let filtro = this.value.toLowerCase();
+
+    const abas = ["PAGAMENTO"];
+
+    let abaAtiva = abas.find(aba => {
+        let div = document.getElementById(aba);
+        return div && div.style.display !== "none";
+    });
+
+    if (!abaAtiva) return;
+
+    let tabela = document.querySelector(`#${abaAtiva} table`);
+    if (!tabela) return;
+
+    let linhas = tabela.querySelectorAll("tr:not(:first-child)");
+
+    linhas.forEach(linha => {
+        let texto = linha.textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? "" : "none";
+    });
+});

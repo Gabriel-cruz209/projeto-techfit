@@ -81,7 +81,7 @@
                                         <span>
                                             R$
                                         </span>
-                                        <?=$dados['preco_plano']?>
+                                        <?=$dados['valor_plano']?>
                                     </p>
                                     <button onclick="cadastro('?id_plano=<?=$dados['id_plano']?>')">Assinar</button>
                                 </div>

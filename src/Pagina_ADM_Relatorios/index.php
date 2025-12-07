@@ -144,6 +144,27 @@ function dtLocal($dt)
     return str_replace(" ", "T", substr($dt, 0, 16));
 }
 
+/* ================= FILTRO DE PESQUISA ================= */
+$pesquisa = strtolower($_GET['pesquisa'] ?? '');
+
+if (!empty($pesquisa)) {
+
+    // Filtrar alunos pelo nome
+    $alunos = array_filter($alunos, function ($a) use ($pesquisa) {
+        return strpos(strtolower($a["nome_aluno"]), $pesquisa) !== false;
+    });
+
+    // Filtrar funcionários
+    $funcionarios = array_filter($funcionarios, function ($f) use ($pesquisa) {
+        return strpos(strtolower($f["nome_funcionario"]), $pesquisa) !== false;
+    });
+
+    // Filtrar aulas (tipo de aula)
+    $aulas = array_filter($aulas, function ($au) use ($pesquisa) {
+        return strpos(strtolower($au["tipo_aula"]), $pesquisa) !== false;
+    });
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -185,10 +206,12 @@ function dtLocal($dt)
     <div class="corpo">
         <div class="Filtro">
             <div class="sec">
-                <button onclick="location.href='#ALUNO'">ALUNO</button>
-                <button onclick="location.href='#AULA'">AULA</button>
-                <button onclick="location.href='#FUNCIONARIO'">FUNCIONARIO</button>
-                <button onclick="location.href='#EDIT'">EDITAR</button>
+                <button onclick="s('ALUNO')">ALUNO</button>
+                <button onclick="s('AULA')">AULA</button>
+                <button onclick="s('FUNCIONARIO')">FUNCIONARIO</button>
+                <button onclick="s('UNIDADE')">UNIDADES</button>
+                <button onclick="s('PLANO')">PLANOS</button>
+                <button onclick="s('PAGAMENTO')">PAGAMENTOS</button>
             </div>
         </div>
         <main>
@@ -329,23 +352,16 @@ function dtLocal($dt)
 
 
             <!-- ================= TABELAS ================== -->
-            <div id="ALUNO">
+            <div class="hidden" id="ALUNO">
                 <h2>Lista de Alunos</h2>
-
-                <!-- ================= FILTRO POR PLANO ================= -->
-                <form method="GET" style="margin-bottom: 15px;">
-                    <label><strong>Filtrar por Plano:</strong></label>
-                    <select name="filtro_plano" onchange="this.form.submit()">
-                        <option value="">Todos</option>
-                        <?php foreach ($planos as $p): ?>
-                            <option value="<?= $p["id_plano"] ?>"
-                                <?= (isset($_GET["filtro_plano"]) && $_GET["filtro_plano"] == $p["id_plano"]) ? "selected" : "" ?>>
-                                <?= $p["nome_plano"] ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                <!-- ================= BARRA DE PESQUISA ================= -->
+                <form method="GET" style="margin-bottom: 20px;">
+                    <input
+                        type="text"
+                        id="pesquisa"
+                        placeholder="Pesquisar por nome..."
+                        style="padding: 8px; width: 250px; margin-bottom: 20px">
                 </form>
-
                 <?php
                 // ================== FILTRO APLICADO ==================
                 $alunosFiltrados = $alunos;
@@ -409,8 +425,15 @@ function dtLocal($dt)
                 </table>
             </div>
 
-            <div id="FUNCIONARIO">
+            <div class="hidden" id="FUNCIONARIO">
                 <h2>Lista de Funcionários</h2>
+                <form method="GET" style="margin-bottom: 20px;">
+                    <input
+                        type="text"
+                        id="pesquisa2"
+                        placeholder="Pesquisar por nome..."
+                        style="padding: 8px; width: 250px; margin-bottom: 20px">
+                </form>
                 <table border="1">
                     <tr>
                         <th>ID</th>
@@ -442,8 +465,15 @@ function dtLocal($dt)
                     <?php endforeach; ?>
                 </table>
             </div>
-            <div id="AULA">
+            <div class="hidden" id="AULA">
                 <h2>Lista de Aulas</h2>
+                <form method="GET" style="margin-bottom: 20px;">
+                    <input
+                        type="text"
+                        id="pesquisa3"
+                        placeholder="Pesquisar por nome..."
+                        style="padding: 8px; width: 250px; margin-bottom: 20px">
+                </form>
                 <table border="1">
                     <tr>
                         <th>ID</th>
@@ -473,6 +503,138 @@ function dtLocal($dt)
                     <?php endforeach; ?>
                 </table>
             </div>
+            <div class="hidden" id="UNIDADE">
+                <h2>Lista de Unidades</h2>
+                <form method="GET" style="margin-bottom: 20px;">
+                    <input
+                        type="text"
+                        id="pesquisa4"
+                        placeholder="Pesquisar por nome..."
+                        style="padding: 8px; width: 250px; margin-bottom: 20px">
+                </form>
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome da Unidade</th>
+                        <th>CEP</th>
+                        <th>Total de Funcionários</th>
+                        <th>Total de Alunos</th>
+                    </tr>
+
+                    <?php foreach ($unidades as $u): ?>
+                        <?php
+                        // Contagem de funcionários por unidade
+                        $totalFunc = count(array_filter($funcionarios, function ($f) use ($u) {
+                            return $f["id_unidade"] == $u["id_unidade"];
+                        }));
+
+                        // Contagem de alunos por unidade
+                        $totalAlunos = count(array_filter($alunos, function ($a) use ($u) {
+                            return $a["id_unidade"] == $u["id_unidade"];
+                        }));
+                        ?>
+                        <tr>
+                            <td><?= $u["id_unidade"] ?></td>
+                            <td><?= $u["nome_unidade"] ?></td>
+                            <td><?= $u["cep_unidade"] ?></td>
+                            <td><?= $totalFunc ?></td>
+                            <td><?= $totalAlunos ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                </table>
+            </div>
+            <div class="hidden" id="PLANO">
+                <h2>Lista de Planos</h2>
+                <form method="GET" style="margin-bottom: 20px;">
+                    <input
+                        type="text"
+                        id="pesquisa5"
+                        placeholder="Pesquisar por nome..."
+                        style="padding: 8px; width: 250px; margin-bottom: 20px">
+                </form>
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Valor (R$)</th>
+                        <th>Total de Alunos</th>
+                    </tr>
+
+                    <?php foreach ($planos as $p): ?>
+                        <?php
+                        $totalAlunos = count(array_filter($alunos, function ($a) use ($p) {
+                            return isset($a["id_plano"]) && $a["id_plano"] == $p["id_plano"];
+                        }));
+                        ?>
+                        <tr>
+                            <td><?= $p["id_plano"] ?></td>
+                            <td><?= $p["nome_plano"] ?></td>
+                            <td><?= $p["valor_plano"] ?? $p["preco_plano"] ?></td>
+                            <td><?= $totalAlunos ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                </table>
+            </div>
+            <?php
+            $connPagamento = new ConnTables("pagamentos");
+            $pagamentos = $connPagamento->select();
+            ?>
+
+            <div class="hidden" id="PAGAMENTO">
+                <h2>Relatório de Pagamentos</h2>
+                <form method="GET" style="margin-bottom: 20px;">
+                    <input
+                        type="text"
+                        id="pesquisa6"
+                        placeholder="Pesquisar por nome..."
+                        style="padding: 8px; width: 250px; margin-bottom: 20px">
+                </form>
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Aluno</th>
+                        <th>Plano</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                    </tr>
+
+                    <?php foreach ($pagamentos as $pg): ?>
+                        <?php
+                        // Nome do aluno
+                        $alunoNome = "—";
+                        foreach ($alunos as $a) {
+                            if ($a["id_aluno"] == $pg["id_aluno"]) {
+                                $alunoNome = $a["nome_aluno"];
+                                break;
+                            }
+                        }
+
+                        // Nome do plano
+                        $planoNome = "—";
+                        $idPlano = $a["id_plano"] ?? null;
+                        if ($idPlano !== null) {
+                            foreach ($planos as $p) {
+                                if ($p["id_plano"] == $idPlano) {
+                                    $nomePlano = $p["nome_plano"];
+                                    break;
+                                }
+                            }
+                        }
+                        ?>
+                        <tr>
+                            <td><?= $pg["id_pagamento"] ?></td>
+                            <td><?= $alunoNome ?></td>
+                            <td><?= $planoNome ?></td>
+                            <td>R$ <?= $pg["valor_pagamento"] ?? '' ?></td>
+                            <td><?= $pg["data_pagamento"] ?? '' ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                </table>
+            </div>
+
         </main>
     </div>
     <footer id="tabela-web-footer">
