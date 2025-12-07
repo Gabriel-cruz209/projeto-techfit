@@ -36,7 +36,16 @@ class Connection
                         cep_unidade varchar(9) not null,
                         nome_unidade varchar(100) not null,
                         id_unidade int not null PRIMARY KEY auto_increment
-                    )");
+                        )");
+                self::$instancia->exec("
+                    CREATE TABLE IF NOT EXISTS Planos (
+                        id_plano int not null PRIMARY KEY auto_increment,
+                        nome_plano varchar(100) not null,
+                        valor_plano decimal(10, 2) not null,
+                        duracao_plano int not null,
+                        descricao_plano varchar(200) not null
+                    );
+                ");
                 self::$instancia->exec("
                     CREATE TABLE IF NOT EXISTS Funcionarios (
                         cep_funcionario varchar(9) not null,
@@ -90,6 +99,7 @@ class Connection
                     "
                 CREATE TABLE IF NOT EXISTS Comunicados (
 	            informacao_comunicado varchar(300) not null,
+                tipo_comunicado varchar(128) not null,
 	            titulo_comunicado varchar(50) not null,
 	            id_comunicado int not null PRIMARY KEY auto_increment)"
                 );
@@ -128,21 +138,12 @@ class Connection
                 self::$instancia->exec("
                 CREATE TABLE IF NOT EXISTS Pagamento (
                     id_pagamento int not null PRIMARY KEY auto_increment,
-                    numero_cartao_pagamento int not null,
+                    numero_cartao_pagamento VARCHAR(19),
                     nome_cartao_pagamento varchar(100) not null,
                     ccv_cartao_pagamento int not null,
-                    validade_cartao_pagamento date not null,
+                    validade_cartao_pagamento VARCHAR(5),
                     id_aluno int not null,
                     CONSTRAINT fk_id_aluno_pagamento FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
-                );
-                ");
-                self::$instancia->exec("
-                CREATE TABLE IF NOT EXISTS Planos (
-                    id_plano int not null PRIMARY KEY auto_increment,
-                    nome_plano varchar(100) not null,
-                    valor_plano decimal(10, 2) not null,
-                    duracao_plano int not null,
-                    descricao_plano varchar(200) not null
                 );
                 ");
                 self::$instancia->exec("
@@ -170,30 +171,16 @@ class Connection
                 )
                 ");
                 self::$instancia->exec("
-                INSERT INTO Alunos (nome_aluno, cep_aluno, data_nascimento_aluno, cpf_aluno, telefone_aluno, email_aluno, senha_aluno, id_unidade)
-                SELECT
-                ('Eduardo Ribeiro', '13010-010', '2000-02-14', '101.202.303-44', '(19)90011-2233',
-                 'eduardo.ribeiro@email.com', 'senha001', 1)
-                FROM DUAL
-                WHERE NOT EXISTS (
-                SELECT 1 FROM Alunos WHERE nome_aluno = 'Eduardo Ribeiro'
-                )
-                ");
-                self::$instancia->exec("
-                INSERT INTO Aulas (data_aula, tipo_aula, id_unidade, descricao_aula) SELECT
-                ('2025-02-01 07:00:00', 'Musculacao', 1, 'Treino focado em hipertrofia utilizando maquinas e pesos livres')
-                FROM DUAL
-                WHERE NOT EXISTS (
-                SELECT 1 FROM Aulas WHERE tipo_aula = 'Musculação'
-                )
-                ");
-                self::$instancia->exec("
-                INSERT INTO Planos (nome_plano, valor_plano, descricao_plano) SELECT
-                ('Plano Premium', 159.90, 'Acesso total + aulas + personal trainer 1x por semana')
-                FROM DUAL
-                WHERE NOT EXISTS (
-                SELECT 1 FROM Planos WHERE nome_plano = 'Plano Premium'
-                )
+                    INSERT INTO Planos (nome_plano, valor_plano,duracao_plano, descricao_plano)
+                    SELECT
+                        'Plano Premium',
+                        159.90,
+                        60,
+                        'Acesso total , aulas , personal trainer 1x por semana'
+                    FROM DUAL
+                    WHERE NOT EXISTS (
+                        SELECT 1 FROM Planos WHERE nome_plano = 'Plano Premium'
+                    )
                 ");
             } catch (PDOException $e) {
                 die("ERROR: " . $e->getMessage());

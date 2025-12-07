@@ -1,5 +1,6 @@
 <?php
     namespace projetoTechfit;
+    use DateTime;
     require_once __DIR__ . "\\backend\\connTables.php";
     $connPlano = new ConnTables("planos");
 ?>
@@ -64,11 +65,27 @@
                 <div class="cards">
                     <?php foreach($connPlano->select() as $dados): ?>
                     <?php $descricaos = explode(",",$dados['descricao_plano']) ?>
+                    <?php 
+                        $duracao = (int) $dados['duracao_plano'];
+
+                        $dataInicio = new DateTime(); 
+                        $dataVencimento = (clone $dataInicio)->modify("+$duracao days");
+
+                        // Texto do período
+                        if ($duracao < 30) {
+                            // Exibir dias
+                            $textoPeriodo = "$duracao " . ($duracao == 1 ? "dia" : "dias");
+                        } else {
+                            // Converter dias → meses de forma simples
+                            $meses = floor($duracao / 30);
+                            $textoPeriodo = "$meses " . ($meses == 1 ? "mês" : "meses");
+                        }
+                    ?>
                     <div class="card">
                         <div class="card-content">
                             <div class="title">
                                 <h1><?=$dados['nome_plano']?></h1>
-                                <h3>DNA - TechFit</h3>
+                                <h3><?=$textoPeriodo?></h3>
                             </div>
                             <div class="content">
                                <ul class="beneficios">

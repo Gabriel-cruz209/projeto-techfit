@@ -16,6 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $assina['id_plano'] = $_POST['id_plano'];
             foreach($connPagamento->select() as $dadosP) {
                 if($dadosP['id_aluno'] == $id) {
+                    $assina['id_pagamento'] = $dadosP['id_pagamento'];
                     $connAssinam->update('id_pagamento',$dadosP['id_pagamento'],$assina);
                 }
             }   
@@ -67,23 +68,34 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             <h2>Altere seu Plano</h2>
 
-            <form method="POST" action="processarPlano.php">
+            <form method="POST">
 
                 <div class="planos">
-                    <?php foreach($connPlano->select() as $dados): ?>
+                <?php foreach($connPlano->select() as $dados): ?>
                     <?php 
-                    $duracao = $dados['duracao_plano'];
+                        $duracao = (int) $dados['duracao_plano'];
 
-                    $dataInicio = new DateTime(); 
-                    $dataVencimento = (clone $dataInicio)->modify("+$duracao days"); 
+                        $dataInicio = new DateTime(); 
+                        $dataVencimento = (clone $dataInicio)->modify("+$duracao days");
+
+                        // Texto do período
+                        if ($duracao < 30) {
+                            // Exibir dias
+                            $textoPeriodo = "$duracao " . ($duracao == 1 ? "dia" : "dias");
+                        } else {
+                            // Converter dias → meses de forma simples
+                            $meses = floor($duracao / 30);
+                            $textoPeriodo = "$meses " . ($meses == 1 ? "mês" : "meses");
+                        }
                     ?>
-                    <label class="plano">
-                        <input type="radio" name="plano" value="<?=$dados['id_plano']?>">
-                        <h3><?=$dados['nome_plano']?></h3>
-                        <p>R$ <?=$dados['preco_plano']?> / <?=$dataVencimento->format('m');?> <?php if($dataVencimento->format('m') == 1){echo "mês";}  else {echo "meses";} ?></p>
-                    </label>
+                        <label class="plano">
+                            <input type="radio" name="id_plano" value="<?=$dados['id_plano']?>">
+                            <h3><?=$dados['nome_plano']?></h3>
+                            <p>R$ <?=$dados['valor_plano']?> / <?=$textoPeriodo?></p>
+                        </label>
                     <?php endforeach ?>
                 </div>
+
 
                 <h2>Dados do Cartão</h2>
 

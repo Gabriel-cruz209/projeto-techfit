@@ -6,6 +6,7 @@ require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
 $id = $_GET['id'];
 $connAulas = new ConnTables("aulas");
 $connUnidade = new ConnTables("unidades");
+$connPagamento = new ConnTables("pagamento");
 echo "
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -74,6 +75,7 @@ echo "
     <main>
 
         <div class="container">
+            <?php if($connPagamento->selectUnique("","id_aluno = :id_aluno","","","",["id_aluno" =>$id])): ?>
             <h2>Aulas Disponiveis</h2>
             <div class="area_pesquisa">
                 <div class="barra_pesquisa">
@@ -109,6 +111,9 @@ echo "
                     <?php endforeach ?>
                 </div>
             <?php endforeach ?>
+            <?php else: ?>
+                <h2>Você não assinou nenhum plano</h2>
+            <?php endif ?>
         </div>
     </main>
     <footer id="tabela-web-footer">

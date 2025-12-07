@@ -111,7 +111,7 @@ class ValorTable {
             "id_plano" => null,
             "nome_plano" => null,
             "descricao_plano" => null,
-            "preco_plano"=> null,
+            "valor_plano"=> null,
             "duracao_plano"=> null,
             "whereValue" => null
         ];
@@ -131,7 +131,8 @@ class ValorTable {
     public static function getAssinam() {
         return [
             'id_pagamento' => null,
-            'id_plano' => null
+            'id_plano' => null,
+            'whereValue' => null
         ];
     }
 }

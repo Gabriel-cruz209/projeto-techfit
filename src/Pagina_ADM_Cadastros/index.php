@@ -22,10 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $aula['descricao_aula'] = $_POST['descricao_aula'];
             $aula['id_unidade'] = $_POST['id_unidade'];
             $aula['tipo_aula'] = $_POST['tipo_aula'];
+            
             $connAulas->insert($aula);
 
 
-            $aulaCadastrada = $connAulas->selectUnique("", "", "id_aula DESC", "1")[0];
+            $aulaCadastrada = $connAulas->selectUnique("", "", "id_aula DESC","", "1")[0];
             $cria = $table->getCriam();
             $cria['id_aula'] = $aulaCadastrada['id_aula'];
             $cria['id_funcionario'] = $_POST['id_funcionario'];
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $comunicado['titulo_comunicado'] = $_POST['titulo_comunicado'];
             $connComunicados->insert($comunicado);
 
-            $comunicadoCadastrado = $connComunicados->selectUnique("", "", "id_comunicado DESC", "1")[0];
+            $comunicadoCadastrado = $connComunicados->selectUnique("", "", "id_comunicado DESC", "","1")[0];
             $Comenta = $table->getComentam();
             $Comenta['id_comunicado'] = $comunicadoCadastrado['id_comunicado'];
             $Comenta['id_funcionario'] = $_POST['id_funcionario'];
@@ -58,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $avaliacao['id_aluno'] = $_POST['id_aluno'];
             $connAvaliacao->insert($avaliacao);
 
-            $avaliacaoCadastrado = $connAvaliacao->selectUnique("", "", "id_avaliacao DESC", "1")[0];
+            $avaliacaoCadastrado = $connAvaliacao->selectUnique("", "", "id_avaliacao DESC","", "1")[0];
             $faze = $table->getFazem();
             $faze['id_avaliacao'] = $avaliacaoCadastrado['id_avaliacao'];
             $faze['id_funcionario'] = $_POST['id_funcionario'];
@@ -77,6 +78,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $aluno['cep_aluno'] = $_POST['cep_aluno'];
                 $aluno['id_unidade'] = $_POST['id_unidade'];
                 $aluno['id_plano'] = 0;
+                if($connAluno->selectUnique("","email_aluno = :email","","","",['email'=>$_POST['email_aluno']])){
+                    echo "<script>
+                    alert('Email já cadastrado')
+                    </script>";
+                    break;
+                }
+                if($connAluno->selectUnique("","cpf_aluno = :cpf","","","",['cpf'=>$_POST['cpf_aluno']])){
+                    echo "<script>
+                    alert('CPF já cadastrado')
+                    </script>";
+                    break;
+                }
                 $connAluno->insert($aluno);
             }
             break;
@@ -93,6 +106,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $funcionario['nome_funcionario'] = $_POST['nome_funcionario'];
                 $funcionario['senha_funcionario'] = $_POST['senha_funcionario'];
                 $funcionario['tipo_funcionario'] = $_POST['tipo_funcionario'];
+                if($connFuncionario->selectUnique("","email_funcionario = :email","","","",['email'=>$_POST['email_funcionario']])){
+                    echo "<script>
+                    alert('Email já cadastrado')
+                    </script>";
+                    break;
+                }
+                if($connFuncionario->selectUnique("","cpf_funcionario = :cpf","","","",['cpf'=>$_POST['cpf_funcionario']])){
+                    echo "<script>
+                    alert('CPF já cadastrado')
+                    </script>";
+                    break;
+                }
                 $connFuncionario->insert($funcionario);
             }
             break;
@@ -107,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $table = new ValorTable();
             $plano = $table->getPlanos();
             $plano['nome_plano'] = $_POST['nome_plano'];
-            $plano['preco_plano'] = $_POST['valor_plano'];
+            $plano['valor_plano'] = $_POST['valor_plano'];
             $plano['duracao_plano'] = $_POST['duracao_plano'];
             $plano['descricao_plano'] = $_POST['descricao_plano'];
             $connPlano->insert($plano);
@@ -198,7 +223,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" id="telefone" name="telefone_funcionario" required>
 
                         <label for="tipo_funcionario">Tipo</label>
-                        <input type="text" id="tipo_funcionario" name="tipo_funcionario" required>
+                        <select id="tipo_funcionario" name="tipo_funcionario" required>
+                            <option value="" disabled selected>Selecione o tipo de funcionário</option>
+
+                            <option value="personal">Personal</option>
+                            <option value="servico_geral">Serviço Geral</option>
+                            <option value="recepcao">Recepção</option>
+                            <option value="ceo">CEO</option>
+                            <option value="gerente">Gerente</option>
+                        </select>
 
                         <label for="senha_funcionario">Senha</label>
                         <input type="password" id="senha_funcionario" name="senha_funcionario" required>
@@ -372,8 +405,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="data_avaliacao">Data e Hora</label>
                         <input type="datetime-local" id="data_avaliacao" name="data_avaliacao" required>
 
-                        <label for="tipo_avalicao">Tipo de Avaliação</label>
-                        <input type="text" id="tipo_avalicao" name="tipo_avalicao" required>
+                        <label for="tipo_avaliacao">Tipo de Avaliação</label>
+                        <select id="tipo_avaliacao" name="tipo_avaliacao" required>
+                            <option value="" disabled selected>Selecione o tipo de avaliação</option>
+
+                            <option value="inicial">Avaliação Inicial</option>
+                            <option value="desenvolvimento">Avaliação de Desenvolvimento</option>
+                            <option value="final">Avaliação Final</option>
+                            <option value="reavaliacao">Reavaliação</option>
+                            <option value="biometria">Avaliação de Biometria</option>
+                            <option value="composicao_corporal">Composição Corporal</option>
+                            <option value="forca">Teste de Força</option>
+                            <option value="resistencia">Teste de Resistência</option>
+                            <option value="flexibilidade">Teste de Flexibilidade</option>
+                            <option value="condicionamento">Avaliação de Condicionamento</option>
+                            <option value="fisica">Avaliação Física</option>
+                        </select>
 
                         <label for="id_aluno">Aluno</label>
                         <select name="id_aluno" id="id_aluno" required>

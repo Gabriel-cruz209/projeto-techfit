@@ -479,4 +479,7 @@ div.coluna-informacao > a:hover {
         .btn-finalizar:hover {
             background: #a40023;
         }
+.plano:has(input[type="radio"]:checked) {
+    background: #CE002D; /* cor quando clicar */
+}
   

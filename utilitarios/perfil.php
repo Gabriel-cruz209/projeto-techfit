@@ -19,5 +19,4 @@
 <li><a onclick="inicio('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-solid fa-house"></i> Home </a></li>
 <li><a onclick="Avaliacao('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-solid fa-user-doctor"></i> Avaliação Fisica</a></li>
 <li><a onclick="agenda('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-regular fa-calendar-days"></i>Agenda</a></li>
-<!-- <li><a onclick="plano('?id=<?=$id?>')" style="cursor: pointer;"><i class="fa-regular fa-calendar-days"></i>Ver Plano</a></li> -->
 <li><a onclick="inicioWeb('')" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i> Sair</a></li>

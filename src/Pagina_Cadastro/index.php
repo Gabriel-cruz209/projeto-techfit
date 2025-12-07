@@ -24,13 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $alunos['cep_aluno'] = $_POST['cep_aluno'];
     $alunos['data_nascimento_aluno'] = $_POST['data_nascimento'];
 
-    // Verificar email duplicado
-    foreach ($connAluno->select() as $dados) {
-        if ($dados['email_aluno'] == $_POST['email_aluno']) {
-            $msg = "<p class='alert-in'>Email já cadastrado</p>";
-        }
+    if($connAluno->selectUnique("","email_aluno = :email","","","",['email'=>$_POST['email_aluno']])){
+        $msg = "<p class='alert-in'>Email já cadastrado</p>";
     }
-
+    if($connAluno->selectUnique("","cpf_aluno = :cpf","","","",['cpf'=>$_POST['cpf_aluno']])){
+        $msg = "<p class='alert-in'>CPF já cadastrado</p>";
+    }
     $alunos['email_aluno'] = $_POST['email_aluno'];
     $alunos['telefone_aluno'] = $_POST['telefone_aluno'];
     $alunos['senha_aluno'] = $_POST['senha_aluno'];
@@ -139,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-group">
                 <label>Plano</label>
-                <select  id="select_plano" name="id_plano" required>
+                <select  id="select_plano" name="id_plano">
                     <option value="">Selecione o Plano</option>
 
                     <?php foreach ($connPlano->select() as $plano): ?>
