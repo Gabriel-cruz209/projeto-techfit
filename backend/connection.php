@@ -182,6 +182,41 @@ class Connection
                         SELECT 1 FROM Planos WHERE nome_plano = 'Plano Premium'
                     )
                 ");
+                self::$instancia->exec("
+                INSERT INTO Comunicados (informacao_comunicado, tipo_comunicado, titulo_comunicado) 
+                SELECT
+                    'Informamos que a TechFit passará por manutenção geral no próximo sábado, incluindo atualização nos sistemas e revisão dos equipamentos.',
+                    'importante',
+                    'Manutenção Programada'
+                FROM DUAL
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM Comunicados WHERE titulo_comunicado = 'Manutenção Programada'
+                )
+                ");
+                self::$instancia->exec("
+                INSERT INTO Comunicados (informacao_comunicado, tipo_comunicado, titulo_comunicado) 
+                SELECT
+                    'Lembre-se de manter uma rotina de alongamentos antes do treino para evitar lesões e melhorar sua performance.',
+                    'importante',
+                    'Dica de Alongamento'
+                FROM DUAL
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM Comunicados WHERE titulo_comunicado = 'Dica de Alongamento'
+                )
+                ");
+                self::$instancia->exec("
+                INSERT INTO Comunicados (informacao_comunicado, tipo_comunicado, titulo_comunicado) 
+                SELECT
+                    'A partir do próximo mês, novas turmas de musculação e cardio estarão disponíveis nos horários da manhã e tarde.',
+                    'importante',
+                    'Novos Horários Disponíveis'
+                FROM DUAL
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM Comunicados WHERE titulo_comunicado = 'Novos Horários Disponíveis'
+                )
+                ");
+
+
             } catch (PDOException $e) {
                 die("ERROR: " . $e->getMessage());
             }

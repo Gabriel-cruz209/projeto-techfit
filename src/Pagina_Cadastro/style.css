@@ -1,159 +1,212 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: "Oswald";
+    background: linear-gradient(to bottom right, #000, #000, #ce002d);
+    font-family: "Oswald", sans-serif;
+    color: white;
+    min-height: 100vh;
 }
 
+/* ======================= HEADER ======================= */
+
 header {
-  display: flex;
-  align-items: left;
-  padding: 12px 20px;
-  background: #000000;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  padding-top: 5px;
-  width: 100%;
-  box-shadow: 3px 2px 10px #ce002d;
+    display: flex;
+    align-items: left;
+    padding: 12px 20px;
+    background: #000;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 3px 2px 10px #ce002d;
+    z-index: 10;
 }
 
 header h1 {
-  padding-right: 1100px;
+    flex: 1;
 }
 
 header > img {
-  width: 70px;
-  height: 50px;
+    width: 70px;
+    height: 50px;
 }
 
+/* ======================= CONTAINER PRINCIPAL ======================= */
+
+.corpo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 110px; /* abaixo do header */
+}
+
+/* ======================= CARD DE CADASTRO ======================= */
+
 .container-cadastro {
-  background: #fff;
-  margin: 700px 70px 7px 70px;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 600px;
-  max-width: 700px;
-  text-align: center;
+    width: 90%;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 40px;
+    border-radius: 14px;
+    border: 1px solid #ce002d80;
+    box-shadow: 0 0 25px #ce002d70;
+    backdrop-filter: blur(6px);
+    animation: fade 0.4s ease-in-out;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .container-cadastro h2 {
-  margin-bottom: 25px;
-  color: #2c3e50;
+    font-size: 2.6rem;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
 }
+
+/* ======================= GRID DE CAMPOS ======================= */
+
+.in {
+    display: flex;
+    gap: 40px;
+}
+
+.left,
+.right {
+    width: 50%;
+}
+
+/* ======================= CAMPOS ======================= */
 
 .form-group {
-  margin-bottom: 20px;
-  text-align: left;
+    margin-bottom: 18px;
+    text-align: left;
 }
 
-.form-group h3 {
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #2c3e50;
+.form-group label {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    display: block;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #888;
+    background: #111;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
 }
 
-.form-group input:focus {
-  border-color: #ce002d;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #ce002d;
+    box-shadow: 0 0 8px #ce002d;
 }
 
-#id_unidade {
-  width: 100%;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
+/* ======================= BOTÃO ======================= */
 
 .container-cadastro button {
-  background: #000;
-  color: #fff;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.3s ease, background 0.3s ease;
-  width: 100%;
-  margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    background: #ce002d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
 }
 
 .container-cadastro button:hover {
-  transform: translateY(-3px);
-  background: #333;
+    background: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 0 12px #ce002d;
 }
 
+/* ======================= LINK ======================= */
+
 .container-cadastro p {
-  margin-top: 15px;
-  font-size: 14px;
+    margin-top: 18px;
 }
 
 .container-cadastro a {
-  color: #ce002d;
-  text-decoration: none;
-  font-weight: bold;
+    color: #ffafb2;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .container-cadastro a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
+}
+
+/* ======================= ALERTAS ======================= */
+
+.alert-in {
+    background-color: rgba(255, 69, 69, 0.15);
+    padding: 8px 12px;
+    color: #ff4f4f;
+    border: 1px solid #ff4f4f;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* ======================= GIF DE SUCESSO ======================= */
+
+.go {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.75);
+    background-image: url("https://i.pinimg.com/originals/8a/c1/29/8ac12962c05648c55ca85771f4a69b2d.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120px;
+}
+
+/* ======================= RESPONSIVIDADE ======================= */
+
+@media (max-width: 830px) {
+    .in {
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+    }
+
+    .container-cadastro {
+        margin: 20px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-cadastro h2 {
+        font-size: 2rem;
+    }
 }
 
 header button {
-  padding-top: 20px;
-  background-color: #00000000;
-  border-color: #00000000;
+    padding-top: 20px;
+    background-color: #00000000;
+    border-color: #00000000;
 }
-
-.alert-in {
-  background-color: rgba(247, 86, 57, 0);
-  padding: 2px 2px;
-  color: rgb(0, 0, 0);
-  border: 1px solid rgb(247, 85, 57);
-  border-radius: 7px;
-  font-size: 1rem;
-}
-
-.go {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.7);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("https://i.pinimg.com/originals/8a/c1/29/8ac12962c05648c55ca85771f4a69b2d.gif"); /* Substitua pelo caminho real do seu GIF */
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100px 100px;
-}
-
