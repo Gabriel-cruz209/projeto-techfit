@@ -46,9 +46,10 @@ CREATE TABLE IF NOT EXISTS Aulas (
 );
 CREATE TABLE IF NOT EXISTS Planos (
 	id_plano int not null PRIMARY KEY auto_increment,
-	nome_plano varchar(100) not null,
-	valor_plano decimal(10, 2) not null,
-	descricao_plano varchar(200) not null
+    nome_plano varchar(100) not null,
+    valor_plano decimal(10, 2) not null,
+    duracao_plano int not null,
+    descricao_plano varchar(200) not null
 );
 CREATE TABLE IF NOT EXISTS Pagamento (
 	id_pagamento int not null PRIMARY KEY auto_increment,

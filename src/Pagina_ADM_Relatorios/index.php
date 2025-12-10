@@ -84,54 +84,82 @@ if (isset($_POST["action"]) && $_POST["action"] === "editar_aula") {
     $aulas = $aulaTable->select();
 }
 
+// Deletar
+/* ========================== DELETE ALUNO ========================== */
 if (isset($_POST["deletar_aluno_id"])) {
     $id = $_POST["deletar_aluno_id"];
     $delete['whereValue'] = $id;
-    $alunoTable->delete($delete, "id_aluno");
-    $msg = "Aluno deletado com sucesso!";
+
+    try {
+        $alunoTable->delete($delete, "id_aluno");
+        $msg = "Aluno deletado com sucesso!";
+    } catch (\Throwable $e) {
+        $msg = "❌ Não é possível excluir o aluno: existem registros relacionados.";
+    }
+
     $alunos = $alunoTable->select();
 }
 
+/* ========================== DELETE FUNCIONÁRIO ========================== */
 if (isset($_POST["deletar_funcionario_id"])) {
     $id = $_POST["deletar_funcionario_id"];
     $delete['whereValue'] = $id;
-    $funcTable->delete($delete, "id_funcionario");
-    $msg = "Funcionário deletado com sucesso!";
+
+    try {
+        $funcTable->delete($delete, "id_funcionario");
+        $msg = "Funcionário deletado com sucesso!";
+    } catch (\Throwable $e) {
+        $msg = "❌ Não é possível excluir o funcionário: existem registros relacionados.";
+    }
+
     $funcionarios = $funcTable->select();
 }
 
+/* ========================== DELETE AULA ========================== */
 if (isset($_POST["deletar_aula_id"])) {
     $id = $_POST["deletar_aula_id"];
     $delete['whereValue'] = $id;
-    $aulaTable->delete($delete, "id_aula");
-    $msg = "Aula deletada com sucesso!";
+
+    try {
+        $aulaTable->delete($delete, "id_aula");
+        $msg = "Aula deletada com sucesso!";
+    } catch (\Throwable $e) {
+        $msg = "❌ Não é possível excluir a aula: existem registros relacionados.";
+    }
+
     $aulas = $aulaTable->select();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+/* ========================== DELETE PLANO ========================== */
+if (isset($_POST["deletar_plano_id"])) {
+    $id = $_POST["deletar_plano_id"];
+    $delete['whereValue'] = $id;
 
-    // DELETAR PLANO
-    if (isset($_POST['deletar_plano_id'])) {
-        $id = $_POST['deletar_plano_id'];
-        $delete['whereValue'] = $id;
+    try {
         $planoTable->delete($delete, "id_plano");
-        $msg = "Plano deletada com sucesso!";
-        $planos = $planoTable->select();
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    // DELETAR UNIDADE
-    if (isset($_POST['deletar_unidade_id'])) {
-        $id = $_POST['deletar_unidade_id'];
-        $delete['whereValue'] = $id;
-        $unidTable->delete($delete, 'id_unidade');
-        $msg = "Plano deletada com sucesso!";
-        $unidades = $unidTable->select();
+        $msg = "Plano deletado com sucesso!";
+    } catch (\Throwable $e) {
+        $msg = "❌ Não é possível excluir o plano: existem alunos vinculados a ele.";
     }
 
+    $planos = $planoTable->select();
 }
+
+/* ========================== DELETE UNIDADE ========================== */
+if (isset($_POST["deletar_unidade_id"])) {
+    $id = $_POST["deletar_unidade_id"];
+    $delete['whereValue'] = $id;
+
+    try {
+        $unidTable->delete($delete, "id_unidade");
+        $msg = "Unidade deletada com sucesso!";
+    } catch (\Throwable $e) {
+        $msg = "❌ Não é possível excluir a unidade: existem alunos/funcionários ou aulas relacionadas.";
+    }
+
+    $unidades = $unidTable->select();
+}
+
 
 
 /* ---------------------- PEGAR ITEM PARA EDIÇÃO ----------------------- */

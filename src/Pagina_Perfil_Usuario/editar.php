@@ -2,6 +2,7 @@
 
 namespace projetoTechfit;
 
+error_reporting(0);
 require_once __DIR__ . "\\..\\..\\backend\\connTables.php";
 require_once __DIR__ . "\\..\\..\\backend\\valorTable.php";
 $connAluno = new ConnTables("alunos");
@@ -82,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
   <title>Editar Perfil - TECHFIT</title>
 </head>

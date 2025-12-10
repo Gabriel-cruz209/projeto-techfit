@@ -31,6 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../Arquivos/LogoTechFit-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <title>TECHFIT</title>
 </head>

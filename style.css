@@ -207,7 +207,7 @@ main {
 ========================== */
 .planos {
     padding: 50px 0;
-    background: var(--corPrincipal);
+    background: linear-gradient(to bottom right, #000, #000, #ce002d);
     text-align: center;
 }
 

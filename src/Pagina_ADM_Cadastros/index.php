@@ -405,8 +405,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="data_avaliacao">Data e Hora</label>
                         <input type="datetime-local" id="data_avaliacao" name="data_avaliacao" required>
 
-                        <label for="tipo_avaliacao">Tipo de Avaliação</label>
-                        <select id="tipo_avaliacao" name="tipo_avaliacao" required>
+                        <label for="tipo_avalicao">Tipo de Avaliação</label>
+                        <select id="tipo_avalicao" name="tipo_avalicao" required>
                             <option value="" disabled selected>Selecione o tipo de avaliação</option>
 
                             <option value="inicial">Avaliação Inicial</option>
