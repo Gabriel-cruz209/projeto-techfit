@@ -387,3 +387,13 @@ document.getElementById("pesquisa6").addEventListener("input", function () {
         linha.style.display = texto.includes(filtro) ? "" : "none";
     });
 });
+
+setTimeout(() => {
+    let msg = document.getElementById("mesagem");
+    msg.classList.add("oculto");   // começa o fade out
+
+    // depois de terminar a animação, remove da tela
+    setTimeout(() => {
+        msg.style.display = "none";
+    }, 800); // tempo do fade-out
+}, 3000);

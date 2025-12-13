@@ -10,6 +10,7 @@ $connAluno = new ConnTables('alunos');
 $connUnidade = new ConnTables('unidades');
 $connFuncionario = new ConnTables("funcionarios");
 $connPlano = new ConnTables("planos");
+$msg ='';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     switch ($_POST['action']) {
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $cria['id_aula'] = $aulaCadastrada['id_aula'];
             $cria['id_funcionario'] = $_POST['id_funcionario'];
             $connCriam->insert($cria);
-
+            $msg = "<p id='mesagem' class='alert'>Aula Cadastrada com Sucesso!</p>";
             break;
         case 'comunicados':
             $connComunicados = new ConnTables("comunicados");
@@ -48,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $Comenta['id_comunicado'] = $comunicadoCadastrado['id_comunicado'];
             $Comenta['id_funcionario'] = $_POST['id_funcionario'];
             $connComentam->insert($Comenta);
+            $msg = "<p id='mesagem' class='alert'>Comunicado Cadastrado com Sucesso!</p>";
             break;
         case 'avaliacao':
             $connFazem = new ConnTables("fazem");
@@ -64,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $faze['id_avaliacao'] = $avaliacaoCadastrado['id_avaliacao'];
             $faze['id_funcionario'] = $_POST['id_funcionario'];
             $connFazem->insert($faze);
+            $msg = "<p id='mesagem' class='alert'>Avaliação Cadastrada com Sucesso!</p>";
             break;
         case 'alunos':
             if ($_POST['senha_aluno'] == $_POST['Csenha_aluno']) {
@@ -91,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
                 }
                 $connAluno->insert($aluno);
+                $msg = "<p id='mesagem' class='alert'>Aluno Cadastrado com Sucesso!</p>";
             }
             break;
         case 'funcionarios':
@@ -119,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
                 }
                 $connFuncionario->insert($funcionario);
+                $msg = "<p id='mesagem' class='alert'>Funcionário Cadastrado com Sucesso!</p>";
             }
             break;
         case 'unidades':
@@ -127,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $unidade['cep_unidade'] = $_POST['cep_unidade'];
             $unidade['nome_unidade'] = $_POST['nome_unidade'];
             $connUnidade->insert($unidade);
+            $msg = "<p id='mesagem' class='alert'>Unidade Cadastrado com Sucesso!</p>";
             break;
         case 'planos':
             $table = new ValorTable();
@@ -136,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $plano['duracao_plano'] = $_POST['duracao_plano'];
             $plano['descricao_plano'] = $_POST['descricao_plano'];
             $connPlano->insert($plano);
+            $msg = "<p id='mesagem' class='alert'>Plano Cadastrado com Sucesso!</p>";
             break;
     }
 }
@@ -190,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button onclick="sec('AvFisica')">Av.Fisica</button>
                 <button onclick="sec('Planos')">Planos</button>
             </div>
-
+            <?= $msg ?>
             <div class="form-container">
                 <div class="hidden" id="Unidade">
                     <form class="cadastro-form form_validacao" method="post" action="#">
@@ -214,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" id="nome_funcionario" name="nome_funcionario" required>
 
                         <label for="data_nascimento_funcionario">Data de Nascimento</label>
-                        <input type="date" id="data_nascimento_funcionario" name="data_nascimento_funcionario" required>
+                        <input type="date" id="data_nascimento_funcionario" name="data_nascimento_funcionario"  max="2011-01-01" required>
 
                         <label for="email_funcionario">Email</label>
                         <input type="email" id="email_funcionario" name="email_funcionario" required>
@@ -269,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" id="nome_aluno" name="nome_aluno" required>
 
                         <label for="data_nascimento_aluno">Data de Nascimento</label>
-                        <input type="date" id="data_nascimento_aluno" name="data_nascimento_aluno" required>
+                        <input type="date" id="data_nascimento_aluno" name="data_nascimento_aluno" max="2011-01-01" required>
 
                         <label for="cpf">CPF</label>
                         <input type="text" id="cpf" name="cpf_aluno" required>

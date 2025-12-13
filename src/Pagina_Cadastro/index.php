@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <div class="form-group">
                             <label>Data de Nascimento</label>
-                            <input type="date" name="data_nascimento" required>
+                            <input type="date" name="data_nascimento" max="2011-01-01" required>
                         </div>
 
                         <div class="form-group">
