@@ -15,7 +15,7 @@ class Connection
             try {
                 $host = "localhost";
                 $user = "root";
-                $db = "techfit_academy";
+                $db = "techfit_academy_VG";
                 $password = "senaisp";
 
 

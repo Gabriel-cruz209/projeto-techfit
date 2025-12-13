@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <div class="form-group">
                             <label>Endereço - CEP</label>
-                            <input type="text" name="cep_aluno" maxlength="9" required>
+                            <input type="text" name="cep_aluno" id="cep" maxlength="9" required>
                         </div>
 
                         <div class="form-group">
